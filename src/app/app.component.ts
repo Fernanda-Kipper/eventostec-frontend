@@ -8,58 +8,65 @@ import { UF } from './types/UF.type';
 import { ModalComponent } from './components/modal/modal.component';
 
 interface FilterForm {
-  locale: FormControl,
-  from: FormControl,
-  to: FormControl,
+  locale: FormControl;
+  from: FormControl;
+  to: FormControl;
 }
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [
-    RouterOutlet, 
-    EventComponent, 
-    CommonModule, 
+    RouterOutlet,
+    EventComponent,
+    CommonModule,
     ReactiveFormsModule,
-    ModalComponent
+    ModalComponent,
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   filterForm!: FormGroup<FilterForm>;
   isModalOpen = signal(false);
 
-  states: {label: string, value: string}[] = []
+  states: { label: string; value: string }[] = [];
 
   events = [
-    { title: "Frontin Sampa", place: "São Paulo", date: "19/10/2024", description: "Maior evento de Frontend do Brasil!"}
-  ]
+    {
+      title: 'Frontin Sampa',
+      place: 'São Paulo',
+      date: '19/10/2024',
+      description: 'Maior evento de Frontend do Brasil!',
+    },
+  ];
 
-
-  constructor(private filterService: FilterService){
+  constructor(private filterService: FilterService) {
     this.filterForm = new FormGroup({
       locale: new FormControl(''),
       from: new FormControl(null),
       to: new FormControl(null),
-    })
+    });
 
     this.loadLocalesFilter();
   }
 
-  toggleModal(){
+  toggleModal() {
     this.isModalOpen.set(!this.isModalOpen());
   }
 
-  loadLocalesFilter(){
+  loadLocalesFilter() {
     this.filterService.loadLocales().subscribe({
       next: (body: UF[]) => {
-        this.states = body.map(value => ({ "label": value.nome, "value": value.sigla }))
-      }
-    })
+        this.states = body.map((value) => ({
+          label: value.nome,
+          value: value.sigla,
+        }));
+      },
+    });
   }
 
-  submit(){
+  submit() {
     this.isModalOpen.set(false);
     console.log(this.filterForm.value.from);
     console.log(this.filterForm.value.to);
