@@ -36,60 +36,47 @@
       </div>
     </div>
   </main>
-  @if (isModalOpen()) {
-    <div class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-      <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
-    
-      <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
-        <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-          <div class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6">
-            <div class="flex justify-end">
-              <button (click)="toggleModal()" class="font-medium text-base">x</button>
-            </div>
-            <div>
-              <div class="mt-3 text-center sm:mt-5">
-                <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Selecione os filtros</h3>
-              </div>
-            </div>
-            <form [formGroup]="filterForm">
-              <div class="mb-5">
-                  <label for="guest" class="mb-3 block text-base font-medium text-[#07074D]">
-                      Estado
-                  </label>
-                  <select formControlName="locale" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
-                    @for (option of states; track option.label) {
-                      <option [value]="option.value">{{ option.label }}</option>
-                    }
-                  </select>
-              </div>
-  
-              <div class="-mx-3 flex flex-wrap">
-                  <div class="w-full px-3 sm:w-1/2">
-                      <div class="mb-5">
-                          <label for="date" class="mb-3 block text-base font-medium text-[#07074D]">
-                              De
-                          </label>
-                          <input formControlName="from" type="date" name="date" id="date"
-                              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                      </div>
-                  </div>
-                  <div class="w-full px-3 sm:w-1/2">
-                    <div class="mb-5">
-                      <label for="date" class="mb-3 block text-base font-medium text-[#07074D]">
-                          Até
-                      </label>
-                      <input formControlName="to"  type="date" name="date" id="date"
-                          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                  </div>
-                  </div>
-              </div>
-              <div class="mt-5 sm:mt-6">
-                <button (click)="submit()" type="button" class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">aplicar</button>
-              </div>
-          </form>
-          </div>
-        </div>
+  <app-modal [isModalOpen]="isModalOpen" (closeModal)="toggleModal()">
+    <div>
+      <div class="mt-3 text-center sm:mt-5">
+        <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Selecione os filtros</h3>
       </div>
     </div>
-  }
+    <form [formGroup]="filterForm">
+      <div class="mb-5">
+          <label for="guest" class="mb-3 block text-base font-medium text-[#07074D]">
+              Estado
+          </label>
+          <select formControlName="locale" class="w-full appearance-none rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md">
+            @for (option of states; track option.label) {
+              <option [value]="option.value">{{ option.label }}</option>
+            }
+          </select>
+      </div>
+
+      <div class="-mx-3 flex flex-wrap">
+          <div class="w-full px-3 sm:w-1/2">
+              <div class="mb-5">
+                  <label for="date" class="mb-3 block text-base font-medium text-[#07074D]">
+                      De
+                  </label>
+                  <input formControlName="from" type="date" name="date" id="date"
+                      class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+              </div>
+          </div>
+          <div class="w-full px-3 sm:w-1/2">
+            <div class="mb-5">
+              <label for="date" class="mb-3 block text-base font-medium text-[#07074D]">
+                  Até
+              </label>
+              <input formControlName="to"  type="date" name="date" id="date"
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+          </div>
+          </div>
+      </div>
+      <div class="mt-5 sm:mt-6">
+        <button (click)="submit()" type="button" class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">aplicar</button>
+      </div>
+  </form>
+  </app-modal>
 </div>

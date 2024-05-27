@@ -5,6 +5,7 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FilterService } from './services/filter.service';
 import { UF } from './types/UF.type';
+import { ModalComponent } from './components/modal/modal.component';
 
 interface FilterForm {
   locale: FormControl,
@@ -15,7 +16,13 @@ interface FilterForm {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, EventComponent, CommonModule, ReactiveFormsModule],
+  imports: [
+    RouterOutlet, 
+    EventComponent, 
+    CommonModule, 
+    ReactiveFormsModule,
+    ModalComponent
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
