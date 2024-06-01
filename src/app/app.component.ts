@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FilterService } from './services/filter.service';
 import { UF } from './types/UF.type';
 import { ModalComponent } from './components/modal/modal.component';
+import { HeaderComponent } from './header/header.component';
 
 interface FilterForm {
   locale: FormControl;
@@ -22,6 +23,7 @@ interface FilterForm {
     CommonModule,
     ReactiveFormsModule,
     ModalComponent,
+    HeaderComponent,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
