@@ -86,5 +86,6 @@ export class AppComponent implements OnInit{
 
   clearFilter() {
     this.filterIsActive = false
+    this.filterForm.reset();
   }
 }
