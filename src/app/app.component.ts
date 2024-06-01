@@ -8,12 +8,14 @@ import { UF } from './types/UF.type';
 import { ModalComponent } from './components/modal/modal.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { City } from './types/City.type';
+import { HeaderComponent } from './header/header.component';
 
 interface FilterForm {
   locale: FormControl,
   city: FormControl,
   from: FormControl,
   to: FormControl,
+
 }
 
 
@@ -26,10 +28,11 @@ interface FilterForm {
     CommonModule,
     ReactiveFormsModule,
     NgSelectModule,
-    ModalComponent
+    ModalComponent,
+    HeaderComponent
   ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   filterForm!: FormGroup<FilterForm>;
@@ -40,9 +43,6 @@ export class AppComponent implements OnInit {
 
   @ViewChild('stateSelect') stateSelect: any;
 
-  events = [
-    { title: "Frontin Sampa", place: "São Paulo", date: "19/10/2024", description: "Maior evento de Frontend do Brasil!" }
-  ]
   ngOnInit() {
 
   }
@@ -64,13 +64,23 @@ export class AppComponent implements OnInit {
 
   }
 
+
+  events = [
+    {
+      title: 'Frontin Sampa',
+      place: 'São Paulo',
+      date: '19/10/2024',
+      description: 'Maior evento de Frontend do Brasil!',
+    },
+  ];
+
   constructor(private filterService: FilterService) {
     this.filterForm = new FormGroup({
       locale: new FormControl(''),
       city: new FormControl(''),
       from: new FormControl(null),
       to: new FormControl(null),
-    })
+    });
 
     this.loadLocalesFilter();
   }

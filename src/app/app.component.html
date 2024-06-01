@@ -1,96 +1,94 @@
-<div class="border-b border-gray-200 bg-white px-4 py-5 sm:px-6">
-  <div id="header" class="-ml-4 -mt-2 flex flex-wrap items-center justify-between sm:flex-nowrap">
-    <div class="ml-4 mt-2">
-      <h3 class="text-base font-semibold leading-6 text-gray-900">EventosTec | Eventos de Tecnologia 🇧🇷</h3>
+<app-header></app-header>
+
+<main id="content" class="bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div id="list-header" class="mx-auto max-w-2xl text-center mb-6">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        Lista de Eventos
+      </h2>
+      <p class="mt-2 text-lg leading-8 text-gray-600">
+        Aqui você irá encontrar a lista de próximos eventos de tecnologia que
+        irão rolar no Brasil compartilhados pela comunidade!
+      </p>
     </div>
-    <div class="ml-4 mt-2 flex-shrink-0">
-      <button type="button" class="relative inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Adicionar um evento</button>
+    <div id="event-filter" class="relative">
+      <div class="absolute inset-0 flex items-center" aria-hidden="true">
+        <div class="w-full border-t border-gray-300"></div>
+      </div>
+      <div class="relative flex justify-center">
+        <button (click)="toggleModal()" type="button"
+          class="inline-flex items-center gap-x-1.5 rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+          <svg class="-ml-1 -mr-0.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path
+              d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
+          </svg>
+          Filtro
+        </button>
+      </div>
+    </div>
+    <div id="event-list"
+      class="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+      <ul class="-my-8 divide-y divide-gray-100">
+        @for (event of events; track event) {
+        <app-event [title]="event.title" [description]="event.description" [date]="event.date" [place]="event.place">{{
+          event }}</app-event>
+        }
+      </ul>
     </div>
   </div>
+</main>
+<app-modal [isModalOpen]="isModalOpen" (closeModal)="toggleModal()">
+  <div>
+    <div class="mt-3 text-center sm:mt-5">
+      <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Selecione os filtros</h3>
+    </div>
+  </div>
+  <form [formGroup]="filterForm">
+    <div class="mb-5">
+      <label for="stateDropdown" class="mb-3 block text-base font-medium text-[#07074D]">
+        Estado
+      </label>
+      <select id="stateDropdown" formControlName="locale" class="w-full rounded-md border py-3 px-6 outline-none"
+        (change)="stateSelect2($event)">
+        @for (option of states; track option.label) {
+        <option [value]="option.id">{{ option.label }}</option>
+        }
+      </select>
+    </div>
 
-  <main id="content" class="bg-white py-24 sm:py-32">
-    <div class="mx-auto max-w-7xl px-6 lg:px-8">
-      <div id="list-header" class="mx-auto max-w-2xl text-center mb-6">
-        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Lista de Eventos</h2>
-        <p class="mt-2 text-lg leading-8 text-gray-600">Aqui você irá encontrar a lista de próximos eventos de tecnologia que irão rolar no Brasil compartilhados pela comunidade!</p>
-      </div>
-      <div id="event-filter" class="relative">
-        <div class="absolute inset-0 flex items-center" aria-hidden="true">
-          <div class="w-full border-t border-gray-300"></div>
+    <div class="mb-5">
+      <label for="cityDropdown" class="mb-3 block text-base font-medium text-[#07074D]">
+        Cidade
+      </label>
+      <select id="cityDropdown" formControlName="city" class="w-full rounded-md border py-3 px-6 outline-none">
+        @for (option of cities; track option.label) {
+        <option [value]="option.value">{{ option.label }}</option>
+        }
+      </select>
+    </div>
+    <div class="-mx-3 flex flex-wrap">
+      <div class="w-full px-3 sm:w-1/2">
+        <div class="mb-5">
+          <label for="date" class="mb-3 block text-base font-medium text-[#07074D]">
+            De
+          </label>
+          <input formControlName="from" type="date" name="date" id="date"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
         </div>
-        <div class="relative flex justify-center">
-          <button (click)="toggleModal()" type="button" class="inline-flex items-center gap-x-1.5 rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-            <svg class="-ml-1 -mr-0.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-              <path
-                d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-            </svg>
-            Filtro
-          </button>
-        </div>
       </div>
-      <div id="event-list" class="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-        <ul class="-my-8 divide-y divide-gray-100">
-          @for (event of events; track event) {
-          <app-event [title]="event.title" [description]="event.description" [date]="event.date"
-            [place]="event.place">{{ event }}</app-event>
-          }
-        </ul>
+      <div class="w-full px-3 sm:w-1/2">
+        <div class="mb-5">
+          <label for="date" class="mb-3 block text-base font-medium text-[#07074D]">
+            Até
+          </label>
+          <input formControlName="to" type="date" name="date" id="date"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+        </div>
       </div>
     </div>
-  </main>
-  <app-modal [isModalOpen]="isModalOpen" (closeModal)="toggleModal()">
-    <div>
-      <div class="mt-3 text-center sm:mt-5">
-        <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Selecione os filtros</h3>
-      </div>
+    <div class="mt-5 sm:mt-6">
+      <button (click)="submit()" type="button"
+        class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">aplicar</button>
     </div>
-    <form [formGroup]="filterForm">
-      <div class="mb-5">
-        <label for="stateDropdown" class="mb-3 block text-base font-medium text-[#07074D]">
-          Estado
-        </label>
-        <select id="stateDropdown" formControlName="locale" class="w-full rounded-md border py-3 px-6 outline-none"
-          (change)="stateSelect2($event)">
-          @for (option of states; track option.label) {
-          <option [value]="option.id">{{ option.label }}</option>
-          }
-        </select>
-      </div>
-
-      <div class="mb-5">
-        <label for="cityDropdown" class="mb-3 block text-base font-medium text-[#07074D]">
-          Cidade
-        </label>
-        <select id="cityDropdown" formControlName="city" class="w-full rounded-md border py-3 px-6 outline-none">
-          @for (option of cities; track option.label) {
-            <option [value]="option.value">{{ option.label }}</option>
-            }
-        </select>
-      </div>
-      <div class="-mx-3 flex flex-wrap">
-        <div class="w-full px-3 sm:w-1/2">
-          <div class="mb-5">
-            <label for="date" class="mb-3 block text-base font-medium text-[#07074D]">
-              De
-            </label>
-            <input formControlName="from" type="date" name="date" id="date"
-              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-          </div>
-        </div>
-        <div class="w-full px-3 sm:w-1/2">
-          <div class="mb-5">
-            <label for="date" class="mb-3 block text-base font-medium text-[#07074D]">
-              Até
-            </label>
-            <input formControlName="to" type="date" name="date" id="date"
-              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-          </div>
-        </div>
-      </div>
-      <div class="mt-5 sm:mt-6">
-        <button (click)="submit()" type="button"
-          class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">aplicar</button>
-      </div>
-    </form>
-  </app-modal>
-</div>
+  </form>
+</app-modal>

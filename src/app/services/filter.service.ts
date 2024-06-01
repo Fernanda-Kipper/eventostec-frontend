@@ -7,7 +7,7 @@ import { City } from '../types/City.type';
 
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FilterService {
   constructor(private httpClient: HttpClient) {}
