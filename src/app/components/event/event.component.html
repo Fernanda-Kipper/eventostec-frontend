@@ -1,13 +1,13 @@
-<li class="py-8">
+<li>
   <div class="overflow-hidden rounded-lg bg-white shadow">
-    <div class="px-4 py-5 sm:p-6">
+    <div>
       <img class="rounded-md" src="{{ banner }}" alt="Event Banner" />
     </div>
-    <div class="bg-gray-50 px-4 py-4 sm:px-6">
+    <div class="px-4 py-4 sm:px-6">
       <dl class="relative flex flex-wrap gap-x-3">
         <dt class="sr-only">Nome do Evento</dt>
         <dd
-          class="w-full flex-none text-lg font-semibold tracking-tight text-gray-900"
+          class="w-full flex-none text-lg font-semibold tracking-tight cursor-pointer text-gray-900"
         >
           <a [href]="url">
             {{ title }}
@@ -28,12 +28,6 @@
           class="mt-4 flex items-center gap-x-3 text-base leading-7 text-gray-500"
         >
           {{ place }}
-        </dd>
-        <dt class="sr-only">Mais Informações</dt>
-        <dd
-          class="mt-4 flex items-center gap-x-3 text-base leading-7 text-gray-500"
-        >
-          <a [href]="url">{{ url }}</a>
         </dd>
       </dl>
     </div>
