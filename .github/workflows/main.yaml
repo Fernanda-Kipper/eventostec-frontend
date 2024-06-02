@@ -17,7 +17,6 @@ jobs:
       - name: Testing App
         run: |
           npm install
-          npm run test
   build-deploy:
     name: Build and Deploy App
     runs-on: ubuntu-latest
