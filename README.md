@@ -67,6 +67,14 @@ Um agradecimento especial a todos que contribuíram ao projeto!
         </sub>
       </a>
     </td>
+    <td align="center">
+      <a href="https://github.com/carlloseduardo07">
+        <img src="https://avatars.githubusercontent.com/u/80606019?v=4" width="100px;" alt="Foto do Carlos Eduardo Albuquerque"/><br>
+        <sub>
+          <b>Carlos Eduardo Albuquerque</b>
+        </sub>
+      </a>
+    </td>
   </tr>
 </table>
 
