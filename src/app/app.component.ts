@@ -1,11 +1,12 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import {Component, OnInit, signal} from '@angular/core';
+import {EventType, RouterOutlet} from '@angular/router';
 import { EventComponent } from './components/event/event.component';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FilterService } from './services/filter.service';
 import { UF } from './types/UF.type';
 import { ModalComponent } from './components/modal/modal.component';
+import {eventType} from "./types/Event.type";
 import { HeaderComponent } from './header/header.component';
 
 interface FilterForm {
@@ -28,20 +29,24 @@ interface FilterForm {
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   filterForm!: FormGroup<FilterForm>;
   isModalOpen = signal(false);
 
   states: { label: string; value: string }[] = [];
 
-  events = [
-    {
-      title: 'Frontin Sampa',
-      place: 'São Paulo',
-      date: '19/10/2024',
-      description: 'Maior evento de Frontend do Brasil!',
-    },
-  ];
+  eventList: eventType[] = [];
+
+  filterIsActive = false;
+
+  ngOnInit(){
+    this.eventList = [
+      { title: "Frontin Sampa", place: "São Paulo", date: "19/10/2024", description: "Maior evento de Frontend do Brasil!"},
+      { title: "Frontin Sampa", place: "São Paulo", date: "19/10/2024", description: "Maior evento de Frontend do Brasil!"},
+      { title: "Frontin Sampa", place: "São Paulo", date: "19/10/2024", description: "Maior evento de Frontend do Brasil!"},
+      { title: "Frontin Sampa", place: "São Paulo", date: "19/10/2024", description: "Maior evento de Frontend do Brasil!"}
+    ]
+  }
 
   constructor(private filterService: FilterService) {
     this.filterForm = new FormGroup({
@@ -70,8 +75,18 @@ export class AppComponent {
 
   submit() {
     this.isModalOpen.set(false);
-    console.log(this.filterForm.value.from);
-    console.log(this.filterForm.value.to);
-    console.log(this.filterForm.value.locale);
+    this.filterIsActive = true;
+  }
+
+  isFilterActive() {
+    if (this.filterIsActive){
+      return "visible"
+    }
+    return "invisible"
+  }
+
+  clearFilter() {
+    this.filterIsActive = false
+    this.filterForm.reset();
   }
 }

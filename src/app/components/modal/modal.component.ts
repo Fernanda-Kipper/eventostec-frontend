@@ -16,6 +16,7 @@ import {
 export class ModalComponent {
   @Input() isModalOpen!: WritableSignal<boolean>;
   @Output() closeModal = new EventEmitter();
+  @Output() isFilterActive = new EventEmitter();
 
   close() {
     this.closeModal.emit();
