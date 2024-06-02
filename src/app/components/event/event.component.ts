@@ -12,4 +12,6 @@ export class EventComponent {
   @Input() description: string = 'descrição virá em breve! hehe';
   @Input() date: string = '19/10/2024';
   @Input() place: string = 'Online';
+  @Input() banner: string = 'https://images.sympla.com.br/630305a3009a1-lg.png';
+  @Input() site: string = 'https://hacktown.com.br/';
 }
