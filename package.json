@@ -16,6 +16,7 @@
   "lint-staged": {
     "*.{ts,html}": [
       "eslint",
+      "prettier --write",
       "prettier --check"
     ]
   },
@@ -34,6 +35,7 @@
     "@ng-select/ng-select": "12.0.7",
     "express": "^4.18.2",
     "rxjs": "~7.8.0",
+    "select2": "^4.1.0-rc.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
