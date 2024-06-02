@@ -8,6 +8,8 @@ jobs:
     name: Test App
     runs-on: ubuntu-latest
     steps:
+      - name: Get Latest Code
+        uses: actions/checkout@v2
       - name: Get Node
         uses: actions/setup-node@v2
         with:
@@ -17,7 +19,7 @@ jobs:
           npm install
           npm run test
   build-deploy:
-    name: Build and Deploy
+    name: Build and Deploy App
     runs-on: ubuntu-latest
     steps:
       - name: Get Latest Code
