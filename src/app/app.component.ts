@@ -6,7 +6,12 @@ import {
   ViewChild,
 } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 import { NgSelectModule } from '@ng-select/ng-select';
@@ -58,10 +63,10 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.filterForm = new FormGroup<FilterForm>({
-      locale: new FormControl<string | null>(null),
-      city: new FormControl<string | null>(null),
-      from: new FormControl<Date | null>(null),
-      to: new FormControl<Date | null>(null),
+      locale: new FormControl<string | null>(null, [Validators.required]),
+      city: new FormControl<string | null>(null, [Validators.required]),
+      from: new FormControl<Date | null>(null, [Validators.required]),
+      to: new FormControl<Date | null>(null, [Validators.required]),
     });
 
     this.loadLocalesFilter();
