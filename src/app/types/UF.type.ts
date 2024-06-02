@@ -1,4 +1,5 @@
 export type UF = {
-  nome: string;
-  sigla: string;
-};
+    id:number,
+    nome: string,
+    sigla: string
+}

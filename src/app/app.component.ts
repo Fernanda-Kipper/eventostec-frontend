@@ -1,3 +1,5 @@
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild, signal } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 import {Component, OnInit, signal} from '@angular/core';
 import {EventType, RouterOutlet} from '@angular/router';
 import { EventComponent } from './components/event/event.component';
@@ -6,13 +8,17 @@ import { CommonModule } from '@angular/common';
 import { FilterService } from './services/filter.service';
 import { UF } from './types/UF.type';
 import { ModalComponent } from './components/modal/modal.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { City } from './types/City.type';
 import {eventType} from "./types/Event.type";
 import { HeaderComponent } from './header/header.component';
 
 interface FilterForm {
-  locale: FormControl;
-  from: FormControl;
-  to: FormControl;
+  locale: FormControl,
+  city: FormControl,
+  from: FormControl,
+  to: FormControl,
+
 }
 
 @Component({
@@ -23,17 +29,39 @@ interface FilterForm {
     EventComponent,
     CommonModule,
     ReactiveFormsModule,
+    NgSelectModule,
     ModalComponent,
-    HeaderComponent,
+    HeaderComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
   filterForm!: FormGroup<FilterForm>;
   isModalOpen = signal(false);
 
-  states: { label: string; value: string }[] = [];
+  states: { id: number, label: string, value: string }[] = [];
+  cities: { id: number, label: string, value: string }[] = [];
+
+  @ViewChild('stateSelect') stateSelect: any;
+
+  loadCities(selectedState: number) {
+    this.filterService.loadCitiesByState(selectedState).subscribe({
+      next: (cities: City[]) => {
+        this.cities = cities.map(city => ({ id: city.id, label: city.nome, value: city.nome }));
+
+      },
+      error: (error) => {
+        console.error("Error loading cities:", error);
+        // Handle the error (e.g., show an error message to the user)
+      }
+    });
+  }
+  stateSelect2(event: any) {
+    const selectedStateValue = this.filterForm.get('locale')!.value;
+    this.loadCities(selectedStateValue);
+
+  }
 
   eventList: eventType[] = [];
 
@@ -51,6 +79,7 @@ export class AppComponent implements OnInit{
   constructor(private filterService: FilterService) {
     this.filterForm = new FormGroup({
       locale: new FormControl(''),
+      city: new FormControl(''),
       from: new FormControl(null),
       to: new FormControl(null),
     });
@@ -65,12 +94,9 @@ export class AppComponent implements OnInit{
   loadLocalesFilter() {
     this.filterService.loadLocales().subscribe({
       next: (body: UF[]) => {
-        this.states = body.map((value) => ({
-          label: value.nome,
-          value: value.sigla,
-        }));
-      },
-    });
+        this.states = body.map(value => ({ "id": value.id, "label": value.nome, "value": value.sigla }))
+      }
+    })
   }
 
   submit() {
