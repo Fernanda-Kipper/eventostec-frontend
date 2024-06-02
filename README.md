@@ -1,27 +1,130 @@
-# CommunityEventsFront
+[JAVASCRIPT__BADGE]: https://img.shields.io/badge/Javascript-000?style=for-the-badge&logo=javascript
+[TYPESCRIPT__BADGE]: https://img.shields.io/badge/typescript-D4FAFF?style=for-the-badge&logo=typescript
+[ANGULAR__BADGE]: https://img.shields.io/badge/Angular-red?style=for-the-badge&logo=angular
+[PROJECT__BADGE]: https://img.shields.io/badge/📱Visite_nossa_plataforma-000?style=for-the-badge&logo=project
+[PROJECT__URL]: eventostec.com.br
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.2.3.
+<h1 align="center" style="font-weight: bold;">EventosTec.com</h1>
 
-## Development server
+![angular][ANGULAR__BADGE]
+![typescript][TYPESCRIPT__BADGE]
+![javascript][JAVASCRIPT__BADGE]
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<p align="center">
+ <a href="#about">Sobre</a> • 
+  <a href="#colab">Contribuidores</a> •
+   <a href="#started">Como Rodar</a> • 
+ <a href="#contribute">Como Contribuir</a>
+</p>
 
-## Code scaffolding
+<h2 id="started">📌 Sobre</h2>
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Este projeto é uma plataforma centralizadora de eventos e meetups da comunidade tech, uma iniciativa Open Source da Comunidade [KipperDev](https://discord.gg/D5sStBByFr). 
 
-## Build
+Na nossa plataforma, você poderá buscar pelos próximos eventos de tecnologia, compartilhados pela comunidade, filtrando por cidade, estado e data.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+O objetivo é facilitar a conexão e o engajamento entre os amantes de tecnologia em todo o país.
 
-## Running unit tests
+[![project][PROJECT__BADGE]][PROJECT__URL]
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+<h2 id="colab">🤝 Hall of Fame</h2>
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Um agradecimento especial a todos que contribuíram ao projeto!
 
-## Further help
+<table>
+  <tr>
+    <td align="center">
+      <a href="#">
+        <img src="https://avatars.githubusercontent.com/u/61896274?v=4" width="100px;" alt="Fernanda Kipper Profile Picture"/><br>
+        <sub>
+          <b>Fernanda Kipper</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/DevN0t">
+        <img src="https://avatars.githubusercontent.com/u/124280672?v=4" width="100px;" alt="Foto do Caynã"/><br>
+        <sub>
+          <b>Caynã</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/joaovitormp1998">
+        <img src="https://avatars.githubusercontent.com/u/49036365?v=4" width="100px;" alt="Foto do João"/><br>
+        <sub>
+          <b>João Vitor Monsores</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/AnndreJunior">
+        <img src="https://avatars.githubusercontent.com/u/138535113?v=4" width="100px;" alt="Foto do André"/><br>
+        <sub>
+          <b>André Júnior</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/emnesty">
+        <img src="https://avatars.githubusercontent.com/u/7916851?v=4" width="100px;" alt="Foto do Luciano"/><br>
+        <sub>
+          <b>Luciano Clécio</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+<h2 id="started">🚀 Como Rodar</h2>
+
+<h3>Pré requisitos</h3>
+
+Para executar esse projeto você precisa das seguintes tecnologias:
+
+- Node JS v21
+- Angular CLI v17
+
+<h3>Clonando</h3>
+
+
+```bash
+git clone https://github.com/Fernanda-Kipper/eventostec-frontend.git
+```
+
+<h3>Iniciando</h3>
+
+```bash
+cd eventostec-front
+npm install
+npm start
+```
+
+<h2 id="contribute">📫 Contribuir</h2>
+
+Para contribuir com esse projeto você só precisa seguir esse passo a passo:
+
+1. Crie sua branch a partir da main
+```
+git checkout main
+git checkout -b feature/NOME_DA_SUA_ALTERACAO
+```
+2. Faça suas mudanças
+3. Siga os padrões de commit na hora de commitar
+4. Por fim, abra um Pull Request explicando o problema resolvido ou a funcionalidade criada. Se houver, anexe capturas de tela das modificações visuais e aguarde a revisão!
+
+<h3>💡 Não sabe o que contribuir?</h2>
+
+Se você não souber como contribuir, veja nas [issues abertas](https://github.com/Fernanda-Kipper/eventostec-frontend/issues), onde mapeamos várias melhorias para o projeto.
+
+Sinta-se a vontade para escolher uma das issues e colocar a mão na massa!
+
+> obs: Não se esqueça de mencionar no seu Pull Request a issue que você resolveu  😉
+
+<h3>📝 Documentações que podem ajudar</h3>
+
+[📝 Como criar um Pull Request](https://www.atlassian.com/br/git/tutorials/making-a-pull-request)
+
+[💾 Padrão de commit](https://gist.github.com/joshbuchea/6f47e86d2510bce28f8e7f42ae84c716)
