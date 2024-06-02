@@ -16,22 +16,26 @@
         <div class="w-full border-t border-gray-300"></div>
       </div>
       <div class="relative flex justify-center">
-        <button (click)="toggleModal()" type="button"
-          class="inline-flex items-center gap-x-1.5 rounded-full bg-white px-3 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-          <svg class="-ml-1 -mr-0.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-            <path
-              d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z" />
-          </svg>
-          Filtro
-        </button>
+        <div class="flex items-center justify-center">
+          <span class="relative inline-flex">
+            <button (click)="toggleModal()" type="button" class="rounded-xl inline-flex items-center px-6 py-1 font-semibold leading-6 text-sm shadow rounded-md bg-white hover:bg-gray-50 dark:bg-slate-800 dark:text-white transition ease-in-out duration-150 cursor-pointer ring-1 ring-slate-900/10 dark:ring-slate-200/20">
+              <svg class="-ml-1 -mr-0.5 h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"/>
+              </svg>
+              Filtro
+            </button>
+            <span class="flex {{isFilterActive()}} absolute h-3 w-3 top-0 right-0 -mt-1 -mr-1">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-600 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-indigo-600"></span>
+            </span>
+          </span>
+        </div>
       </div>
     </div>
-    <div id="event-list"
-      class="mx-auto mt-16 grid max-w-2xl auto-rows-fr grid-cols-1 gap-8 sm:mt-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-      <ul class="-my-8 divide-y divide-gray-100">
+    <div id="event-list" class="mt-16 flex justify-center w-full sm:mt-20 lg:mx-0">
+      <ul class="-my-8 grid grid-cols-3 gap-7 w-full divide-y divide-gray-100">
         @for (event of events; track event) {
-        <app-event [site]="event.site"[banner]="event.banner" [title]="event.title" [description]="event.description" [date]="event.date" [place]="event.place">{{
-          event }}</app-event>
+          <app-event [site]="event.site" [banner]="event.banner" [title]="event.title" [description]="event.description" [date]="event.date" [place]="event.place">{{ event }}</app-event>
         }
       </ul>
     </div>
@@ -48,21 +52,19 @@
       <label for="stateDropdown" class="mb-3 block text-base font-medium text-[#07074D]">
         Estado
       </label>
-      <select id="stateDropdown" formControlName="locale" class="w-full rounded-md border py-3 px-6 outline-none"
-        (change)="stateSelect2($event)">
+      <select id="stateDropdown" formControlName="locale" class="w-full rounded-md border py-3 px-6 outline-none" (change)="stateSelect2($event)">
         @for (option of states; track option.label) {
-        <option [value]="option.id">{{ option.label }}</option>
+          <option [value]="option.id">{{ option.label }}</option>
         }
       </select>
     </div>
-
     <div class="mb-5">
       <label for="cityDropdown" class="mb-3 block text-base font-medium text-[#07074D]">
         Cidade
       </label>
       <select id="cityDropdown" formControlName="city" class="w-full rounded-md border py-3 px-6 outline-none">
         @for (option of cities; track option.label) {
-        <option [value]="option.value">{{ option.label }}</option>
+          <option [value]="option.value">{{ option.label }}</option>
         }
       </select>
     </div>
@@ -72,8 +74,7 @@
           <label for="date" class="mb-3 block text-base font-medium text-[#07074D]">
             De
           </label>
-          <input formControlName="from" type="date" name="date" id="date"
-            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+          <input formControlName="from" type="date" name="date" id="date" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
         </div>
       </div>
       <div class="w-full px-3 sm:w-1/2">
@@ -81,14 +82,13 @@
           <label for="date" class="mb-3 block text-base font-medium text-[#07074D]">
             Até
           </label>
-          <input formControlName="to" type="date" name="date" id="date"
-            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+          <input formControlName="to" type="date" name="date" id="date" class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
         </div>
       </div>
     </div>
-    <div class="mt-5 sm:mt-6">
-      <button (click)="submit()" type="button"
-        class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">aplicar</button>
+    <div class="mt-5 flex flex-col gap-2 sm:mt-6">
+      <button (click)="submit()" type="button" class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Aplicar</button>
+      <button (click)="clearFilter()" type="button" class="inline-flex w-full justify-center rounded-md bg-indigo-300 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Limpar filtro</button>
     </div>
   </form>
 </app-modal>
