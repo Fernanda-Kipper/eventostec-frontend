@@ -5,6 +5,8 @@ name: CI & CD
 jobs:
   test:
     name: Test App
+    runs-on: ubuntu-latest
+    steps:
       - name: Get Node
         uses: actions/setup-node@v2
         with:
