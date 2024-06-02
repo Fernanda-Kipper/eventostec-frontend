@@ -30,8 +30,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss",
-              "node_modules/select2/dist/css/select2.min.css"
+              "src/styles.scss"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
