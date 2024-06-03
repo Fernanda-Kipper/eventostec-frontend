@@ -1,0 +1,42 @@
+on:
+  push:
+    branches:
+      - main
+name: CI & CD
+jobs:
+  test:
+    name: Test App
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Latest Code
+        uses: actions/checkout@v2
+      - name: Get Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 21.
+      - name: Testing App
+        run: |
+          npm install
+  build-deploy:
+    name: Build and Deploy App
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get Latest Code
+        uses: actions/checkout@v2
+      - name: Get Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 21.
+      - name: Build
+        run: |
+          npm install
+          npm run build
+      - name: List output files
+        run: find dist/ -print
+      - name: Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.ftp_host }}
+          username: ${{ secrets.ftp_user }}
+          password: ${{ secrets.ftp_password }}
+          local-dir: dist/community-events-front/browser/
