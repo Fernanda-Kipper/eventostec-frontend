@@ -91,6 +91,14 @@ Um agradecimento especial a todos que contribuíram ao projeto!
         </sub>
       </a>
     </td>
+    <td align="center">
+      <a href="https://github.com/LivHelen12">
+        <img src="https://avatars.githubusercontent.com/u/62712621?v=4" width="100px;" alt="Foto da Livia Helen"/><br>
+        <sub>
+          <b>Livia Helen</b>
+        </sub>
+      </a>
+    </td>
   </tr>
 </table>
 
