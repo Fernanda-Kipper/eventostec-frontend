@@ -75,6 +75,14 @@ Um agradecimento especial a todos que contribuíram ao projeto!
         </sub>
       </a>
     </td>
+    <td align="center">
+      <a href="https://github.com/gabriel-afg">
+        <img src="https://avatars.githubusercontent.com/u/64044897?v=4" width="100px;" alt="Foto do Gabriel Augusto"/><br>
+        <sub>
+          <b>Gabriel Augusto</b>
+        </sub>
+      </a>
+    </td>
   </tr>
 </table>
 
