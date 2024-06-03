@@ -1,0 +1,115 @@
+<main id="content" class="bg-white py-24 sm:py-32">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div id="list-header" class="mx-auto max-w-2xl text-center mb-6">
+      <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+        Cadastro de Eventos
+      </h2>
+    </div>
+    <div class="mt-16 flex justify-center w-full sm:mt-20 lg:mx-0">
+      <form [formGroup]="eventForm" class="w-full">
+        <div class="mb-5">
+          <label
+            for="date"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Nome do evento
+          </label>
+          <input
+            formControlName="name"
+            type="text"
+            name="name"
+            id="name"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-5">
+          <label
+            for="date"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Descrição
+          </label>
+          <textarea
+            formControlName="description"
+            name="description"
+            id="description"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          ></textarea>
+        </div>
+        <div class="mb-5">
+          <label
+            for="date"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            URL oficial do evento
+          </label>
+          <input
+            formControlName="url"
+            type="url"
+            name="url"
+            id="url"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-5">
+          <label
+            for="stateDropdown"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Estado
+          </label>
+          <select
+            id="stateDropdown"
+            formControlName="locale"
+            class="w-full rounded-md border py-3 px-6 outline-none"
+            (change)="stateSelect2()"
+          >
+            @for (option of states; track option.label) {
+              <option [value]="option.id">{{ option.label }}</option>
+            }
+          </select>
+        </div>
+        <div class="mb-5">
+          <label
+            for="cityDropdown"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Cidade
+          </label>
+          <select
+            id="cityDropdown"
+            formControlName="city"
+            class="w-full rounded-md border py-3 px-6 outline-none"
+          >
+            @for (option of cities; track option.label) {
+              <option [value]="option.value">{{ option.label }}</option>
+            }
+          </select>
+        </div>
+        <div class="mb-5">
+          <label
+            for="date"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Data do evento
+          </label>
+          <input
+            formControlName="date"
+            type="date"
+            name="date"
+            id="date"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <button
+          (click)="submit()"
+          [disabled]="!eventForm.valid"
+          type="button"
+          class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-indigo-400 disabled:cursor-not-allowed"
+        >
+          Cadastrar
+        </button>
+      </form>
+    </div>
+  </div>
+</main>
