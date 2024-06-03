@@ -1,7 +1,7 @@
 [PROJECT__BADGE]: https://img.shields.io/badge/📱Visite_nossa_plataforma-000?style=for-the-badge&logo=project
 [PROJECT__URL]: eventostec.com.br
 
-<h1 align="center" style="font-weight: bold;">EventosTec.com</h1>
+<h1 align="center" style="font-weight: bold;">EventosTec.com.br</h1>
 
 <p align="center">
  <a href="#about">Sobre</a> • 
