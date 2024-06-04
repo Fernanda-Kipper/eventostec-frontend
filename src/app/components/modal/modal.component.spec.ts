@@ -13,7 +13,6 @@ describe('ModalComponent', () => {
 
     fixture = TestBed.createComponent(ModalComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {
