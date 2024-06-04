@@ -8,8 +8,22 @@
     <div class="mt-16 flex justify-center w-full sm:mt-20 lg:mx-0">
       <form [formGroup]="eventForm" class="w-full">
         <div class="mb-5">
+          <input
+            id="onlineInput"
+            (click)="checkEventStatus()"
+            type="checkbox"
+            formControlName="online"
+            class=""
+          />
           <label
-            for="date"
+            for="onlineInput"
+            class="ml-2 text-base font-medium text-[#07074D]"
+            >É um evento online?</label
+          >
+        </div>
+        <div class="mb-5">
+          <label
+            for="name"
             class="mb-3 block text-base font-medium text-[#07074D]"
           >
             Nome do evento
@@ -24,7 +38,7 @@
         </div>
         <div class="mb-5">
           <label
-            for="date"
+            for="description"
             class="mb-3 block text-base font-medium text-[#07074D]"
           >
             Descrição
@@ -38,7 +52,7 @@
         </div>
         <div class="mb-5">
           <label
-            for="date"
+            for="url"
             class="mb-3 block text-base font-medium text-[#07074D]"
           >
             URL oficial do evento
@@ -51,41 +65,43 @@
             class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
           />
         </div>
-        <div class="mb-5">
-          <label
-            for="stateDropdown"
-            class="mb-3 block text-base font-medium text-[#07074D]"
-          >
-            Estado
-          </label>
-          <select
-            id="stateDropdown"
-            formControlName="locale"
-            class="w-full rounded-md border py-3 px-6 outline-none"
-            (change)="stateSelect2()"
-          >
-            @for (option of states; track option.label) {
-              <option [value]="option.id">{{ option.label }}</option>
-            }
-          </select>
-        </div>
-        <div class="mb-5">
-          <label
-            for="cityDropdown"
-            class="mb-3 block text-base font-medium text-[#07074D]"
-          >
-            Cidade
-          </label>
-          <select
-            id="cityDropdown"
-            formControlName="city"
-            class="w-full rounded-md border py-3 px-6 outline-none"
-          >
-            @for (option of cities; track option.label) {
-              <option [value]="option.value">{{ option.label }}</option>
-            }
-          </select>
-        </div>
+        @if (!onlineEvent) {
+          <div class="mb-5">
+            <label
+              for="stateDropdown"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Estado
+            </label>
+            <select
+              id="stateDropdown"
+              formControlName="locale"
+              class="w-full rounded-md border py-3 px-6 outline-none"
+              (change)="stateSelect2()"
+            >
+              @for (option of states; track option.label) {
+                <option [value]="option.id">{{ option.label }}</option>
+              }
+            </select>
+          </div>
+          <div class="mb-5">
+            <label
+              for="cityDropdown"
+              class="mb-3 block text-base font-medium text-[#07074D]"
+            >
+              Cidade
+            </label>
+            <select
+              id="cityDropdown"
+              formControlName="city"
+              class="w-full rounded-md border py-3 px-6 outline-none"
+            >
+              @for (option of cities; track option.label) {
+                <option [value]="option.value">{{ option.label }}</option>
+              }
+            </select>
+          </div>
+        }
         <div class="mb-5">
           <label
             for="date"

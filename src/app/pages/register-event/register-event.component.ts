@@ -4,6 +4,7 @@ import {
   FormGroup,
   ReactiveFormsModule,
   Validators,
+  FormsModule,
 } from '@angular/forms';
 import { FilterService } from '../../services/filter.service';
 import { UF } from '../../types/UF.type';
@@ -13,6 +14,7 @@ interface EventForm {
   name: FormControl<string | null>;
   description: FormControl<string | null>;
   url: FormControl<string | null>;
+  online: FormControl<boolean | null>;
   locale: FormControl<string | null>;
   city: FormControl<string | null>;
   date: FormControl<Date | null>;
@@ -21,7 +23,7 @@ interface EventForm {
 @Component({
   selector: 'app-register-event',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, FormsModule],
   templateUrl: './register-event.component.html',
   styleUrl: './register-event.component.scss',
 })
@@ -29,6 +31,7 @@ export class RegisterEventComponent implements OnInit {
   eventForm!: FormGroup;
   states: { id: number; label: string; value: string }[] = [];
   cities: { id: number; label: string; value: string }[] = [];
+  onlineEvent: boolean = false;
 
   // eslint-disable-next-line no-useless-escape
   urlRegexValidator =
@@ -44,12 +47,40 @@ export class RegisterEventComponent implements OnInit {
         Validators.required,
         Validators.pattern(this.urlRegexValidator),
       ]),
+      online: new FormControl<boolean>(false),
       locale: new FormControl<string | null>(null, [Validators.required]),
       city: new FormControl<string | null>(null, [Validators.required]),
       date: new FormControl<Date | null>(null, [Validators.required]),
     });
 
     this.loadLocalesFilter();
+  }
+
+  checkEventStatus() {
+    const isOnline = this.eventForm.get('online')?.value;
+    this.onlineEvent = !isOnline;
+    if (this.onlineEvent) {
+      this.updateValidators(false);
+    } else {
+      this.updateValidators(true);
+    }
+  }
+
+  updateValidators(shouldSetValidators: boolean) {
+    const localeControl = this.eventForm.get('locale');
+    const cityControl = this.eventForm.get('city');
+
+    if (shouldSetValidators) {
+      localeControl?.setValidators([Validators.required]);
+      cityControl?.setValidators([Validators.required]);
+    } else {
+      localeControl?.setValue(null);
+      cityControl?.setValue(null);
+      localeControl?.clearValidators();
+      cityControl?.clearValidators();
+    }
+    localeControl?.updateValueAndValidity();
+    cityControl?.updateValueAndValidity();
   }
 
   loadLocalesFilter() {
@@ -87,5 +118,7 @@ export class RegisterEventComponent implements OnInit {
     }
   }
 
-  submit() {}
+  submit() {
+    console.log(this.eventForm.value);
+  }
 }
