@@ -1,7 +1,7 @@
 [PROJECT__BADGE]: https://img.shields.io/badge/📱Visite_nossa_plataforma-000?style=for-the-badge&logo=project
 [PROJECT__URL]: eventostec.com.br
 
-<h1 align="center" style="font-weight: bold;">EventosTec.com</h1>
+<h1 align="center" style="font-weight: bold;">EventosTec.com.br</h1>
 
 <p align="center">
  <a href="#about">Sobre</a> • 
@@ -75,10 +75,19 @@ Um agradecimento especial a todos que contribuíram ao projeto!
       </a>
     </td>
     <td align="center">
+    <td align="center">
       <a href="https://github.com/LFzinn">
         <img src="https://avatars.githubusercontent.com/u/113461203?v=4" width="100px;" alt="Foto de Luiz Fernando"/><br>
         <sub>
           <b>Luiz Fernando Ferreira</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/gabriel-afg">
+        <img src="https://avatars.githubusercontent.com/u/64044897?v=4" width="100px;" alt="Foto do Gabriel Augusto"/><br>
+        <sub>
+          <b>Gabriel Augusto</b>
         </sub>
       </a>
     </td>
