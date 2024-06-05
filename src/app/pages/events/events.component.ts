@@ -8,10 +8,11 @@ import {
 } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { EventComponent } from '../../components/event/event.component';
+import { HeaderComponent } from '../../components/header/header.component';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { FilterService } from '../../services/filter.service';
 import { City } from '../../types/City.type';
-import { EventItem } from '../../types/Event.type';
+import { EventItem, EventType } from '../../types/Event.type';
 import { UF } from '../../types/UF.type';
 
 interface FilterForm {
@@ -30,6 +31,7 @@ interface FilterForm {
     ReactiveFormsModule,
     ModalComponent,
     EventComponent,
+    HeaderComponent,
   ],
   templateUrl: './events.component.html',
   styleUrl: './events.component.scss',
@@ -57,6 +59,7 @@ export class EventsComponent implements OnInit {
     this.eventList = [
       {
         title: 'Frontin Sampa',
+        type: EventType.PRESENTIAL,
         city: {
           id: 1,
           label: 'São Paulo',
@@ -69,7 +72,7 @@ export class EventsComponent implements OnInit {
         description: 'Maior evento de Frontend do Brasil!',
         banner: 'https://images.sympla.com.br/630305a3009a1-lg.png',
         url: 'https://frontinsampa.com.br/',
-        bannerFile: '',
+        bannerFile: new File([''], 'banner.png', { type: 'image/png' }),
       },
     ];
   }

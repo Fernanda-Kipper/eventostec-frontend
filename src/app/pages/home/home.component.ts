@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -5,24 +6,23 @@ import {
   signal,
   ViewChild,
 } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { RouterOutlet } from '@angular/router';
 
 import { NgSelectModule } from '@ng-select/ng-select';
 
 import { EventComponent } from '../../components/event/event.component';
-import { ModalComponent } from '../../components/modal/modal.component';
 import { HeaderComponent } from '../../components/header/header.component';
+import { ModalComponent } from '../../components/modal/modal.component';
 import { FilterService } from '../../services/filter.service';
-import { UF } from '../../types/UF.type';
 import { City } from '../../types/City.type';
-import { EventItem } from '../../types/Event.type';
+import { EventItem, EventType } from '../../types/Event.type';
+import { UF } from '../../types/UF.type';
 
 interface FilterForm {
   locale: FormControl<string | null>;
@@ -74,7 +74,16 @@ export class HomeComponent implements OnInit {
     this.eventList = [
       {
         title: 'Frontin Sampa',
-        place: 'São Paulo',
+        type: EventType.PRESENTIAL,
+        city: {
+          id: 1,
+          label: 'São Paulo',
+        },
+        state: {
+          id: 1,
+          label: 'SP',
+        },
+        bannerFile: new File([''], 'banner.png', { type: 'image/png' }),
         date: '19/10/2024',
         description: 'Maior evento de Frontend do Brasil!',
         banner: 'https://images.sympla.com.br/630305a3009a1-lg.png',

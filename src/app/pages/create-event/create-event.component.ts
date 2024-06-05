@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit, inject } from '@angular/core';
 import {
   FormControl,
@@ -7,10 +8,13 @@ import {
 } from '@angular/forms';
 import { FilterService } from '../../services/filter.service';
 import { City } from '../../types/City.type';
+import { EventType } from '../../types/Event.type';
 import { UF } from '../../types/UF.type';
+import { URLRegexValidator } from '../../utils/url-regex-validator.util';
 
 interface CreateEventFormControl {
   title: FormControl<string | null>;
+  type: FormControl<EventType | null>;
   description: FormControl<string | null>;
   date: FormControl<string | null>;
   city: FormControl<string | null>;
@@ -23,7 +27,7 @@ interface CreateEventFormControl {
 @Component({
   selector: 'app-create-event',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './create-event.component.html',
   styleUrl: './create-event.component.scss',
 })
@@ -32,14 +36,19 @@ export class CreateEventComponent implements OnInit {
   moreInformationExpanded = false;
   states: { id: number; label: string; value: string }[] = [];
   cities: { id: number; label: string; value: string }[] = [];
+  EventType = EventType;
 
   createEventForm = new FormGroup<CreateEventFormControl>({
     title: new FormControl(null, [Validators.required]),
+    type: new FormControl(EventType.PRESENTIAL, [Validators.required]),
     description: new FormControl(null, [Validators.required]),
     date: new FormControl(null, [Validators.required]),
     city: new FormControl(null, [Validators.required]),
     state: new FormControl(null, [Validators.required]),
-    url: new FormControl(null, [Validators.required]),
+    url: new FormControl(null, [
+      Validators.required,
+      Validators.pattern(URLRegexValidator),
+    ]),
     banner: new FormControl(null),
     bannerFile: new FormControl(null),
   });
@@ -97,5 +106,32 @@ export class CreateEventComponent implements OnInit {
       console.log(input.files);
       this.createEventForm.get('bannerFile')?.setValue(input.files[0]);
     }
+  }
+
+  handleEventType(type: EventType) {
+    if (type === EventType.ONLINE) {
+      this.createEventForm.patchValue({ type: EventType.ONLINE });
+      this.updateValidators(false);
+    } else {
+      this.createEventForm.patchValue({ type: EventType.PRESENTIAL });
+      this.updateValidators(true);
+    }
+  }
+
+  updateValidators(shouldSetValidators: boolean) {
+    const stateControl = this.createEventForm.get('state');
+    const cityControl = this.createEventForm.get('city');
+
+    if (shouldSetValidators) {
+      stateControl?.setValidators([Validators.required]);
+      cityControl?.setValidators([Validators.required]);
+    } else {
+      stateControl?.setValue(null);
+      cityControl?.setValue(null);
+      stateControl?.clearValidators();
+      cityControl?.clearValidators();
+    }
+    stateControl?.updateValueAndValidity();
+    cityControl?.updateValueAndValidity();
   }
 }

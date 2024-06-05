@@ -1,10 +1,8 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { RegisterEventComponent } from './pages/register-event/register-event.component';
 
 export const routes: Routes = [
   {
-    path: 'events',
+    path: '',
     loadComponent() {
       return import('./pages/events/events.component').then(
         (m) => m.EventsComponent,
@@ -24,14 +22,5 @@ export const routes: Routes = [
       },
     ],
   },
-  {
-    path: '',
-    component: HomeComponent,
-  },
-  {
-    path: 'registra-evento',
-    component: RegisterEventComponent,
-  },
-  { path: '', redirectTo: 'events', pathMatch: 'full' },
-  { path: '**', redirectTo: 'events', pathMatch: 'full' },
+  { path: '**', redirectTo: '', pathMatch: 'full' },
 ];
