@@ -1,6 +1,6 @@
 export enum EventType {
-  ONLINE = 'online',
-  PRESENTIAL = 'presential',
+  ONLINE = 'Remoto',
+  PRESENTIAL = 'Presencial',
 }
 
 export type EventItem = {
@@ -9,7 +9,7 @@ export type EventItem = {
   description: string;
   date: string;
   banner: string;
-  bannerFile: File | null;
+  // bannerFile: File | null;
   url: string;
   city: {
     id: number;

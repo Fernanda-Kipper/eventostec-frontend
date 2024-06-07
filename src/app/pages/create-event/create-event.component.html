@@ -299,65 +299,47 @@
       </div>
       <div class="sm:col-span-2">
         <label
-          for="banner"
+          for="bannerUrl"
           class="block text-sm font-semibold leading-6 text-gray-900"
         >
           Link do banner
         </label>
         <div class="mt-2.5">
           <input
-            formControlName="banner"
+            formControlName="bannerUrl"
             type="banner"
-            name="banner"
+            name="bannerUrl"
             id="banner"
             class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
           />
         </div>
       </div>
-      <div class="sm:col-span-2">
+      <!-- <div class="sm:col-span-2">
         <div class="flex justify-center items-center">
           <div class="w-full p-6 bg-white rounded-md shadow-lg">
             <h2 class="text-3xl font-semibold text-center mb-6">
               Imagem do evento
             </h2>
-            <div
-              class="relative border-2 border-dashed border-gray-300 rounded-md px-6 py-8 text-center"
-            >
-              <input
-                type="file"
-                class="hidden"
-                id="fileInput"
-                (change)="fileChange($event)"
-              />
-              <svg
-                class="mx-auto h-16 w-16 text-gray-400 mb-4"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M16 17l-4 4m0 0l-4-4m4 4V3"
-                ></path>
+            <div class="relative border-2 border-dashed border-gray-300 rounded-md px-6 py-8 text-center">
+              <input type="file" class="hidden" id="fileInput" (change)="fileChange($event)" />
+              <svg class="mx-auto h-16 w-16 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 17l-4 4m0 0l-4-4m4 4V3">
+                </path>
               </svg>
               <p class="text-sm text-gray-600">
-                <label
-                  for="fileInput"
-                  class="cursor-pointer text-blue-500 hover:underline"
-                  >Pegue e jogue a imagem aqui</label
-                >
+                <label for="fileInput" class="cursor-pointer text-blue-500 hover:underline">Pegue e jogue a imagem
+                  aqui</label>
               </p>
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
     </div>
     <div class="mt-10">
       <button
         (click)="createEvent()"
         type="button"
+        [disabled]="!createEventForm.valid"
         class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm sm:text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
       >
         Cadastrar evento
