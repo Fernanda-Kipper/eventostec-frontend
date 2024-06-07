@@ -55,7 +55,9 @@ export class HomeComponent implements OnInit {
   states: { id: number; label: string; value: string }[] = [];
   cities: { id: number; label: string; value: string }[] = [];
 
+  searchTerm: string = '';
   eventList: EventItem[] = [];
+  filteredEventList: EventItem[] = [];
 
   filterIsActive = false;
 
@@ -81,6 +83,8 @@ export class HomeComponent implements OnInit {
         url: 'https://frontinsampa.com.br/',
       },
     ];
+
+    this.filteredEventList = this.eventList;
   }
 
   loadLocalesFilter() {
@@ -134,5 +138,16 @@ export class HomeComponent implements OnInit {
   clearFilter() {
     this.filterIsActive = false;
     this.filterForm.reset();
+  }
+
+  getFilteredEvents(): EventItem[] {
+    return this.eventList.filter((event) =>
+      event.title.toLowerCase().includes(this.searchTerm.toLowerCase()),
+    );
+  }
+
+  updateSearchTerm(newTerm: string) {
+    this.searchTerm = newTerm;
+    this.filteredEventList = this.getFilteredEvents();
   }
 }
