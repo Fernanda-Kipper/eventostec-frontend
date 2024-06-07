@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-header (searchTermChange)="updateSearchTerm($event)"></app-header>
 
 <main id="content" class="py-24 bg-white sm:py-32">
   <div class="px-6 mx-auto max-w-7xl lg:px-8">
@@ -61,7 +61,7 @@
         <ul
           class="flex flex-col w-full gap-8 mb-6 -my-8 divide-y divide-gray-100 max-w-96"
         >
-          @for (event of eventList; track event) {
+          @for (event of filteredEventList; track event) {
             <app-event
               [url]="event.url"
               [banner]="event.banner"
