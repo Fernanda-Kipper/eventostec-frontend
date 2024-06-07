@@ -13,6 +13,7 @@ import { City } from '../../types/City.type';
 import { EventType } from '../../types/Event.type';
 import { UF } from '../../types/UF.type';
 import { URLRegexValidator } from '../../utils/url-regex-validator.util';
+import { Router } from '@angular/router';
 
 export interface CreateEventFormControl {
   title: FormControl<string | null>;
@@ -36,6 +37,7 @@ export interface CreateEventFormControl {
 export class CreateEventComponent implements OnInit {
   filterService = inject(FilterService);
   eventsService = inject(EventsService);
+  router = inject(Router);
   createEventForm!: FormGroup;
   moreInformationExpanded = false;
   states: { id: number; label: string; value: string }[] = [];
@@ -95,7 +97,10 @@ export class CreateEventComponent implements OnInit {
       this.setLocaleAsString();
     }
     this.eventsService.createEvent(this.createEventForm.value).subscribe({
-      next: (response) => console.log('Operação completa:', response),
+      next: (response) => {
+        console.log('Operação completa:', response);
+        this.router.navigate(['/eventos']);
+      },
       error: (error) => console.error('Erro ao cadastrar evento:', error),
     });
     console.log(this.createEventForm.value);
