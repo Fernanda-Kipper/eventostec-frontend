@@ -29,7 +29,9 @@
   </div>
 
   <div class="mx-auto max-w-2xl text-center mb-5">
-    <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+    <h2
+      class="text-3xl font-bold tracking-tight text-kipperdev-purple-dark sm:text-4xl"
+    >
       Cadastrar evento
     </h2>
     <p class="mt-2 text-lg leading-8 text-gray-600">
@@ -153,7 +155,9 @@
 
   <form [formGroup]="createEventForm" class="mx-auto mt-16 max-w-xl sm:mt-20">
     <div class="text-center">
-      <span class="block text-sm font-semibold leading-6 text-gray-900">
+      <span
+        class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
+      >
         Evento será?
       </span>
       <nav
@@ -190,7 +194,7 @@
       <div class="sm:col-span-2">
         <label
           for="title"
-          class="block text-sm font-semibold leading-6 text-gray-900"
+          class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
         >
           Nome do evento
           @if (createEventForm.get('title')?.invalid) {
@@ -203,14 +207,14 @@
             type="text"
             name="title"
             id="title"
-            class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            class="block w-full rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
           />
         </div>
       </div>
       <div class="sm:col-span-2">
         <label
           for="description"
-          class="block text-sm font-semibold leading-6 text-gray-900"
+          class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
         >
           Descrição
           @if (createEventForm.get('description')?.invalid) {
@@ -223,14 +227,14 @@
             name="description"
             id="description"
             rows="4"
-            class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            class="block w-full rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
           ></textarea>
         </div>
       </div>
       <div class="sm:col-span-2">
         <label
           for="url"
-          class="block text-sm font-semibold leading-6 text-gray-900"
+          class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
         >
           Link para o evento
           @if (
@@ -250,7 +254,7 @@
             name="url"
             id="url"
             placeholder="https://meuEvento.com"
-            class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            class="block w-full rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
           />
         </div>
       </div>
@@ -258,7 +262,7 @@
         <div>
           <label
             for="state"
-            class="block text-sm font-semibold leading-6 text-gray-900"
+            class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
           >
             Estado
           </label>
@@ -266,7 +270,7 @@
             <select
               id="state"
               formControlName="state"
-              class="block w-full h-10 bg-transparent rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              class="block w-full h-10 bg-transparent rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
               (change)="getInfoState()"
             >
               @for (option of states; track option.id) {
@@ -280,7 +284,7 @@
         <div>
           <label
             for="city"
-            class="block text-sm font-semibold leading-6 text-gray-900"
+            class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
           >
             Cidade
           </label>
@@ -288,7 +292,7 @@
             <select
               id="city"
               formControlName="city"
-              class="block w-full h-10 bg-transparent rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+              class="block w-full h-10 bg-transparent rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
             >
               @for (option of cities; track option.id) {
                 <option [value]="option.id">
@@ -302,7 +306,7 @@
       <div class="sm:col-span-2">
         <label
           for="date"
-          class="block text-sm font-semibold leading-6 text-gray-900"
+          class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
         >
           Data
           @if (createEventForm.get('date')?.invalid) {
@@ -315,14 +319,14 @@
             type="date"
             name="date"
             id="date"
-            class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            class="block w-full rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
           />
         </div>
       </div>
       <div class="sm:col-span-2">
         <label
           for="bannerUrl"
-          class="block text-sm font-semibold leading-6 text-gray-900"
+          class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
         >
           Link do banner
           @if (
@@ -342,7 +346,7 @@
             name="bannerUrl"
             id="bannerUrl"
             placeholder="O caminho deve apontar diretamente para uma imagem"
-            class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            class="block w-full rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
           />
         </div>
       </div>
@@ -372,7 +376,7 @@
         (click)="createEvent()"
         type="submit"
         [disabled]="!createEventForm.valid"
-        class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm sm:text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        class="block w-full rounded-md bg-kipperdev-purple-primary px-3.5 py-2.5 text-center text-sm sm:text-base font-semibold text-white shadow-sm hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kipperdev-purple-primary"
       >
         Cadastrar evento
       </button>
