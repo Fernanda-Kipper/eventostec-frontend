@@ -193,6 +193,9 @@
           class="block text-sm font-semibold leading-6 text-gray-900"
         >
           Nome do evento
+          @if (createEventForm.get('title')?.invalid) {
+            <span class="text-xs text-red-500">*</span>
+          }
         </label>
         <div class="mt-2.5">
           <input
@@ -208,8 +211,12 @@
         <label
           for="description"
           class="block text-sm font-semibold leading-6 text-gray-900"
-          >Descrição</label
         >
+          Descrição
+          @if (createEventForm.get('description')?.invalid) {
+            <span class="text-xs text-red-500">*</span>
+          }
+        </label>
         <div class="mt-2.5">
           <textarea
             formControlName="description"
@@ -226,6 +233,15 @@
           class="block text-sm font-semibold leading-6 text-gray-900"
         >
           Link para o evento
+          @if (
+            createEventForm.get('url')?.invalid &&
+            createEventForm.get('url')?.dirty &&
+            createEventForm.get('url')?.touched
+          ) {
+            <span class="text-xs text-red-500"
+              >url deve seguir o formato indicado</span
+            >
+          }
         </label>
         <div class="mt-2.5">
           <input
@@ -289,6 +305,9 @@
           class="block text-sm font-semibold leading-6 text-gray-900"
         >
           Data
+          @if (createEventForm.get('date')?.invalid) {
+            <span class="text-xs text-red-500">*</span>
+          }
         </label>
         <div class="mt-2.5">
           <input
@@ -306,6 +325,15 @@
           class="block text-sm font-semibold leading-6 text-gray-900"
         >
           Link do banner
+          @if (
+            createEventForm.get('bannerUrl')?.invalid &&
+            createEventForm.get('bannerUrl')?.touched
+          ) {
+            <span class="text-xs text-red-500"
+              >verifique se a url termina com a extensão de uma imagem ou
+              GIF</span
+            >
+          }
         </label>
         <div class="mt-2.5">
           <input
@@ -342,7 +370,7 @@
     <div class="mt-10">
       <button
         (click)="createEvent()"
-        type="button"
+        type="submit"
         [disabled]="!createEventForm.valid"
         class="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm sm:text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
       >

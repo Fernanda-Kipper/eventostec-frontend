@@ -1,5 +1,5 @@
 <li>
-  <div class="overflow-hidden rounded-lg bg-white shadow w-96 h-96">
+  <div class="overflow-hidden rounded-lg bg-white shadow w-96 h-96 relative">
     <div>
       <a [href]="url">
         <img
@@ -43,14 +43,14 @@
         </dd>
         <dt class="sr-only">Descrição</dt>
         <dd
-          class="mt-2 w-full flex-none text-sm text-gray-600 max-h-10 overflow-hidden relative"
+          class="mt-2 w-full flex-none text-sm text-gray-600 max-h-10 overflow-hidden"
         >
           {{ description }}
-          <div
-            class="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-t from-white via-white to-transparent"
-          ></div>
         </dd>
       </dl>
     </div>
+    <div
+      class="absolute inset-x-0 bottom-7 h-5 bg-gradient-to-t from-white via-white to-transparent pointer-events-none"
+    ></div>
   </div>
 </li>

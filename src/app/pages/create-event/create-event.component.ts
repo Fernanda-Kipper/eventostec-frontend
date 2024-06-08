@@ -12,7 +12,10 @@ import { FilterService } from '../../services/filter.service';
 import { City } from '../../types/City.type';
 import { EventType } from '../../types/Event.type';
 import { UF } from '../../types/UF.type';
-import { URLRegexValidator } from '../../utils/url-regex-validator.util';
+import {
+  ImageURLRegexValidator,
+  URLRegexValidator,
+} from '../../utils/url-regex-validator.util';
 import { Router } from '@angular/router';
 
 export interface CreateEventFormControl {
@@ -57,11 +60,11 @@ export class CreateEventComponent implements OnInit {
       date: new FormControl(null, [Validators.required]),
       city: new FormControl(null, [Validators.required]),
       state: new FormControl(null, [Validators.required]),
-      url: new FormControl(null, [
+      url: new FormControl(null, [Validators.pattern(URLRegexValidator)]),
+      bannerUrl: new FormControl(null, [
+        Validators.pattern(ImageURLRegexValidator),
         Validators.required,
-        Validators.pattern(URLRegexValidator),
       ]),
-      bannerUrl: new FormControl(null),
       // bannerFile: new FormControl(null),
     });
     this.getLocales();

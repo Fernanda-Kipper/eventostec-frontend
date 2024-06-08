@@ -15,7 +15,6 @@ export class EventComponent {
   @Input() date: string = '';
   @Input() city: string = '';
   @Input() state: string = '';
-  @Input() bannerUrl: string =
-    'https://images.sympla.com.br/630305a3009a1-lg.png';
-  @Input() url: string = 'https://hacktown.com.br/';
+  @Input() bannerUrl: string = '';
+  @Input() url: string = '';
 }
