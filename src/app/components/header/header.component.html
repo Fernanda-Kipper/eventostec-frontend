@@ -1,10 +1,13 @@
-<header class="bg-white">
+<header class="bg-white z-50 relative">
   <nav
     class="mx-auto flex flex-col sm:flex-row sm:gap-x-6 gap-8 max-w-7xl items-center justify-between p-6 lg:px-8"
     aria-label="Global"
   >
     <div class="flex lg:flex-1 justify-center sm:justify-start">
-      <a href="#" class="-m-1.5 p-1.5 text-center sm:text-left">
+      <a
+        [routerLink]="['/events']"
+        class="-m-1.5 p-1.5 text-center sm:text-left"
+      >
         <span class="sr-only">EventosTec</span>
         <h3 class="text-base font-semibold leading-6 text-gray-900">
           EventosTec | Eventos de Tecnologia 🇧🇷
@@ -12,12 +15,12 @@
       </a>
     </div>
     <div class="flex flex-1 items-center justify-end gap-x-6">
-      <a
-        href="/registra-evento"
+      <button
+        [routerLink]="['/criar-evento']"
         class="rounded-md bg-indigo-600 px-3 py-2 text-sm sm:text-base font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
       >
         Adicionar um evento
-      </a>
+      </button>
     </div>
   </nav>
 </header>
