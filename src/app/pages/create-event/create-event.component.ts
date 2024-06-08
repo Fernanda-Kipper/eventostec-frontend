@@ -35,7 +35,6 @@ export interface CreateEventFormControl {
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './create-event.component.html',
-  styleUrl: './create-event.component.scss',
 })
 export class CreateEventComponent implements OnInit {
   filterService = inject(FilterService);
@@ -100,13 +99,11 @@ export class CreateEventComponent implements OnInit {
       this.setLocaleAsString();
     }
     this.eventsService.createEvent(this.createEventForm.value).subscribe({
-      next: (response) => {
-        console.log('Operação completa:', response);
+      next: () => {
         this.router.navigate(['/eventos']);
       },
       error: (error) => console.error('Erro ao cadastrar evento:', error),
     });
-    console.log(this.createEventForm.value);
   }
 
   getLocales() {

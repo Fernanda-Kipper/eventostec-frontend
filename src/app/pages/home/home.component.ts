@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -14,6 +14,8 @@ import { FilterService } from '../../services/filter.service';
 import { City } from '../../types/City.type';
 import { UF } from '../../types/UF.type';
 import { EventsService } from '../../services/events.service';
+import { Observable } from 'rxjs';
+import { EventItem } from '../../types/Event.type';
 
 interface FilterForm {
   locale: FormControl<string | null>;
@@ -33,19 +35,21 @@ interface FilterForm {
     EventComponent,
     HeaderComponent,
   ],
-  templateUrl: './events.component.html',
-  styleUrl: './events.component.scss',
+  templateUrl: './home.component.html',
 })
-export class EventsComponent implements OnInit {
-  filterService = inject(FilterService);
-  eventsService = inject(EventsService);
+export class HomeComponent implements OnInit {
   isModalOpen = signal(false);
   filterIsActive = false;
   filterForm!: FormGroup<FilterForm>;
   states: { id: number; label: string; value: string }[] = [];
   cities: { id: number; label: string; value: string }[] = [];
-  events$ = this.eventsService.getEvents();
   isOnline: boolean = false;
+  events$!: Observable<EventItem[]>;
+
+  constructor(
+    private filterService: FilterService,
+    private eventsService: EventsService,
+  ) {}
 
   ngOnInit() {
     this.filterForm = new FormGroup<FilterForm>({
@@ -54,7 +58,9 @@ export class EventsComponent implements OnInit {
       from: new FormControl<Date | null>(null, [Validators.required]),
       to: new FormControl<Date | null>(null, [Validators.required]),
     });
+
     this.loadLocalesFilter();
+    this.events$ = this.eventsService.getEvents();
   }
 
   loadLocalesFilter() {

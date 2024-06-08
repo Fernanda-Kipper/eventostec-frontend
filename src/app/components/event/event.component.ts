@@ -6,7 +6,6 @@ import { Component, Input } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './event.component.html',
-  styleUrl: './event.component.scss',
 })
 export class EventComponent {
   @Input() title: string = '';
