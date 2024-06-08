@@ -1,21 +1,12 @@
 import { CommonModule } from '@angular/common';
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  signal,
-  ViewChild,
-} from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { RouterOutlet } from '@angular/router';
-
 import { NgSelectModule } from '@ng-select/ng-select';
-
 import { EventComponent } from '../../components/event/event.component';
 import { HeaderComponent } from '../../components/header/header.component';
 import { ModalComponent } from '../../components/modal/modal.component';
@@ -32,10 +23,9 @@ interface FilterForm {
 }
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-events',
   standalone: true,
   imports: [
-    RouterOutlet,
     CommonModule,
     NgSelectModule,
     ReactiveFormsModule,
@@ -43,21 +33,16 @@ interface FilterForm {
     EventComponent,
     HeaderComponent,
   ],
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  templateUrl: './events.component.html',
+  styleUrl: './events.component.scss',
 })
-export class HomeComponent implements OnInit {
-  @ViewChild('stateSelect') stateSelect!: ElementRef<HTMLSelectElement>;
-
-  filterForm!: FormGroup<FilterForm>;
+export class EventsComponent implements OnInit {
   isModalOpen = signal(false);
-
+  filterIsActive = false;
+  eventList: EventItem[] = [];
+  filterForm!: FormGroup<FilterForm>;
   states: { id: number; label: string; value: string }[] = [];
   cities: { id: number; label: string; value: string }[] = [];
-
-  eventList: EventItem[] = [];
-
-  filterIsActive = false;
 
   constructor(private filterService: FilterService) {}
 
@@ -83,27 +68,11 @@ export class HomeComponent implements OnInit {
           id: 1,
           label: 'SP',
         },
-        bannerFile: new File([''], 'banner.png', { type: 'image/png' }),
         date: '19/10/2024',
         description: 'Maior evento de Frontend do Brasil!',
         banner: 'https://images.sympla.com.br/630305a3009a1-lg.png',
         url: 'https://frontinsampa.com.br/',
-      },
-      {
-        title: 'HackTown',
-        place: 'Santa Rita do Sapucaí - MG',
-        date: '1 a 4 de agosto',
-        description: 'Com mais de 800 atividades simultâneas, o HackTown abrange tecnologia, empreendedorismo, música e artes, atraindo mais de 300 startups. O evento acontece em Santa Rita do Sapucaí, cidade que abriga mais de 160 empresas de tecnologia, ganhando o apelido de “Vale da Eletrônica”.',
-        banner: 'https://assets-global.website-files.com/636d4036709c50b9ac704e98/65aeaa6f9fc603617a07e28b_hacktown-2024.jpg',
-        url:"https://hacktown.com.br/"
-      },
-      {
-        title: 'Rio Innovation Week',
-        place: 'Rio de Janeiro - RJ',
-        date: '13 a 16 de agosto',
-        description: 'Um grande encontro que discute inovação, tecnologia e empreendedorismo que reúne mentes brilhantes do Brasil e do mundo já teve mais de 155 mil visitantes. E para 2024 as expectativas de público do Rio Innovation Week são ainda maiores.',
-        banner: 'https://assets-global.website-files.com/636d4036709c50b9ac704e98/65aeab5274dda27fa025d70d_Rio-Innovation-Week-2024.jpg',
-        url:"https://rioinnovationweek.com.br/"
+        bannerFile: new File([''], 'banner.png', { type: 'image/png' }),
       },
     ];
   }
@@ -118,29 +87,6 @@ export class HomeComponent implements OnInit {
         }));
       },
     });
-  }
-
-  loadCities(selectedState: number) {
-    this.filterService.loadCitiesByState(selectedState).subscribe({
-      next: (cities: City[]) => {
-        this.cities = cities.map((city) => ({
-          id: city.id,
-          label: city.nome,
-          value: city.nome,
-        }));
-      },
-      error: (error) => {
-        console.error('Error loading cities:', error);
-        // Handle the error (e.g., show an error message to the user)
-      },
-    });
-  }
-
-  stateSelect2() {
-    const selectedStateValue = this.filterForm.get('locale')!.value;
-    if (selectedStateValue) {
-      this.loadCities(Number(selectedStateValue));
-    }
   }
 
   toggleModal() {
@@ -159,5 +105,27 @@ export class HomeComponent implements OnInit {
   clearFilter() {
     this.filterIsActive = false;
     this.filterForm.reset();
+  }
+
+  stateSelect2() {
+    const selectedStateValue = this.filterForm.get('locale')!.value;
+    if (selectedStateValue) {
+      this.loadCities(Number(selectedStateValue));
+    }
+  }
+
+  loadCities(selectedState: number) {
+    this.filterService.loadCitiesByState(selectedState).subscribe({
+      next: (cities: City[]) => {
+        this.cities = cities.map((city) => ({
+          id: city.id,
+          label: city.nome,
+          value: city.nome,
+        }));
+      },
+      error: (error) => {
+        console.error('Error loading cities:', error);
+      },
+    });
   }
 }
