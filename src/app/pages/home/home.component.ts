@@ -33,10 +33,10 @@ interface FilterForm {
     EventComponent,
     HeaderComponent,
   ],
-  templateUrl: './events.component.html',
-  styleUrl: './events.component.scss',
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.scss',
 })
-export class EventsComponent implements OnInit {
+export class HomeComponent implements OnInit {
   filterService = inject(FilterService);
   eventsService = inject(EventsService);
   isModalOpen = signal(false);

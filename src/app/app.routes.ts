@@ -5,7 +5,7 @@ export const routes: Routes = [
   {
     path: 'eventos',
     loadComponent: () =>
-      import('./pages/home/events.component').then((c) => c.EventsComponent),
+      import('./pages/home/home.component').then((c) => c.HomeComponent),
   },
   {
     path: 'criar-evento',
