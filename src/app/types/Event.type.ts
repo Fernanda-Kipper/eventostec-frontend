@@ -5,18 +5,11 @@ export enum EventType {
 
 export type EventItem = {
   title: string;
-  type: EventType;
+  type: string;
   description: string;
   date: string;
-  banner: string;
-  // bannerFile: File | null;
+  city: string;
+  state: string;
+  bannerUrl: string;
   url: string;
-  city: {
-    id: number;
-    label: string;
-  };
-  state: {
-    id: number;
-    label: string;
-  };
 };

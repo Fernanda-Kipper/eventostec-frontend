@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { Observable, catchError, of } from 'rxjs';
-import { DataEvent } from '../types/dataEvent';
+import { EventItem } from '../types/Event.type';
 
 @Injectable({
   providedIn: 'root',
@@ -12,16 +12,15 @@ export class EventsService {
 
   constructor(private http: HttpClient) {}
 
-  getEvents(): Observable<DataEvent[]> {
-    return this.http.get<DataEvent[]>(`${this.APIurl}events`).pipe(
-      catchError((error) => {
-        console.error('Erro ao carregar dados.', error);
+  getEvents(): Observable<EventItem[]> {
+    return this.http.get<EventItem[]>(`${this.APIurl}events`).pipe(
+      catchError(() => {
         return of([]);
       }),
     );
   }
 
-  createEvent(event: DataEvent[]) {
+  createEvent(event: EventItem[]) {
     return this.http.post(`${this.APIurl}events`, event);
   }
 }

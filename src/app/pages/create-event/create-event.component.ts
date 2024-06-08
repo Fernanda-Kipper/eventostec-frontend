@@ -12,7 +12,10 @@ import { FilterService } from '../../services/filter.service';
 import { City } from '../../types/City.type';
 import { EventType } from '../../types/Event.type';
 import { UF } from '../../types/UF.type';
-import { URLRegexValidator } from '../../utils/url-regex-validator.util';
+import {
+  ImageURLRegexValidator,
+  URLRegexValidator,
+} from '../../utils/url-regex-validator.util';
 import { Router } from '@angular/router';
 
 export interface CreateEventFormControl {
@@ -32,7 +35,6 @@ export interface CreateEventFormControl {
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './create-event.component.html',
-  styleUrl: './create-event.component.scss',
 })
 export class CreateEventComponent implements OnInit {
   filterService = inject(FilterService);
@@ -57,11 +59,11 @@ export class CreateEventComponent implements OnInit {
       date: new FormControl(null, [Validators.required]),
       city: new FormControl(null, [Validators.required]),
       state: new FormControl(null, [Validators.required]),
-      url: new FormControl(null, [
+      url: new FormControl(null, [Validators.pattern(URLRegexValidator)]),
+      bannerUrl: new FormControl(null, [
+        Validators.pattern(ImageURLRegexValidator),
         Validators.required,
-        Validators.pattern(URLRegexValidator),
       ]),
-      bannerUrl: new FormControl(null),
       // bannerFile: new FormControl(null),
     });
     this.getLocales();
@@ -97,13 +99,11 @@ export class CreateEventComponent implements OnInit {
       this.setLocaleAsString();
     }
     this.eventsService.createEvent(this.createEventForm.value).subscribe({
-      next: (response) => {
-        console.log('Operação completa:', response);
+      next: () => {
         this.router.navigate(['/eventos']);
       },
       error: (error) => console.error('Erro ao cadastrar evento:', error),
     });
-    console.log(this.createEventForm.value);
   }
 
   getLocales() {
