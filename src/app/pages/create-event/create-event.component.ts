@@ -35,7 +35,6 @@ export interface CreateEventFormControl {
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './create-event.component.html',
-  styleUrl: './create-event.component.scss',
 })
 export class CreateEventComponent implements OnInit {
   filterService = inject(FilterService);

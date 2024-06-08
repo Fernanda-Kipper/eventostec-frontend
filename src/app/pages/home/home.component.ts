@@ -34,7 +34,6 @@ interface FilterForm {
     HeaderComponent,
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
   filterService = inject(FilterService);
