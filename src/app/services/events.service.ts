@@ -14,8 +14,7 @@ export class EventsService {
 
   getEvents(): Observable<EventItem[]> {
     return this.http.get<EventItem[]>(`${this.APIurl}events`).pipe(
-      catchError((error) => {
-        console.error('Erro ao carregar dados.', error);
+      catchError(() => {
         return of([]);
       }),
     );
