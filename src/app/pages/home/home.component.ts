@@ -80,6 +80,22 @@ export class HomeComponent implements OnInit {
         banner: 'https://images.sympla.com.br/630305a3009a1-lg.png',
         url: 'https://frontinsampa.com.br/',
       },
+      {
+        title: 'HackTown',
+        place: 'Santa Rita do Sapucaí - MG',
+        date: '1 a 4 de agosto',
+        description: 'Com mais de 800 atividades simultâneas, o HackTown abrange tecnologia, empreendedorismo, música e artes, atraindo mais de 300 startups. O evento acontece em Santa Rita do Sapucaí, cidade que abriga mais de 160 empresas de tecnologia, ganhando o apelido de “Vale da Eletrônica”.',
+        banner: 'https://assets-global.website-files.com/636d4036709c50b9ac704e98/65aeaa6f9fc603617a07e28b_hacktown-2024.jpg',
+        url:"https://hacktown.com.br/"
+      },
+      {
+        title: 'Rio Innovation Week',
+        place: 'Rio de Janeiro - RJ',
+        date: '13 a 16 de agosto',
+        description: 'Um grande encontro que discute inovação, tecnologia e empreendedorismo que reúne mentes brilhantes do Brasil e do mundo já teve mais de 155 mil visitantes. E para 2024 as expectativas de público do Rio Innovation Week são ainda maiores.',
+        banner: 'https://assets-global.website-files.com/636d4036709c50b9ac704e98/65aeab5274dda27fa025d70d_Rio-Innovation-Week-2024.jpg',
+        url:"https://rioinnovationweek.com.br/"
+      },
     ];
   }
 
