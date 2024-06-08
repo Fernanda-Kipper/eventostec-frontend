@@ -1,0 +1,37 @@
+{
+  "events": [
+    {
+      "id": "6d80",
+      "title": "EVENTO TESTE",
+      "type": "Presencial",
+      "description": "Estamos empolgados em ajudar você a divulgar seus eventos! Para cadastrar um evento, preencha as informações abaixo. Isso garantirá que seu evento seja exibido corretamente em nosso site.",
+      "date": "09-12-2024",
+      "city": "Siriri",
+      "state": "SE",
+      "url": "https://devfest.com.br/",
+      "bannerUrl": "https://t3.ftcdn.net/jpg/03/86/44/66/240_F_386446626_SD0ksiMkmtDIlfuIgXStXQHPZeMjkLm2.jpg"
+    },
+    {
+      "id": "8dd4",
+      "title": "EVENTO TESTE REMOTO",
+      "type": "Remoto",
+      "description": "Estamos empolgados em ajudar você a divulgar seus eventos! Para cadastrar um evento, preencha as informações abaixo. Isso garantirá que seu evento seja exibido corretamente em nosso site.",
+      "date": "2026-11-01",
+      "city": null,
+      "state": null,
+      "url": "https://angular.dev/",
+      "bannerUrl": "https://blogger.googleusercontent.com/img/a/AVvXsEj-LG-1NzdCAk8DkFqFl4HemoD5HX7EnCYPnmzm7419ahflq3axCE8JoxwARbUXh2OG8I5ibG5Q2_XQEauq86byWCs6vlANin_ZtG4xR6Wk4oeIa76cP5PxkOlZBisaHLuD3l-erluagNdC-ASB3yxjhjjEQAfgQzFCE3tn5liDDGe0B0po3o5ZXsT4=s16000"
+    },
+    {
+      "id": "f1f9",
+      "title": "DEV TALK",
+      "type": "Presencial",
+      "description": "Foto do Evento: Faça upload de uma imagem representativa do seu evento. Imagens ajudam a atrair a atenção e dar uma melhor ideia sobre o que se trata o evento. (Formatos aceitos: JPG, PNG, GIF; Tamanho máximo: 5MB)",
+      "date": "2025-06-01",
+      "city": "Adamantina",
+      "state": "SP",
+      "url": "https://angular.dev/",
+      "bannerUrl": "https://www.proway.com.br/foto/png/blog/750/workshop-gratuito-game-developer.jpg"
+    }
+  ]
+}
