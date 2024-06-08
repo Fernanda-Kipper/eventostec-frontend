@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, inject, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -12,8 +12,8 @@ import { HeaderComponent } from '../../components/header/header.component';
 import { ModalComponent } from '../../components/modal/modal.component';
 import { FilterService } from '../../services/filter.service';
 import { City } from '../../types/City.type';
-import { EventItem, EventType } from '../../types/Event.type';
 import { UF } from '../../types/UF.type';
+import { EventsService } from '../../services/events.service';
 
 interface FilterForm {
   locale: FormControl<string | null>;
@@ -37,14 +37,15 @@ interface FilterForm {
   styleUrl: './events.component.scss',
 })
 export class EventsComponent implements OnInit {
+  filterService = inject(FilterService);
+  eventsService = inject(EventsService);
   isModalOpen = signal(false);
   filterIsActive = false;
-  eventList: EventItem[] = [];
   filterForm!: FormGroup<FilterForm>;
   states: { id: number; label: string; value: string }[] = [];
   cities: { id: number; label: string; value: string }[] = [];
-
-  constructor(private filterService: FilterService) {}
+  events$ = this.eventsService.getEvents();
+  isOnline: boolean = false;
 
   ngOnInit() {
     this.filterForm = new FormGroup<FilterForm>({
@@ -53,28 +54,7 @@ export class EventsComponent implements OnInit {
       from: new FormControl<Date | null>(null, [Validators.required]),
       to: new FormControl<Date | null>(null, [Validators.required]),
     });
-
     this.loadLocalesFilter();
-
-    this.eventList = [
-      {
-        title: 'Frontin Sampa',
-        type: EventType.PRESENTIAL,
-        city: {
-          id: 1,
-          label: 'São Paulo',
-        },
-        state: {
-          id: 1,
-          label: 'SP',
-        },
-        date: '19/10/2024',
-        description: 'Maior evento de Frontend do Brasil!',
-        banner: 'https://images.sympla.com.br/630305a3009a1-lg.png',
-        url: 'https://frontinsampa.com.br/',
-        bannerFile: new File([''], 'banner.png', { type: 'image/png' }),
-      },
-    ];
   }
 
   loadLocalesFilter() {

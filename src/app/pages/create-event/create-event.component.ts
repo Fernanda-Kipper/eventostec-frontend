@@ -1,26 +1,32 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+
+import { EventsService } from '../../services/events.service';
 import { FilterService } from '../../services/filter.service';
 import { City } from '../../types/City.type';
 import { EventType } from '../../types/Event.type';
 import { UF } from '../../types/UF.type';
-import { URLRegexValidator } from '../../utils/url-regex-validator.util';
+import {
+  ImageURLRegexValidator,
+  URLRegexValidator,
+} from '../../utils/url-regex-validator.util';
+import { Router } from '@angular/router';
 
-interface CreateEventFormControl {
+export interface CreateEventFormControl {
   title: FormControl<string | null>;
   type: FormControl<EventType | null>;
   description: FormControl<string | null>;
   date: FormControl<string | null>;
   city: FormControl<string | null>;
   state: FormControl<string | null>;
-  banner: FormControl<File | null>;
-  bannerFile: FormControl<File | null>;
+  bannerUrl: FormControl<string | null>;
+  // bannerFile: FormControl<File | null>;
   url: FormControl<string | null>;
 }
 
@@ -33,34 +39,74 @@ interface CreateEventFormControl {
 })
 export class CreateEventComponent implements OnInit {
   filterService = inject(FilterService);
+  eventsService = inject(EventsService);
+  router = inject(Router);
+  createEventForm!: FormGroup;
   moreInformationExpanded = false;
   states: { id: number; label: string; value: string }[] = [];
   cities: { id: number; label: string; value: string }[] = [];
   EventType = EventType;
+  events$ = this.eventsService.getEvents();
 
-  createEventForm = new FormGroup<CreateEventFormControl>({
-    title: new FormControl(null, [Validators.required]),
-    type: new FormControl(EventType.PRESENTIAL, [Validators.required]),
-    description: new FormControl(null, [Validators.required]),
-    date: new FormControl(null, [Validators.required]),
-    city: new FormControl(null, [Validators.required]),
-    state: new FormControl(null, [Validators.required]),
-    url: new FormControl(null, [
-      Validators.required,
-      Validators.pattern(URLRegexValidator),
-    ]),
-    banner: new FormControl(null),
-    bannerFile: new FormControl(null),
-  });
+  getAllEvents() {
+    this.events$;
+  }
 
   ngOnInit() {
+    this.createEventForm = new FormGroup<CreateEventFormControl>({
+      title: new FormControl(null, [Validators.required]),
+      type: new FormControl(EventType.PRESENTIAL, [Validators.required]),
+      description: new FormControl(null, [Validators.required]),
+      date: new FormControl(null, [Validators.required]),
+      city: new FormControl(null, [Validators.required]),
+      state: new FormControl(null, [Validators.required]),
+      url: new FormControl(null, [Validators.pattern(URLRegexValidator)]),
+      bannerUrl: new FormControl(null, [
+        Validators.pattern(ImageURLRegexValidator),
+        Validators.required,
+      ]),
+      // bannerFile: new FormControl(null),
+    });
     this.getLocales();
   }
 
+  setLocaleAsString() {
+    this.getInfoState();
+    const selectedStateValue = this.createEventForm.get('state')?.value;
+    const selectedState = this.states.find(
+      (option) => option.id === Number(selectedStateValue),
+    );
+    if (selectedState) {
+      this.createEventForm.patchValue({ state: selectedState.value });
+    } else {
+      console.error('Estado não encontrado!');
+    }
+    const selectedCityValue = this.createEventForm.get('city')?.value;
+    const selectedCity = this.cities.find(
+      (option) => option.id === Number(selectedCityValue),
+    );
+    if (selectedCity) {
+      this.createEventForm.patchValue({ city: selectedCity.label });
+    } else {
+      console.error('Cidade não encontrada!');
+    }
+  }
+
   createEvent() {
-    console.log(this.createEventForm.value);
-    if (this.createEventForm.invalid || !this.createEventForm.get('bannerFile'))
+    if (!this.createEventForm?.valid) {
       return;
+    }
+    if (this.createEventForm.get('type')?.value === EventType.PRESENTIAL) {
+      this.setLocaleAsString();
+    }
+    this.eventsService.createEvent(this.createEventForm.value).subscribe({
+      next: (response) => {
+        console.log('Operação completa:', response);
+        this.router.navigate(['/eventos']);
+      },
+      error: (error) => console.error('Erro ao cadastrar evento:', error),
+    });
+    console.log(this.createEventForm.value);
   }
 
   getLocales() {
@@ -100,13 +146,13 @@ export class CreateEventComponent implements OnInit {
     });
   }
 
-  fileChange(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    if (input.files && input.files.length > 0) {
-      console.log(input.files);
-      this.createEventForm.get('bannerFile')?.setValue(input.files[0]);
-    }
-  }
+  // fileChange(event: Event): void {
+  //   const input = event.target as HTMLInputElement;
+  //   if (input.files && input.files.length > 0) {
+  //     console.log(input.files);
+  //     this.createEventForm.get('bannerFile')?.setValue(input.files[0]);
+  //   }
+  // }
 
   handleEventType(type: EventType) {
     if (type === EventType.ONLINE) {

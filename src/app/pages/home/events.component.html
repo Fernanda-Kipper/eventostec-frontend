@@ -1,5 +1,4 @@
 <app-header></app-header>
-
 <main id="content" class="bg-white py-24 sm:py-32">
   <div class="mx-auto max-w-7xl px-6 lg:px-8">
     <div id="list-header" class="mx-auto max-w-2xl text-center mb-6">
@@ -55,17 +54,22 @@
       id="event-list"
       class="mt-16 flex justify-center w-full sm:mt-20 lg:mx-0"
     >
-      <ul class="-my-8 grid grid-cols-3 gap-7 w-full divide-y divide-gray-100">
-        @for (event of eventList; track event) {
+      <ul
+        class="-my-8 flex gap-7 w-full divide-y divide-gray-100 flex-wrap justify-center"
+      >
+        @for (event of events$ | async; track event) {
           <app-event
             [url]="event.url"
-            [banner]="event.banner"
+            [bannerUrl]="event.bannerUrl"
             [title]="event.title"
+            [type]="event.type"
             [description]="event.description"
             [date]="event.date"
-            [place]="event.city.label"
-            >{{ event }}</app-event
+            [state]="event.state"
+            [city]="event.city"
           >
+            {{ event }}
+          </app-event>
         }
       </ul>
     </div>
