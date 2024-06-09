@@ -1,27 +1,26 @@
-import {
-  Component,
-  ElementRef,
-  OnInit,
-  signal,
-  ViewChild,
-} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-
 import { NgSelectModule } from '@ng-select/ng-select';
-
 import { EventComponent } from '../../components/event/event.component';
-import { ModalComponent } from '../../components/modal/modal.component';
 import { HeaderComponent } from '../../components/header/header.component';
+import { ModalComponent } from '../../components/modal/modal.component';
 import { FilterService } from '../../services/filter.service';
-import { UF } from '../../types/UF.type';
 import { City } from '../../types/City.type';
+import { UF } from '../../types/UF.type';
+import { EventsService } from '../../services/events.service';
+import {
+  BehaviorSubject,
+  Observable,
+  combineLatest,
+  map,
+  startWith,
+} from 'rxjs';
 import { EventItem } from '../../types/Event.type';
 
 interface FilterForm {
@@ -32,10 +31,9 @@ interface FilterForm {
 }
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-events',
   standalone: true,
   imports: [
-    RouterOutlet,
     CommonModule,
     NgSelectModule,
     ReactiveFormsModule,
@@ -44,24 +42,23 @@ interface FilterForm {
     HeaderComponent,
   ],
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  @ViewChild('stateSelect') stateSelect!: ElementRef<HTMLSelectElement>;
-
-  filterForm!: FormGroup<FilterForm>;
   isModalOpen = signal(false);
-
+  filterIsActive = false;
+  filterForm!: FormGroup<FilterForm>;
   states: { id: number; label: string; value: string }[] = [];
   cities: { id: number; label: string; value: string }[] = [];
+  isOnline: boolean = false;
+  events$!: Observable<EventItem[]>;
+  filteredEventList$!: Observable<EventItem[]>;
+  // searchTerm: string = '';
+  searchTerm = new BehaviorSubject<string>('');
 
-  searchTerm: string = '';
-  eventList: EventItem[] = [];
-  filteredEventList: EventItem[] = [];
-
-  filterIsActive = false;
-
-  constructor(private filterService: FilterService) {}
+  constructor(
+    private filterService: FilterService,
+    private eventsService: EventsService,
+  ) {}
 
   ngOnInit() {
     this.filterForm = new FormGroup<FilterForm>({
@@ -72,19 +69,11 @@ export class HomeComponent implements OnInit {
     });
 
     this.loadLocalesFilter();
-
-    this.eventList = [
-      {
-        title: 'Frontin Sampa',
-        place: 'São Paulo',
-        date: '19/10/2024',
-        description: 'Maior evento de Frontend do Brasil!',
-        banner: 'https://images.sympla.com.br/630305a3009a1-lg.png',
-        url: 'https://frontinsampa.com.br/',
-      },
-    ];
-
-    this.filteredEventList = this.eventList;
+    this.events$ = this.eventsService.getEvents();
+    this.filteredEventList$ = combineLatest([
+      this.searchTerm.pipe(startWith('')),
+      this.events$,
+    ]).pipe(map(([term, events]) => this.getFilteredEvents(term, events)));
   }
 
   loadLocalesFilter() {
@@ -97,29 +86,6 @@ export class HomeComponent implements OnInit {
         }));
       },
     });
-  }
-
-  loadCities(selectedState: number) {
-    this.filterService.loadCitiesByState(selectedState).subscribe({
-      next: (cities: City[]) => {
-        this.cities = cities.map((city) => ({
-          id: city.id,
-          label: city.nome,
-          value: city.nome,
-        }));
-      },
-      error: (error) => {
-        console.error('Error loading cities:', error);
-        // Handle the error (e.g., show an error message to the user)
-      },
-    });
-  }
-
-  stateSelect2() {
-    const selectedStateValue = this.filterForm.get('locale')!.value;
-    if (selectedStateValue) {
-      this.loadCities(Number(selectedStateValue));
-    }
   }
 
   toggleModal() {
@@ -140,14 +106,35 @@ export class HomeComponent implements OnInit {
     this.filterForm.reset();
   }
 
-  getFilteredEvents(): EventItem[] {
-    return this.eventList.filter((event) =>
-      event.title.toLowerCase().includes(this.searchTerm.toLowerCase()),
+  stateSelect2() {
+    const selectedStateValue = this.filterForm.get('locale')!.value;
+    if (selectedStateValue) {
+      this.loadCities(Number(selectedStateValue));
+    }
+  }
+
+  loadCities(selectedState: number) {
+    this.filterService.loadCitiesByState(selectedState).subscribe({
+      next: (cities: City[]) => {
+        this.cities = cities.map((city) => ({
+          id: city.id,
+          label: city.nome,
+          value: city.nome,
+        }));
+      },
+      error: (error) => {
+        console.error('Error loading cities:', error);
+      },
+    });
+  }
+
+  getFilteredEvents(term: string, events: EventItem[]): EventItem[] {
+    return events.filter((event) =>
+      event.title.toLowerCase().includes(term.toLowerCase()),
     );
   }
 
   updateSearchTerm(newTerm: string) {
-    this.searchTerm = newTerm;
-    this.filteredEventList = this.getFilteredEvents();
+    this.searchTerm.next(newTerm);
   }
 }

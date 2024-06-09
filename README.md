@@ -93,9 +93,17 @@ Um agradecimento especial a todos que contribuíram ao projeto!
     </td>
     <td align="center">
       <a href="https://github.com/LivHelen12">
-        <img src="https://avatars.githubusercontent.com/u/62712621?v=4" width="100px;" alt="Foto da Livia Helen"/><br>
+        <img src="https://avatars.githubusercontent.com/u/62712621?v=4" width="100px;" alt="Foto do Livia Helen"/><br>
         <sub>
           <b>Livia Helen</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/bernardoSemiOficial">
+        <img src="https://avatars.githubusercontent.com/u/114026716?v=4" width="100px;" alt="Foto do Bernardo Pereira"/><br>
+        <sub>
+          <b>Bernardo Pereira</b>
         </sub>
       </a>
     </td>

@@ -1,35 +1,56 @@
 <li>
-  <div class="overflow-hidden rounded-lg bg-white shadow">
+  <div class="overflow-hidden rounded-lg bg-white shadow w-96 h-96 relative">
     <div>
-      <img class="rounded-md" src="{{ banner }}" alt="Event Banner" />
+      <a [href]="url">
+        <img
+          class="rounded-md h-60 w-full border border-solid border-gray-200"
+          src="{{ bannerUrl }}"
+          alt="banner do evento"
+        />
+      </a>
     </div>
-    <div class="px-4 py-4 sm:px-6">
-      <dl class="relative flex flex-wrap gap-x-3">
-        <dt class="sr-only">Nome do Evento</dt>
-        <dd
-          class="w-full flex-none text-lg font-semibold tracking-tight cursor-pointer text-gray-900"
-        >
-          <a [href]="url">
-            {{ title }}
-            <span class="absolute inset-0" aria-hidden="true"></span>
-          </a>
-        </dd>
-        <dt class="sr-only">Descrição</dt>
-        <dd class="mt-2 w-full flex-none text-base leading-7 text-gray-600">
-          {{ description }}
-        </dd>
-
+    <div class="px-4 sm:px-6">
+      <dl class="relative flex flex-wrap gap-x-2">
         <dt class="sr-only">Data do Evento</dt>
-        <dd class="mt-4 text-base font-semibold leading-7 text-gray-900">
-          {{ date }}
+        <dd class="mt-2 text-sm font-bold text-kipperdev-purple-primary">
+          {{ date | date: 'dd/MM/yyyy' }}
         </dd>
         <dt class="sr-only">Local do Evento</dt>
+        @if (state && city) {
+          <ng-container>
+            <dd
+              class="mt-2 flex items-center gap-x-3 text-sm font-normal text-gray-500"
+            >
+              {{ state }}, {{ city }}
+            </dd>
+          </ng-container>
+        }
+        @if (type === 'Remoto') {
+          <ng-container>
+            <dd
+              class="mt-2 flex items-center gap-x-3 text-sm font-semibold text-gray-500"
+            >
+              {{ type }}
+            </dd>
+          </ng-container>
+        }
+        <dt class="sr-only">Nome do Evento</dt>
         <dd
-          class="mt-4 flex items-center gap-x-3 text-base leading-7 text-gray-500"
+          class="mt-2 w-full flex-none text-lg font-semibold tracking-tight cursor-pointer text-kipperdev-purple-dark"
         >
-          {{ place }}
+          <p>{{ title }}</p>
+          <span class="absolute inset-0" aria-hidden="true"></span>
+        </dd>
+        <dt class="sr-only">Descrição</dt>
+        <dd
+          class="mt-2 w-full flex-none text-sm text-gray-600 max-h-10 overflow-hidden"
+        >
+          {{ description }}
         </dd>
       </dl>
     </div>
+    <div
+      class="absolute inset-x-0 bottom-7 h-5 bg-gradient-to-t from-white via-white to-transparent pointer-events-none"
+    ></div>
   </div>
 </li>

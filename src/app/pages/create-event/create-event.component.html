@@ -1,0 +1,394 @@
+<div class="isolate bg-white px-6 py-10 sm:py-14 lg:px-8">
+  <div
+    class="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+    aria-hidden="true"
+  >
+    <div
+      class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-[#1488ca] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
+      style="
+        clip-path: polygon(
+          74.1% 44.1%,
+          100% 61.6%,
+          97.5% 26.9%,
+          85.5% 0.1%,
+          80.7% 2%,
+          72.5% 32.5%,
+          60.2% 62.4%,
+          52.4% 68.1%,
+          47.5% 58.3%,
+          45.2% 34.5%,
+          27.5% 76.7%,
+          0.1% 64.9%,
+          17.9% 100%,
+          27.6% 76.8%,
+          76.1% 97.7%,
+          74.1% 44.1%
+        );
+      "
+    ></div>
+  </div>
+
+  <div class="mx-auto max-w-2xl text-center mb-5">
+    <h2
+      class="text-3xl font-bold tracking-tight text-kipperdev-purple-dark sm:text-5xl"
+    >
+      Cadastrar evento
+    </h2>
+    <p class="mt-2 text-lg leading-8 text-gray-600">
+      Estamos empolgados em ajudar você a divulgar seus eventos! Para cadastrar
+      um evento, preencha as informações abaixo. Isso garantirá que seu evento
+      seja exibido corretamente em nosso site.
+    </p>
+  </div>
+
+  @if (moreInformationExpanded) {
+    <div class="mx-auto max-w-2xl my-5">
+      <strong class="mt-2 text-lg leading-8 text-gray-600">
+        Informações Necessárias:
+      </strong>
+      <ul class="list-decimal mt-5 pl-6 text-gray-600">
+        <li class="pb-2">
+          Título do Evento: Escolha um título claro e chamativo para o seu
+          evento.
+        </li>
+        <li class="pb-2">
+          Descrição: Forneça uma descrição detalhada do evento. Inclua
+          informações como agenda, palestrantes, atividades e qualquer outra
+          informação relevante para atrair os participantes.
+        </li>
+        <li class="pb-2">
+          Data do Evento: Informe a data e o horário do evento. Se for um evento
+          que ocorre em vários dias, especifique as datas.
+        </li>
+        <li class="pb-2">
+          Localização:
+          <ul class="list-disc pl-6 mb-2">
+            <li class="pb-2">
+              Presencial: Se o evento for presencial, forneça o endereço
+              completo (incluindo cidade e estado).
+            </li>
+            <li class="pb-2">
+              Online: Se o evento for online, indique a plataforma que será
+              utilizada (Zoom, Google Meet, etc.) e forneça o link de acesso.
+            </li>
+          </ul>
+        </li>
+        <li class="pb-2">
+          Foto do Evento: Faça upload de uma imagem representativa do seu
+          evento. Imagens ajudam a atrair a atenção e dar uma melhor ideia sobre
+          o que se trata o evento. (Formatos aceitos: JPG, PNG, GIF; Tamanho
+          máximo: 5MB)
+        </li>
+      </ul>
+
+      <strong class="mt-2 text-lg leading-8 text-gray-600">
+        Como Cadastrar:
+      </strong>
+      <ul class="list-decimal mt-5 pl-6 text-gray-600">
+        <li class="pb-2">
+          Preencha o Formulário: Insira todas as informações solicitadas nos
+          campos apropriados do formulário de cadastro de eventos.
+        </li>
+        <li class="pb-2">
+          Revisão: Verifique se todas as informações estão corretas e completas
+          antes de enviar.
+        </li>
+        <li class="pb-2">
+          Envie: Clique no botão "Enviar" para cadastrar seu evento. Nosso time
+          revisará o conteúdo e seu evento será publicado em breve!
+        </li>
+      </ul>
+
+      <strong class="mt-2 text-lg leading-8 text-gray-600">
+        Benefícios de Cadastrar seu Evento Conosco:
+      </strong>
+      <ul class="list-decimal mt-5 pl-6 text-gray-600">
+        <li class="pb-2">
+          Visibilidade: Alcance um público maior e aumente a participação no seu
+          evento.
+        </li>
+        <li class="pb-2">
+          Organização: Facilite a organização e comunicação com os
+          participantes.
+        </li>
+        <li class="pb-2">
+          Credibilidade: Associar seu evento a uma plataforma confiável aumenta
+          a credibilidade e atratividade do evento.
+        </li>
+      </ul>
+      <p class="mt-4 text-gray-600">Aguardamos o seu evento!</p>
+    </div>
+  }
+
+  <div class="relative">
+    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+      <div class="w-full border-t border-gray-300"></div>
+    </div>
+    <div class="relative flex justify-center">
+      <div class="flex items-center justify-center">
+        <span class="relative inline-flex">
+          <button
+            (click)="moreInformationExpanded = !moreInformationExpanded"
+            type="button"
+            class="rounded-xl inline-flex items-center px-6 py-1 font-semibold leading-6 text-sm shadow bg-white hover:bg-gray-50 dark:bg-slate-800 dark:hover:bg-slate-600 dark:text-white transition ease-in-out duration-150 cursor-pointer ring-1 ring-slate-900/10 dark:ring-slate-200/20"
+          >
+            @if (!moreInformationExpanded) {
+              <svg
+                class="-ml-1 mr-0.5 h-5 w-5 text-white"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"
+                />
+              </svg>
+            }
+            @if (moreInformationExpanded) {
+              <img
+                class="h-5 w-4 mr-0.5"
+                src="../../../assets/generic-images/icons8-subtract-24.png"
+                alt="diminuir"
+              />
+            }
+            {{
+              !moreInformationExpanded
+                ? 'Mais informações'
+                : 'Ocultar informações'
+            }}
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <form [formGroup]="createEventForm" class="mx-auto mt-16 max-w-xl sm:mt-20">
+    <div class="text-center">
+      <span
+        class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
+      >
+        Evento será?
+      </span>
+      <nav
+        class="inline-flex mx-auto overflow-x-auto items-center p-1 space-x-1 rtl:space-x-reverse text-sm text-gray-600 bg-gray-500/5 rounded-xl dark:bg-gray-500/20"
+      >
+        <button
+          role="tab"
+          type="button"
+          class="flex whitespace-nowrap items-center h-8 px-5 font-medium rounded-lg outline-none focus:ring-2 hover:ring-gray-900 focus:ring-gray-900 focus:ring-inset hover:text-white hover:bg-gray-800 bg-gray-800"
+          [ngClass]="{
+            'bg-gray-800 text-white shadow':
+              createEventForm.value.type === EventType.PRESENTIAL
+          }"
+          (click)="handleEventType(EventType.PRESENTIAL)"
+        >
+          Presencial
+        </button>
+
+        <button
+          role="tab"
+          type="button"
+          class="flex whitespace-nowrap items-center h-8 px-5 font-medium rounded-lg outline-none focus:ring-2 focus:ring-gray-800 hover:ring-gray-800 focus:ring-inset hover:text-white hover:bg-gray-800"
+          [ngClass]="{
+            'bg-gray-800 text-white shadow':
+              createEventForm.value.type === EventType.ONLINE
+          }"
+          (click)="handleEventType(EventType.ONLINE)"
+        >
+          Remoto
+        </button>
+      </nav>
+    </div>
+    <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+      <div class="sm:col-span-2">
+        <label
+          for="title"
+          class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
+        >
+          Nome do evento
+          @if (createEventForm.get('title')?.invalid) {
+            <span class="text-xs text-red-500">*</span>
+          }
+        </label>
+        <div class="mt-2.5">
+          <input
+            formControlName="title"
+            type="text"
+            name="title"
+            id="title"
+            class="block w-full rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
+          />
+        </div>
+      </div>
+      <div class="sm:col-span-2">
+        <label
+          for="description"
+          class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
+        >
+          Descrição
+          @if (createEventForm.get('description')?.invalid) {
+            <span class="text-xs text-red-500">*</span>
+          }
+        </label>
+        <div class="mt-2.5">
+          <textarea
+            formControlName="description"
+            name="description"
+            id="description"
+            rows="4"
+            class="block w-full rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
+          ></textarea>
+        </div>
+      </div>
+      <div class="sm:col-span-2">
+        <label
+          for="url"
+          class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
+        >
+          Link para o evento
+          @if (
+            createEventForm.get('url')?.invalid &&
+            createEventForm.get('url')?.dirty &&
+            createEventForm.get('url')?.touched
+          ) {
+            <span class="text-xs text-red-500"
+              >url deve seguir o formato indicado</span
+            >
+          }
+        </label>
+        <div class="mt-2.5">
+          <input
+            formControlName="url"
+            type="text"
+            name="url"
+            id="url"
+            placeholder="https://meuEvento.com"
+            class="block w-full rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
+          />
+        </div>
+      </div>
+      @if (createEventForm.value.type === EventType.PRESENTIAL) {
+        <div>
+          <label
+            for="state"
+            class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
+          >
+            Estado
+          </label>
+          <div class="mt-2.5">
+            <select
+              id="state"
+              formControlName="state"
+              class="block w-full h-10 bg-transparent rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
+              (change)="getInfoState()"
+            >
+              @for (option of states; track option.id) {
+                <option [value]="option.id">
+                  {{ option.label }}
+                </option>
+              }
+            </select>
+          </div>
+        </div>
+        <div>
+          <label
+            for="city"
+            class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
+          >
+            Cidade
+          </label>
+          <div class="mt-2.5">
+            <select
+              id="city"
+              formControlName="city"
+              class="block w-full h-10 bg-transparent rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
+            >
+              @for (option of cities; track option.id) {
+                <option [value]="option.id">
+                  {{ option.label }}
+                </option>
+              }
+            </select>
+          </div>
+        </div>
+      }
+      <div class="sm:col-span-2">
+        <label
+          for="date"
+          class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
+        >
+          Data
+          @if (createEventForm.get('date')?.invalid) {
+            <span class="text-xs text-red-500">*</span>
+          }
+        </label>
+        <div class="mt-2.5">
+          <input
+            formControlName="date"
+            type="date"
+            name="date"
+            id="date"
+            class="block w-full rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
+          />
+        </div>
+      </div>
+      <div class="sm:col-span-2">
+        <label
+          for="bannerUrl"
+          class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
+        >
+          Link do banner
+          @if (
+            createEventForm.get('bannerUrl')?.invalid &&
+            createEventForm.get('bannerUrl')?.touched
+          ) {
+            <span class="text-xs text-red-500"
+              >verifique se a url termina com a extensão de uma imagem ou
+              GIF</span
+            >
+          }
+        </label>
+        <div class="mt-2.5">
+          <input
+            formControlName="bannerUrl"
+            type="banner"
+            name="bannerUrl"
+            id="bannerUrl"
+            placeholder="O caminho deve apontar diretamente para uma imagem"
+            class="block w-full rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
+          />
+        </div>
+      </div>
+      <!-- <div class="sm:col-span-2">
+        <div class="flex justify-center items-center">
+          <div class="w-full p-6 bg-white rounded-md shadow-lg">
+            <h2 class="text-3xl font-semibold text-center mb-6">
+              Imagem do evento
+            </h2>
+            <div class="relative border-2 border-dashed border-gray-300 rounded-md px-6 py-8 text-center">
+              <input type="file" class="hidden" id="fileInput" (change)="fileChange($event)" />
+              <svg class="mx-auto h-16 w-16 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 17l-4 4m0 0l-4-4m4 4V3">
+                </path>
+              </svg>
+              <p class="text-sm text-gray-600">
+                <label for="fileInput" class="cursor-pointer text-blue-500 hover:underline">Pegue e jogue a imagem
+                  aqui</label>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="mt-10">
+      <button
+        (click)="createEvent()"
+        type="submit"
+        [disabled]="!createEventForm.valid"
+        class="block w-full rounded-md bg-kipperdev-purple-primary px-3.5 py-2.5 text-center text-sm sm:text-base font-semibold text-white shadow-sm hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kipperdev-purple-primary"
+      >
+        Cadastrar evento
+      </button>
+    </div>
+  </form>
+</div>

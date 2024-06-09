@@ -1,14 +1,18 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
-import { RegisterEventComponent } from './pages/register-event/register-event.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'eventos', pathMatch: 'full' },
   {
-    path: '',
-    component: HomeComponent,
+    path: 'eventos',
+    loadComponent: () =>
+      import('./pages/home/home.component').then((c) => c.HomeComponent),
   },
   {
-    path: 'registra-evento',
-    component: RegisterEventComponent,
+    path: 'criar-evento',
+    loadComponent: () =>
+      import('./pages/create-event/create-event.component').then(
+        (c) => c.CreateEventComponent,
+      ),
   },
+  { path: '**', redirectTo: 'eventos' },
 ];
