@@ -1,10 +1,4 @@
-import {
-  Component,
-  ElementRef,
-  EventEmitter,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +12,6 @@ export class HeaderComponent {
   debounceTimeout: ReturnType<typeof setTimeout> | undefined;
 
   @Output() searchTermChange: EventEmitter<string> = new EventEmitter<string>();
-  @ViewChild('searchbar') searchInput!: ElementRef;
 
   onSearchTerm(event: KeyboardEvent) {
     clearTimeout(this.debounceTimeout);
