@@ -4,6 +4,7 @@ export enum EventType {
 }
 
 export type EventItem = {
+  id: string;
   title: string;
   type: string;
   description: string;

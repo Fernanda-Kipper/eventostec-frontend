@@ -23,4 +23,8 @@ export class EventsService {
   createEvent(event: EventItem[]) {
     return this.http.post(`${this.APIurl}events`, event);
   }
+
+  getEventById(id: string): Observable<EventItem> {
+    return this.http.get<EventItem>(`${this.APIurl}events/${id}`);
+  }
 }

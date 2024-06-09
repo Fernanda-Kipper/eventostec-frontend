@@ -60,18 +60,20 @@
         class="-my-8 flex gap-7 w-full divide-y divide-gray-100 flex-wrap justify-center"
       >
         @for (event of events$ | async; track event) {
-          <app-event
-            [url]="event.url"
-            [bannerUrl]="event.bannerUrl"
-            [title]="event.title"
-            [type]="event.type"
-            [description]="event.description"
-            [date]="event.date"
-            [state]="event.state"
-            [city]="event.city"
-          >
-            {{ event }}
-          </app-event>
+          <a [routerLink]="['/eventos', event.id]">
+            <app-event
+              [url]="event.url"
+              [bannerUrl]="event.bannerUrl"
+              [title]="event.title"
+              [type]="event.type"
+              [description]="event.description"
+              [date]="event.date"
+              [state]="event.state"
+              [city]="event.city"
+            >
+              {{ event }}
+            </app-event>
+          </a>
         }
       </ul>
     </div>

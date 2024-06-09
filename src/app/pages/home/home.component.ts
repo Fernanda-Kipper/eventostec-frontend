@@ -16,6 +16,7 @@ import { UF } from '../../types/UF.type';
 import { EventsService } from '../../services/events.service';
 import { Observable } from 'rxjs';
 import { EventItem } from '../../types/Event.type';
+import { RouterModule } from '@angular/router';
 
 interface FilterForm {
   locale: FormControl<string | null>;
@@ -34,6 +35,7 @@ interface FilterForm {
     ModalComponent,
     EventComponent,
     HeaderComponent,
+    RouterModule,
   ],
   templateUrl: './home.component.html',
 })
@@ -45,6 +47,7 @@ export class HomeComponent implements OnInit {
   cities: { id: number; label: string; value: string }[] = [];
   isOnline: boolean = false;
   events$!: Observable<EventItem[]>;
+  eventslist: EventItem[] = [];
 
   constructor(
     private filterService: FilterService,
