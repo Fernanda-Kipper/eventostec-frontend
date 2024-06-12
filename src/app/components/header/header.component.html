@@ -1,9 +1,9 @@
 <header class="bg-white z-50 relative">
   <nav
-    class="mx-auto flex flex-col sm:flex-row sm:gap-x-6 gap-8 max-w-7xl items-center justify-between p-6 lg:px-8"
+    class="mx-auto flex flex-col flex-wrap md:flex-nowrap sm:flex-row sm:gap-x-6 gap-8 max-w-7xl items-center justify-between p-6 lg:px-8"
     aria-label="Global"
   >
-    <div class="flex lg:flex-1 justify-center sm:justify-start">
+    <div class="flex justify-center sm:justify-start">
       <a
         [routerLink]="['/eventos']"
         class="-m-1.5 p-1.5 text-center sm:text-left"
@@ -16,7 +16,30 @@
         </h3>
       </a>
     </div>
-    <div class="flex flex-1 items-center justify-end gap-x-6">
+    <div
+      class="search-bar w-full max-w-full flex flex-1 md:basis-0 basis-full order-3 md:order-2 md:max-w-96 justify-center align-middle p-2 border rounded-lg h-12 transition duration-500 ease-in-out focus-within:border-kipperdev-purple-primary/60"
+    >
+      <div class="w-5 h-5 self-center">
+        <svg
+          class="w-5 h-5"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path
+            d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"
+          />
+        </svg>
+      </div>
+      <input
+        type="text"
+        placeholder="Pesquisar eventos"
+        class="px-2 outline-none text-base w-full"
+        (keyup)="onSearchTerm($event)"
+      />
+    </div>
+    <div class="flex order-2 md:order-3 items-center justify-end gap-x-6">
       <button
         [routerLink]="['/criar-evento']"
         class="rounded-md bg-kipperdev-purple-primary px-3 py-2 text-sm sm:text-base font-semibold text-white shadow-sm hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kipperdev-purple-primary"

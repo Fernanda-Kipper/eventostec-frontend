@@ -107,6 +107,14 @@ Um agradecimento especial a todos que contribuíram ao projeto!
         </sub>
       </a>
     </td>
+    <td align="center">
+      <a href="https://github.com/gabrielmnzs">
+        <img src="https://avatars.githubusercontent.com/u/8618609?v=4" width="100px;" alt="Foto do Gabriel Menezes"/><br>
+        <sub>
+          <b>Gabriel Menezes</b>
+        </sub>
+      </a>
+    </td>
   </tr>
 </table>
 
