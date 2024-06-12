@@ -76,10 +76,10 @@ Um agradecimento especial a todos que contribuíram ao projeto!
     </td>
     <td align="center">
     <td align="center">
-      <a href="https://github.com/LFzinn">
+      <a href="https://github.com/Ferreira-Luiz">
         <img src="https://avatars.githubusercontent.com/u/113461203?v=4" width="100px;" alt="Foto de Luiz Fernando"/><br>
         <sub>
-          <b>Luiz Fernando Ferreira</b>
+          <b>Ferreira</b>
         </sub>
       </a>
     </td>
@@ -130,8 +130,10 @@ git clone https://github.com/Fernanda-Kipper/eventostec-frontend.git
 ```bash
 cd eventostec-front
 npm install
+npm run backend
 npm start
 ```
+
 
 <h2 id="contribute">📫 Contribuir</h2>
 
