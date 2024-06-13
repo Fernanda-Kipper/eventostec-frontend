@@ -32,7 +32,6 @@ jobs:
         run: |
           npm install
           npm run build
-          npm backend
       - name: List output files
         run: find dist/ -print
       - name: Sync files
