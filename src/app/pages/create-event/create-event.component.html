@@ -4,7 +4,7 @@
     aria-hidden="true"
   >
     <div
-      class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
+      class="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-[#1488ca] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
       style="
         clip-path: polygon(
           74.1% 44.1%,
@@ -30,7 +30,7 @@
 
   <div class="mx-auto max-w-2xl text-center mb-5">
     <h2
-      class="text-3xl font-bold tracking-tight text-kipperdev-purple-dark sm:text-4xl"
+      class="text-3xl font-bold tracking-tight text-kipperdev-purple-dark sm:text-5xl"
     >
       Cadastrar evento
     </h2>
@@ -132,16 +132,25 @@
             type="button"
             class="rounded-xl inline-flex items-center px-6 py-1 font-semibold leading-6 text-sm shadow bg-white hover:bg-gray-50 dark:bg-slate-800 dark:hover:bg-slate-600 dark:text-white transition ease-in-out duration-150 cursor-pointer ring-1 ring-slate-900/10 dark:ring-slate-200/20"
           >
-            <svg
-              class="-ml-1 -mr-0.5 h-5 w-5 text-white"
-              viewBox="0 0 20 20"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"
+            @if (!moreInformationExpanded) {
+              <svg
+                class="-ml-1 mr-0.5 h-5 w-5 text-white"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M10.75 4.75a.75.75 0 00-1.5 0v4.5h-4.5a.75.75 0 000 1.5h4.5v4.5a.75.75 0 001.5 0v-4.5h4.5a.75.75 0 000-1.5h-4.5v-4.5z"
+                />
+              </svg>
+            }
+            @if (moreInformationExpanded) {
+              <img
+                class="h-5 w-4 mr-0.5"
+                src="../../../assets/generic-images/icons8-subtract-24.png"
+                alt="diminuir"
               />
-            </svg>
+            }
             {{
               !moreInformationExpanded
                 ? 'Mais informações'
