@@ -14,8 +14,15 @@ import { FilterService } from '../../services/filter.service';
 import { City } from '../../types/City.type';
 import { UF } from '../../types/UF.type';
 import { EventsService } from '../../services/events.service';
-import { Observable } from 'rxjs';
+import {
+  BehaviorSubject,
+  Observable,
+  combineLatest,
+  map,
+  startWith,
+} from 'rxjs';
 import { EventItem } from '../../types/Event.type';
+import { FooterComponent } from '../../components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 
 interface FilterForm {
@@ -35,6 +42,7 @@ interface FilterForm {
     ModalComponent,
     EventComponent,
     HeaderComponent,
+    FooterComponent,
     RouterModule,
   ],
   templateUrl: './home.component.html',
@@ -47,7 +55,9 @@ export class HomeComponent implements OnInit {
   cities: { id: number; label: string; value: string }[] = [];
   isOnline: boolean = false;
   events$!: Observable<EventItem[]>;
-  eventslist: EventItem[] = [];
+  filteredEventList$!: Observable<EventItem[]>;
+  // searchTerm: string = '';
+  searchTerm = new BehaviorSubject<string>('');
 
   constructor(
     private filterService: FilterService,
@@ -64,6 +74,10 @@ export class HomeComponent implements OnInit {
 
     this.loadLocalesFilter();
     this.events$ = this.eventsService.getEvents();
+    this.filteredEventList$ = combineLatest([
+      this.searchTerm.pipe(startWith('')),
+      this.events$,
+    ]).pipe(map(([term, events]) => this.getFilteredEvents(term, events)));
   }
 
   loadLocalesFilter() {
@@ -116,5 +130,15 @@ export class HomeComponent implements OnInit {
         console.error('Error loading cities:', error);
       },
     });
+  }
+
+  getFilteredEvents(term: string, events: EventItem[]): EventItem[] {
+    return events.filter((event) =>
+      event.title.toLowerCase().includes(term.toLowerCase()),
+    );
+  }
+
+  updateSearchTerm(newTerm: string) {
+    this.searchTerm.next(newTerm);
   }
 }
