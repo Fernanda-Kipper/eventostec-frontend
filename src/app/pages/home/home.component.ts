@@ -22,6 +22,7 @@ import {
   startWith,
 } from 'rxjs';
 import { EventItem } from '../../types/Event.type';
+import { FooterComponent } from '../../components/footer/footer.component';
 
 interface FilterForm {
   locale: FormControl<string | null>;
@@ -40,6 +41,7 @@ interface FilterForm {
     ModalComponent,
     EventComponent,
     HeaderComponent,
+    FooterComponent
   ],
   templateUrl: './home.component.html',
 })
