@@ -312,14 +312,15 @@
           </div>
         </div>
       }
-      <div class="sm:col-span-2">
+
+      <div>
         <label
           for="date"
           class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
         >
           Data
-          @if (createEventForm.get('date')?.invalid) {
-            <span class="text-xs text-red-500">*</span>
+          @if (!validDate && createEventForm.get('date')?.touched) {
+            <span class="text-xs text-red-500">Data inválida</span>
           }
         </label>
         <div class="mt-2.5">
@@ -328,6 +329,25 @@
             type="date"
             name="date"
             id="date"
+            [min]="todayDate"
+            [max]="maxDate"
+            class="block w-full rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
+          />
+        </div>
+      </div>
+      <div>
+        <label
+          for="time"
+          class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
+        >
+          Horário
+        </label>
+        <div class="mt-2.5">
+          <input
+            formControlName="hour"
+            type="time"
+            name="hour"
+            id="hour"
             class="block w-full rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
           />
         </div>

@@ -23,6 +23,7 @@ import {
 } from 'rxjs';
 import { EventItem } from '../../types/Event.type';
 import { FooterComponent } from '../../components/footer/footer.component';
+import { RouterModule } from '@angular/router';
 
 interface FilterForm {
   locale: FormControl<string | null>;
@@ -41,7 +42,8 @@ interface FilterForm {
     ModalComponent,
     EventComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    RouterModule,
   ],
   templateUrl: './home.component.html',
 })

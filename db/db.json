@@ -1,70 +1,40 @@
 {
   "events": [
     {
-      "id": "6d80",
-      "title": "EVENTO TESTE",
+      "id": "f88b",
+      "title": "Game Developer",
       "type": "Presencial",
-      "description": "Estamos empolgados em ajudar você a divulgar seus eventos! Para cadastrar um evento, preencha as informações abaixo. Isso garantirá que seu evento seja exibido corretamente em nosso site.",
-      "date": "09-12-2024",
-      "city": "Siriri",
-      "state": "SE",
-      "url": "https://devfest.com.br/",
-      "bannerUrl": "https://t3.ftcdn.net/jpg/03/86/44/66/240_F_386446626_SD0ksiMkmtDIlfuIgXStXQHPZeMjkLm2.jpg"
-    },
-    {
-      "id": "8dd4",
-      "title": "EVENTO TESTE REMOTO",
-      "type": "Remoto",
-      "description": "Estamos empolgados em ajudar você a divulgar seus eventos! Para cadastrar um evento, preencha as informações abaixo. Isso garantirá que seu evento seja exibido corretamente em nosso site.",
-      "date": "2026-11-01",
-      "city": null,
-      "state": null,
-      "url": "https://angular.dev/",
-      "bannerUrl": "https://blogger.googleusercontent.com/img/a/AVvXsEj-LG-1NzdCAk8DkFqFl4HemoD5HX7EnCYPnmzm7419ahflq3axCE8JoxwARbUXh2OG8I5ibG5Q2_XQEauq86byWCs6vlANin_ZtG4xR6Wk4oeIa76cP5PxkOlZBisaHLuD3l-erluagNdC-ASB3yxjhjjEQAfgQzFCE3tn5liDDGe0B0po3o5ZXsT4=s16000"
-    },
-    {
-      "id": "f1f9",
-      "title": "DEV TALK",
-      "type": "Presencial",
-      "description": "Foto do Evento: Faça upload de uma imagem representativa do seu evento. Imagens ajudam a atrair a atenção e dar uma melhor ideia sobre o que se trata o evento. (Formatos aceitos: JPG, PNG, GIF; Tamanho máximo: 5MB)",
-      "date": "2025-06-01",
-      "city": "Adamantina",
-      "state": "SP",
+      "description": "Bem-vindo ao nosso evento de tecnologia, um encontro imperdível para entusiastas, profissionais e inovadores do setor! Este evento está repleto de atividades, apresentações e oportunidades que prometem enriquecer o conhecimento e expandir as redes de contato dos participantes.\n\nPalestras Inspiradoras\nRenomados especialistas e líderes do setor compartilharão suas visões sobre as últimas tendências e inovações tecnológicas. As palestras cobrirão uma ampla gama de tópicos, incluindo inteligência artificial, blockchain, computação em nuvem, cibersegurança, e muito mais. Prepare-se para insights valiosos e debates acalorados sobre o futuro da tecnologia.\n\nWorkshops Práticos\nParticipe de workshops interativos que oferecerão uma experiência prática com as tecnologias emergentes. Desde desenvolvimento de software até técnicas avançadas de análise de dados, os workshops são projetados para todos os níveis de habilidade, proporcionando uma oportunidade única de aprender e crescer.",
+      "date": "2025-12-09",
+      "hour": "09:20",
+      "city": "Angra dos Reis",
+      "state": "RJ",
       "url": "https://angular.dev/",
       "bannerUrl": "https://www.proway.com.br/foto/png/blog/750/workshop-gratuito-game-developer.jpg"
     },
     {
-      "id": "35bc",
-      "title": "Pinguim coding",
-      "type": "Presencial",
-      "description": "O pinguim é uma ave da família Spheniscidae, altamente modificadas para a uma vida aquática, sendo suas asas adaptadas para promover impulso através da água. Wikipédia",
-      "date": "2025-03-09",
-      "city": "Boa Vista do Sul",
-      "state": "RS",
-      "url": "https://pt.wikipedia.org/wiki/Pinguim",
-      "bannerUrl": "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDd3ZTFsc3F3OXB0dmNra3o4ZWV4OHRyZjRtbWxhcXB0czFkODF1eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/2IudUHdI075HL02Pkk/giphy.webp"
+      "id": "7d35",
+      "title": "Conference Brazil 2024",
+      "type": "Remoto",
+      "description": "Painéis de Discussão\nOs painéis de discussão reúnem especialistas para debater temas críticos e explorar diferentes perspectivas sobre os desafios e oportunidades do setor tecnológico. Este é o espaço ideal para ouvir opiniões diversas e participar de conversas significativas.\n\nExposição de Startups e Inovações\nDescubra as startups mais promissoras e as inovações que estão moldando o futuro. A exposição contará com demonstrações de produtos, lançamentos de novas tecnologias e a chance de interagir diretamente com os criadores. É uma oportunidade única de ver em primeira mão as soluções que estão revolucionando o mercado.\n\nNetworking e Oportunidades de Carreira\nAproveite as sessões de networking para conhecer profissionais influentes, estabelecer novas conexões e explorar oportunidades de carreira. As áreas dedicadas ao networking proporcionarão um ambiente descontraído para interações valiosas e a troca de ideias.\n\nHackathons e Competições\nParticipe de hackathons e competições emocionantes que desafiarão suas habilidades e criatividade. Colabore com outros participantes para desenvolver soluções inovadoras e competir por prêmios incríveis. Estas atividades são uma excelente maneira de testar seus conhecimentos e se divertir.",
+      "date": "2024-11-01",
+      "hour": "12:51",
+      "city": null,
+      "state": null,
+      "url": "https://www.linkedin.com/in/lfsilvaferreira/",
+      "bannerUrl": "https://images.sympla.com.br/664ca6abd009b-xs.png"
     },
     {
-      "id": "6f86",
-      "title": "Coding",
+      "id": "a290",
+      "title": "Dev Leaders",
       "type": "Presencial",
-      "description": "It is a channel of tradicional animation 2D; I make some gifs Follow me on Instagram.",
-      "date": "2026-02-01",
-      "city": "Acrelândia",
-      "state": "AC",
-      "url": "https://giphy.com/gifs/computador-gu-tecnology-bGgsc5mWoryfgKBx1u",
-      "bannerUrl": "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExNjc5NG02b2tsZXFmenlrZmZ2bDEycHVwc2U4eDVpZWtzdTRzeTU4ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/bGgsc5mWoryfgKBx1u/giphy.webp"
-    },
-    {
-      "id": "5fb2",
-      "title": "Apple Worldwide Developer Conference",
-      "type": "Presencial",
-      "description": "Apple Worldwide Developer Conference (WWDC) 2024: Announcements, News, and More",
-      "date": "2024-12-04",
-      "city": "Ingazeira",
-      "state": "PE",
-      "url": "https://www.lifewire.com/wwdc-5101136",
-      "bannerUrl": "https://www.lifewire.com/thmb/2rVmOhR6pI3wWARumksQE0k5L8A=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/wwdc-2024-5f5e99a8b8184355ad54fed19abfa671.png"
+      "description": "Demonstrações de Produtos e Tecnologias\nVeja demonstrações ao vivo das últimas inovações tecnológicas. As sessões de demonstração permitirão que você experimente novas ferramentas e tecnologias, compreendendo seu potencial e aplicabilidade no mundo real.\n\nSessões de Mentoria\nAproveite as sessões de mentoria para obter conselhos e orientações de profissionais experientes. Esta é uma oportunidade valiosa para receber feedback personalizado e aprender com a experiência de quem já percorreu o caminho.\n\nEncerramento e Premiações\nO evento culminará com uma cerimônia de encerramento, onde celebraremos as conquistas dos participantes e reconheceremos os destaques das competições e apresentações. Junte-se a nós para uma noite de celebração e inspiração.\n\nNão perca esta oportunidade de mergulhar no mundo da tecnologia, expandir seus conhecimentos e fazer conexões valiosas. Estamos ansiosos para recebê-lo em nosso evento de tecnologia e explorar juntos o futuro da inovação!",
+      "date": "2027-12-06",
+      "hour": "18:55",
+      "city": "Araguaiana",
+      "state": "MT",
+      "url": "https://github.com/",
+      "bannerUrl": "https://images.sympla.com.br/6406005d48367-lg.png"
     }
   ]
 }

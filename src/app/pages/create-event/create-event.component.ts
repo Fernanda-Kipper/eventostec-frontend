@@ -24,6 +24,7 @@ export interface CreateEventFormControl {
   type: FormControl<EventType | null>;
   description: FormControl<string | null>;
   date: FormControl<string | null>;
+  hour: FormControl<string | null>;
   city: FormControl<string | null>;
   state: FormControl<string | null>;
   bannerUrl: FormControl<string | null>;
@@ -47,10 +48,9 @@ export class CreateEventComponent implements OnInit {
   cities: { id: number; label: string; value: string }[] = [];
   EventType = EventType;
   events$ = this.eventsService.getEvents();
-
-  getAllEvents() {
-    this.events$;
-  }
+  todayDate!: string;
+  validDate: boolean = true;
+  maxDate: string = '2030-01-01';
 
   ngOnInit() {
     this.createEventForm = new FormGroup<CreateEventFormControl>({
@@ -58,6 +58,7 @@ export class CreateEventComponent implements OnInit {
       type: new FormControl(EventType.PRESENTIAL, [Validators.required]),
       description: new FormControl(null, [Validators.required]),
       date: new FormControl(null, [Validators.required]),
+      hour: new FormControl(null, [Validators.required]),
       city: new FormControl(null, [Validators.required]),
       state: new FormControl(null, [Validators.required]),
       url: new FormControl(null, [Validators.pattern(URLRegexValidator)]),
@@ -68,6 +69,28 @@ export class CreateEventComponent implements OnInit {
       // bannerFile: new FormControl(null),
     });
     this.getLocales();
+  }
+
+  updateTodayDate() {
+    this.todayDate = new Date().toISOString().split('T')[0];
+  }
+
+  dateValidator() {
+    this.updateTodayDate();
+    const selectedDate = this.createEventForm.get('date')?.value;
+    if (selectedDate) {
+      const selected = new Date(selectedDate);
+      const today = new Date(this.todayDate);
+      const max = new Date(this.maxDate);
+
+      if (selected >= today && selected <= max) {
+        this.validDate = true;
+      } else {
+        this.validDate = false;
+      }
+    } else {
+      this.validDate = false;
+    }
   }
 
   setLocaleAsString() {
@@ -93,18 +116,26 @@ export class CreateEventComponent implements OnInit {
   }
 
   createEvent() {
+    this.dateValidator();
     if (!this.createEventForm?.valid) {
       return;
     }
-    if (this.createEventForm.get('type')?.value === EventType.PRESENTIAL) {
+    if (
+      this.createEventForm.get('type')?.value === 'Presencial' &&
+      this.validDate
+    ) {
       this.setLocaleAsString();
     }
-    this.eventsService.createEvent(this.createEventForm.value).subscribe({
-      next: () => {
-        this.router.navigate(['/eventos']);
-      },
-      error: (error) => console.error('Erro ao cadastrar evento:', error),
-    });
+    if (this.validDate) {
+      this.eventsService.createEvent(this.createEventForm.value).subscribe({
+        next: () => {
+          this.router.navigate(['/eventos']);
+        },
+        error: (error) => console.error('Erro ao cadastrar evento:', error),
+      });
+    } else {
+      console.log('Data inválida, evento não criado');
+    }
   }
 
   getLocales() {

@@ -8,6 +8,18 @@ export const routes: Routes = [
       import('./pages/home/home.component').then((c) => c.HomeComponent),
   },
   {
+    path: 'eventos',
+    children: [
+      {
+        path: ':id',
+        loadComponent: () =>
+          import('./pages/event-details/event-details.component').then(
+            (c) => c.EventDetailsComponent,
+          ),
+      },
+    ],
+  },
+  {
     path: 'criar-evento',
     loadComponent: () =>
       import('./pages/create-event/create-event.component').then(
