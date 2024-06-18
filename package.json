@@ -36,6 +36,7 @@
     "@angular/ssr": "^17.2.3",
     "@ng-select/ng-select": "12.0.7",
     "express": "^4.18.2",
+    "ngx-clipboard": "^16.0.0",
     "rxjs": "~7.8.0",
     "select2": "^4.1.0-rc.0",
     "tslib": "^2.3.0",

@@ -1,0 +1,22 @@
+<div class="mt-8 p-4 rounded-md">
+  <h2 class="text-2xl font-bold text-slate-800 mb-4">Cupons Disponíveis</h2>
+  <div *ngFor="let coupon of coupons" class="p-4 border-b last:border-b-0">
+    <div class="flex justify-between items-center shadow-sm p-4">
+      <div>
+        <p class="text-lg font-semibold text-gray-800">
+          Desconto: {{ coupon.discount }}%
+        </p>
+        <p class="text-gray-600">
+          Válido até: {{ coupon.validUntil | date: 'dd/MM/yyyy' }}
+        </p>
+      </div>
+      <button
+        ngxClipboard
+        [cbContent]="coupon.code"
+        class="px-4 py-2 bg-kipperdev-blue text-white rounded hover:bg-kipperdev-blue"
+      >
+        Copiar Código
+      </button>
+    </div>
+  </div>
+</div>

@@ -168,14 +168,15 @@
         (click)="submit()"
         [disabled]="!filterForm.valid"
         type="button"
-        class="inline-flex w-full justify-center rounded-md bg-kipperdev-purple-primary px-3 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kipperdev-purple-primary disabled:bg-red-400 disabled:hover:bg-red-300 disabled:cursor-not-allowed"
+        class="inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kipperdev-purple-primary disabled:bg-indigo-400 disabled:cursor-not-allowed"
       >
         Aplicar
       </button>
       <button
         (click)="clearFilter()"
+        [disabled]="!filterForm.valid"
         type="button"
-        class="inline-flex w-full justify-center rounded-md bg-indigo-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kipperdev-purple-primary"
+        class="inline-flex w-full justify-center rounded-md bg-gray-300 px-3 py-2 text-sm font-semibold text-kipperdev-purple-dark shadow-sm hover:opacity-90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 disabled:bg-kipperdev-darkWhite disabled:cursor-not-allowed"
       >
         Limpar filtro
       </button>

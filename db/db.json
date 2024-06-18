@@ -10,7 +10,14 @@
       "city": "Angra dos Reis",
       "state": "RJ",
       "url": "https://angular.dev/",
-      "bannerUrl": "https://www.proway.com.br/foto/png/blog/750/workshop-gratuito-game-developer.jpg"
+      "bannerUrl": "https://www.proway.com.br/foto/png/blog/750/workshop-gratuito-game-developer.jpg",
+      "coupons": [
+        {
+          "code": "KIPPERDEV",
+          "discount": 20,
+          "validUntil": "2024-08-18T12:25:21.000+00:00"
+        }
+      ]
     },
     {
       "id": "7d35",
@@ -22,7 +29,14 @@
       "city": null,
       "state": null,
       "url": "https://www.linkedin.com/in/lfsilvaferreira/",
-      "bannerUrl": "https://images.sympla.com.br/664ca6abd009b-xs.png"
+      "bannerUrl": "https://images.sympla.com.br/664ca6abd009b-xs.png",
+      "coupons": [
+        {
+          "code": "KIPPERDEV",
+          "discount": 20,
+          "validUntil": "2024-08-18T12:25:21.000+00:00"
+        }
+      ]
     },
     {
       "id": "a290",
@@ -34,7 +48,14 @@
       "city": "Araguaiana",
       "state": "MT",
       "url": "https://github.com/",
-      "bannerUrl": "https://images.sympla.com.br/6406005d48367-lg.png"
+      "bannerUrl": "https://images.sympla.com.br/6406005d48367-lg.png",
+      "coupons": [
+        {
+          "code": "KIPPERDEV",
+          "discount": 20,
+          "validUntil": "2024-08-18T12:25:21.000+00:00"
+        }
+      ]
     }
   ]
 }
