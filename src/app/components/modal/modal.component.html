@@ -13,7 +13,12 @@
           class="relative transform overflow-hidden rounded-lg bg-white px-4 pb-4 pt-5 text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-sm sm:p-6"
         >
           <div class="flex justify-end">
-            <button (click)="close()" class="font-medium text-base">x</button>
+            <button
+              (click)="close()"
+              class="font-medium text-base text-red-600"
+            >
+              fechar
+            </button>
           </div>
           <ng-content></ng-content>
         </div>
