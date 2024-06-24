@@ -1,4 +1,4 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
@@ -26,7 +26,7 @@ describe('FilterService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should fetch locales', () => {
+  it('should fetch locales', waitForAsync(() => {
     const mockLocales = [{ nome: 'Locale1' }, { nome: 'Locale2' }];
 
     service.loadLocales().subscribe((locales) => {
@@ -39,9 +39,9 @@ describe('FilterService', () => {
     );
     expect(req.request.method).toBe('GET');
     req.flush(mockLocales);
-  });
+  }));
 
-  it('should fetch cities by state', () => {
+  it('should fetch cities by state', waitForAsync(() => {
     const mockCities = [{ nome: 'City1' }, { nome: 'City2' }];
     const stateId = 1;
 
@@ -55,5 +55,5 @@ describe('FilterService', () => {
     );
     expect(req.request.method).toBe('GET');
     req.flush(mockCities);
-  });
+  }));
 });
