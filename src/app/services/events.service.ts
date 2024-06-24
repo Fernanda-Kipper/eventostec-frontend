@@ -11,7 +11,6 @@ export class EventsService {
   private readonly APIurl = `${environment.API}`;
 
   constructor(private http: HttpClient) {}
-
   getEvents(): Observable<EventItem[]> {
     return this.http.get<EventItem[]>(`${this.APIurl}events`).pipe(
       catchError(() => {
@@ -20,8 +19,8 @@ export class EventsService {
     );
   }
 
-  createEvent(event: EventItem[]) {
-    return this.http.post(`${this.APIurl}events`, event);
+  createEvent(event: Partial<EventItem>): Observable<Partial<EventItem>> {
+    return this.http.post<Partial<EventItem>>(`${this.APIurl}events`, event);
   }
 
   getEventById(id: string): Observable<EventItem> {
