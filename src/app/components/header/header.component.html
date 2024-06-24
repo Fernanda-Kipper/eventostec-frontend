@@ -8,8 +8,9 @@
         [routerLink]="['/eventos']"
         class="-m-1.5 p-1.5 text-center sm:text-left"
       >
-        <span class="sr-only">EventosTec</span>
+        <span data-testid="titleSpan" class="sr-only">EventosTec</span>
         <h3
+          data-testid="titleHeading"
           class="text-base font-semibold leading-6 text-kipperdev-purple-dark"
         >
           Eventos de Tecnologia 🇧🇷
@@ -33,6 +34,7 @@
         </svg>
       </div>
       <input
+        data-testid="inputSearch"
         type="text"
         placeholder="Pesquisar eventos"
         class="px-2 outline-none text-base w-full"
@@ -41,6 +43,7 @@
     </div>
     <div class="flex order-2 md:order-3 items-center justify-end gap-x-6">
       <button
+        data-testid="addEventButton"
         [routerLink]="['/criar-evento']"
         class="rounded-md bg-kipperdev-purple-primary px-3 py-2 text-sm sm:text-base font-semibold text-white shadow-sm hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kipperdev-purple-primary"
       >
