@@ -1,8 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FooterComponent } from './footer.component';
-import { provideRouter } from '@angular/router';
-import { routes } from '../../app.routes';
+import { By } from '@angular/platform-browser';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
@@ -11,7 +10,6 @@ describe('FooterComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [FooterComponent],
-      providers: [provideRouter(routes)],
     }).compileComponents();
 
     fixture = TestBed.createComponent(FooterComponent);
@@ -21,5 +19,25 @@ describe('FooterComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('initial state rendering', () => {
+    it('render copyright text', () => {
+      const element = fixture.debugElement.query(
+        By.css('[data-testid="copyright"]'),
+      );
+      expect(element.nativeElement.textContent.trim()).toEqual(
+        '© 2024 KipperDev',
+      );
+    });
+
+    it('render message text', () => {
+      const element = fixture.debugElement.query(
+        By.css('[data-testid="message"]'),
+      );
+      expect(element.nativeElement.textContent.trim()).toEqual(
+        'Desenvolvido com 💜 pela comunidade KipperDev',
+      );
+    });
   });
 });
