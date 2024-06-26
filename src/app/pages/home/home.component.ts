@@ -24,6 +24,8 @@ import {
 import { EventItem } from '../../types/Event.type';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { DropdownModule } from 'primeng/dropdown';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 interface FilterForm {
   locale: FormControl<string | null>;
@@ -36,6 +38,8 @@ interface FilterForm {
   selector: 'app-events',
   standalone: true,
   imports: [
+    DropdownModule,
+    FloatLabelModule,
     CommonModule,
     NgSelectModule,
     ReactiveFormsModule,
@@ -85,6 +89,8 @@ export class HomeComponent implements OnInit {
       next: (body: UF[]) => {
         this.states = body.map((value) => ({
           id: value.id,
+          name: value.nome,
+          code: value.sigla,
           label: value.nome,
           value: value.sigla,
         }));

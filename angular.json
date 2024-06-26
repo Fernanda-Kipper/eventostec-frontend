@@ -30,7 +30,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/primeng/resources/themes/lara-light-indigo/theme.css",
+              "node_modules/primeng/resources/primeng.min.css"
             ],
             "scripts": [],
             "server": "src/main.server.ts",
@@ -82,7 +84,7 @@
           }
         },
         "test": {
-          "builder": "@angular-builders/jest:run", 
+          "builder": "@angular-builders/jest:run",
           "options": {
             "configPath": "./jest.config.js",
             "polyfills": [
