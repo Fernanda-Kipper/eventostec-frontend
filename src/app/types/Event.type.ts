@@ -6,15 +6,14 @@ export enum EventType {
 }
 
 export type EventItem = {
-  coupons: Coupon[];
   id: string;
   title: string;
-  type: string;
+  remote: boolean;
   description: string;
   date: string;
-  hour: string;
-  city: string;
-  state: string;
-  bannerUrl: string;
-  url: string;
+  city?: string;
+  state?: string;
+  imgUrl: string;
+  eventUrl: string;
+  coupons?: Coupon[];
 };

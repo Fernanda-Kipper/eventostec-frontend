@@ -4,13 +4,13 @@
     <div class="absolute inset-0 overflow-hidden">
       <img
         class="w-full h-full bg-cover bg-center blur-md"
-        [src]="event.bannerUrl"
+        [src]="event.imgUrl"
         alt="banner"
       />
     </div>
     <img
       class="absolute mt-3 object-cover inset-0 mx-auto w-1100 h-560 rounded-xl border-2 border-white"
-      [src]="event.bannerUrl"
+      [src]="event.imgUrl"
       alt="logo"
     />
   </div>
@@ -18,11 +18,11 @@
     class="mt-28 py-8 px-4 shadow-custom-shadow w-1100 max-w-full mx-auto bg-kipperdev-darkWhite rounded-md flex flex-col gap-3"
   >
     <span class="text-3xl font-bold text-kipperdev-purple-primary">
-      <a [href]="event.url" target="_blank">
+      <a [href]="event.eventUrl" target="_blank">
         {{ event.title }}
       </a>
       |
-      {{ event.type === 'Remoto' ? 'Online' : event.city }}
+      {{ event.remote ? 'Online' : event.city }}
     </span>
     <div class="flex gap-1 items-center">
       <svg
@@ -41,7 +41,6 @@
         <span class="text-xl font-medium text-slate-800">{{
           event.date | date: 'dd/MM/yyyy'
         }}</span>
-        <span class="text-slate-800 font-medium">- {{ event.hour }}</span>
       </div>
     </div>
     <div class="flex gap-1">
@@ -58,12 +57,12 @@
         ></path>
       </svg>
       <span class="text-xl font-medium text-slate-800">{{
-        event.type === 'Remoto' ? 'Remoto' : event.city + ', ' + event.state
+        event.remote ? 'Remoto' : event.city + ', ' + event.state
       }}</span>
     </div>
     <div class="p-2 rounded-md min-h-36">
       <span class="text-lg text-slate-800">{{ event.description }}</span>
     </div>
-    <app-coupons [coupons]="event.coupons"></app-coupons>
+    <app-coupons [coupons]="event.coupons ?? []"></app-coupons>
   </div>
 }

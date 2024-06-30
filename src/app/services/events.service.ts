@@ -12,19 +12,21 @@ export class EventsService {
 
   constructor(private http: HttpClient) {}
 
-  getEvents(): Observable<EventItem[]> {
-    return this.http.get<EventItem[]>(`${this.APIurl}events`).pipe(
-      catchError(() => {
-        return of([]);
-      }),
-    );
+  getEvents(page: number = 0): Observable<EventItem[]> {
+    return this.http
+      .get<EventItem[]>(`${this.APIurl}/api/event?page=${page}&size=20`)
+      .pipe(
+        catchError(() => {
+          return of([]);
+        }),
+      );
   }
 
   createEvent(event: EventItem[]) {
-    return this.http.post(`${this.APIurl}events`, event);
+    return this.http.post(`${this.APIurl}/api/event`, event);
   }
 
   getEventById(id: string): Observable<EventItem> {
-    return this.http.get<EventItem>(`${this.APIurl}events/${id}`);
+    return this.http.get<EventItem>(`${this.APIurl}/api/event/${id}`);
   }
 }

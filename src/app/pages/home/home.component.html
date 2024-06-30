@@ -63,14 +63,14 @@
         @for (event of filteredEventList$ | async; track event) {
           <a [routerLink]="['/eventos', event.id]">
             <app-event
-              [url]="event.url"
-              [bannerUrl]="event.bannerUrl"
+              [url]="event.eventUrl"
+              [bannerUrl]="event.imgUrl"
               [title]="event.title"
-              [type]="event.type"
+              [type]="event.remote ? 'Remoto' : 'Presencial'"
               [description]="event.description"
               [date]="event.date"
-              [state]="event.state"
-              [city]="event.city"
+              [state]="event.state ?? ''"
+              [city]="event.city ?? ''"
             >
               {{ event }}
             </app-event>
