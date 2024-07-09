@@ -106,7 +106,7 @@
         (change)="stateSelect2()"
       >
         @for (option of states; track option.label) {
-          <option [value]="option.id">{{ option.label }}</option>
+          <option [value]="option.value">{{ option.label }}</option>
         }
       </select>
     </div>

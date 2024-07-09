@@ -22,7 +22,25 @@ export class EventsService {
       );
   }
 
-  createEvent(event: EventItem[]) {
+  getFilteredEvents(
+    city: string,
+    uf: string,
+    startDate: string,
+    endDate: string,
+    page: number = 0,
+  ): Observable<EventItem[]> {
+    return this.http
+      .get<
+        EventItem[]
+      >(`${this.APIurl}/api/event/filter?page=${page}&size=20&city=${city}&uf=${uf}&startDate=${startDate}&endDate=${endDate}`)
+      .pipe(
+        catchError(() => {
+          return of([]);
+        }),
+      );
+  }
+
+  createEvent(event: FormData) {
     return this.http.post(`${this.APIurl}/api/event`, event);
   }
 
