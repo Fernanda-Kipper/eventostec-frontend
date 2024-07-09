@@ -17,7 +17,7 @@
   <div
     class="mt-28 py-8 px-4 shadow-custom-shadow w-1100 max-w-full mx-auto bg-kipperdev-darkWhite rounded-md flex flex-col gap-3"
   >
-    <span class="text-3xl font-bold text-kipperdev-purple-primary">
+    <span class="text-3xl font-bold text-kipperdev-purple-dark">
       <a [href]="event.eventUrl" target="_blank">
         {{ event.title }}
       </a>
@@ -63,6 +63,27 @@
     <div class="p-2 rounded-md min-h-36">
       <span class="text-lg text-slate-800">{{ event.description }}</span>
     </div>
-    <app-coupons [coupons]="event.coupons ?? []"></app-coupons>
   </div>
+  <div class="mt-28 py-8 px-4 w-1100 max-w-full mx-auto flex flex-col gap-3">
+    <app-coupons [coupons]="event.coupons ?? []"></app-coupons>
+    <button
+      class="mt-4 py-2 px-4 bg-kipperdev-blue text-kipperdev-darkWhite font-bold rounded"
+      (click)="onRegisterCoupon()"
+    >
+      Cadastrar Cupom
+    </button>
+  </div>
+  <app-modal [isModalOpen]="isModalOpen" (closeModal)="toggleModal()">
+    <div>
+      <div class="mt-3 text-center sm:mt-5">
+        <h3
+          class="text-base font-semibold leading-6 text-kipperdev-purple-dark"
+          id="modal-title"
+        >
+          Selecione os filtros
+        </h3>
+      </div>
+    </div>
+    <form [formGroup]="filterForm"></form>
+  </app-modal>
 }

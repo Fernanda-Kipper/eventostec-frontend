@@ -22,4 +22,11 @@ export class EventDetailsComponent {
   event$ = this.route.params.pipe(
     switchMap((params) => this.eventsService.getEventById(params['id'])),
   );
+
+  onRegisterCoupon() {
+    // Lógica para registrar um cupom
+    console.log('Registrar cupom clicado');
+    // Aqui você pode adicionar a navegação para uma página de cadastro de cupons
+    // ou abrir um modal para o usuário preencher os dados do cupom
+  }
 }
