@@ -338,7 +338,7 @@
       <div class="sm:col-span-2">
         <div class="flex justify-center items-center">
           <div class="w-full p-6 bg-white rounded-md shadow-lg">
-            <h2 class="text-3xl font-semibold text-center mb-6">
+            <h2 class="text-xl font-semibold text-center mb-6">
               Imagem do evento
             </h2>
             <div
@@ -363,13 +363,22 @@
                   d="M16 17l-4 4m0 0l-4-4m4 4V3"
                 ></path>
               </svg>
-              <p class="text-sm text-gray-600">
+              <p
+                class="text-sm text-gray-600"
+                *ngIf="!createEventForm.get('bannerFile')?.value"
+              >
                 <label
                   for="fileInput"
                   class="cursor-pointer text-blue-500 hover:underline"
-                  >Pegue e jogue a imagem aqui</label
-                >
+                  >Suba sua imagem aqui
+                </label>
               </p>
+              <span
+                *ngIf="createEventForm.get('bannerFile')?.value"
+                class="block text-sm text-gray-600 mt-2"
+              >
+                {{ createEventForm.get('bannerFile')?.value.name }}
+              </span>
             </div>
           </div>
         </div>
