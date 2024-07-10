@@ -68,7 +68,7 @@
     <app-coupons [coupons]="event.coupons ?? []"></app-coupons>
     <button
       class="mt-4 py-2 px-4 bg-kipperdev-blue text-kipperdev-darkWhite font-bold rounded"
-      (click)="onRegisterCoupon()"
+      (click)="toggleModal()"
     >
       Cadastrar Cupom
     </button>
@@ -80,10 +80,90 @@
           class="text-base font-semibold leading-6 text-kipperdev-purple-dark"
           id="modal-title"
         >
-          Selecione os filtros
+          Cadastro de Cupom
         </h3>
       </div>
     </div>
-    <form [formGroup]="filterForm"></form>
+    <form [formGroup]="couponForm">
+      <div class="flex justify-center flex-col w-full mt-3 text-start sm:mt-5">
+        <div class="mb-5 w-full">
+          <label
+            for="code"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Código do cupom
+          </label>
+          <input
+            formControlName="code"
+            type="text"
+            name="code"
+            id="code"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-5 w-full">
+          <label
+            for="discount"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Desconto em %
+          </label>
+          <input
+            formControlName="discount"
+            type="number"
+            name="discount"
+            id="discount"
+            placeholder="10"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-5 w-full">
+          <label
+            for="validity"
+            class="mb-3 block text-base font-medium text-[#07074D]"
+          >
+            Quando expira?
+          </label>
+          <input
+            formControlName="validity"
+            type="date"
+            name="validity"
+            id="validity"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <button
+          type="submit"
+          (click)="submit()"
+          [disabled]="!couponForm.valid || isLoading()"
+          class="mt-5 inline-flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kipperdev-purple-primary disabled:bg-indigo-400 disabled:cursor-not-allowed"
+        >
+          @if (!isLoading()) {
+            Cadastrar
+          } @else {
+            <svg
+              class="animate-spin h-5 w-5 text-white mx-auto"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+              ></path>
+            </svg>
+          }
+        </button>
+      </div>
+    </form>
   </app-modal>
 }
