@@ -92,42 +92,51 @@
     </div>
   </div>
   <form [formGroup]="filterForm">
-    <div class="mb-5">
+    <div class="mb-8">
       <p-floatLabel>
         <p-dropdown
           formControlName="locale"
           [options]="states"
+          (onChange)="stateSelect2()"
           filter
           showClear
           optionLabel="name"
           optionValue="value"
-          placeholder="Tipo de evento"
+          placeholder="São Paulo"
           [style]="{
             width: '100%',
             border: '1px solid #ccc',
-            boxShadow: 'none',
+            boxShadow: 'none'
           }"
           inputId="float-label"
         />
-        <label for="float-label">Estado</label>
+        <label for="float-label mb-3 block text-base font-medium text-[#07074D]"
+          >Estado</label
+        >
       </p-floatLabel>
     </div>
     <div class="mb-5">
-      <label
-        for="cityDropdown"
-        class="mb-3 block text-base font-medium text-[#07074D]"
-      >
-        Cidade
-      </label>
-      <select
-        id="cityDropdown"
-        formControlName="city"
-        class="w-full rounded-md border py-3 px-6 outline-none"
-      >
-        @for (option of cities; track option.label) {
-          <option [value]="option.value">{{ option.label }}</option>
-        }
-      </select>
+      <p-floatLabel>
+        <p-dropdown
+          formControlName="city"
+          [options]="cities"
+          (onChange)="stateSelect2()"
+          filter
+          showClear
+          optionLabel="label"
+          optionValue="value"
+          placeholder="Campinas"
+          [style]="{
+            width: '100%',
+            border: '1px solid #ccc',
+            boxShadow: 'none'
+          }"
+          inputId="float-label"
+        />
+        <label for="float-label mb-3 block text-base font-medium text-[#07074D]"
+          >Cidade</label
+        >
+      </p-floatLabel>
     </div>
     <div class="-mx-3 flex flex-wrap">
       <div class="w-full px-3 sm:w-1/2">
