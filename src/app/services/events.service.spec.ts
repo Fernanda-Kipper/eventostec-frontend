@@ -40,7 +40,9 @@ describe('EventsService', () => {
         events = body;
       });
 
-      const req = httpMock.expectOne('http://localhost:3000/events');
+      const req = httpMock.expectOne(
+        'http://localhost:3000/api/event?page=0&size=20',
+      );
       req.flush([EVENT_MOCK]);
 
       expect(events).toEqual([EVENT_MOCK]);
@@ -51,7 +53,9 @@ describe('EventsService', () => {
       eventsService.getEvents().subscribe((response) => {
         expect(response).toEqual([EVENT_MOCK]);
       });
-      const req = httpMock.expectOne('http://localhost:3000/events');
+      const req = httpMock.expectOne(
+        'http://localhost:3000/api/event?page=0&size=20',
+      );
 
       req.flush([EVENT_MOCK]);
       expect(req.request.method).toEqual('GET');
@@ -65,7 +69,7 @@ describe('EventsService', () => {
         event = body;
       });
 
-      const req = httpMock.expectOne('http://localhost:3000/events/1');
+      const req = httpMock.expectOne('http://localhost:3000/api/event/1');
       req.flush(EVENT_MOCK);
 
       expect(event).toEqual(EVENT_MOCK);
@@ -77,7 +81,7 @@ describe('EventsService', () => {
         expect(response).toEqual(EVENT_MOCK);
       });
 
-      const req = httpMock.expectOne('http://localhost:3000/events/1');
+      const req = httpMock.expectOne('http://localhost:3000/api/event/1');
 
       req.flush(EVENT_MOCK);
       expect(req.request.method).toEqual('GET');
@@ -87,11 +91,11 @@ describe('EventsService', () => {
   describe('createEvent', () => {
     it('should create a event', () => {
       let event: Partial<EventItem> | undefined;
-      const mockedEventItem = EVENT_MOCK as Partial<EventItem>;
+      const mockedEventItem = new FormData();
       eventsService.createEvent(mockedEventItem).subscribe((response) => {
         event = response;
       });
-      const req = httpMock.expectOne('http://localhost:3000/events');
+      const req = httpMock.expectOne('http://localhost:3000/api/event');
 
       req.flush(EVENT_MOCK);
 
@@ -100,9 +104,10 @@ describe('EventsService', () => {
     });
 
     it('passes the correct body', () => {
-      const mockedEventItem = EVENT_MOCK as Partial<EventItem>;
+      const mockedEventItem = new FormData();
+      mockedEventItem.append('title', 'Event title');
       eventsService.createEvent(mockedEventItem).subscribe();
-      const req = httpMock.expectOne('http://localhost:3000/events');
+      const req = httpMock.expectOne('http://localhost:3000/api/event');
 
       req.flush(EVENT_MOCK);
 
@@ -112,14 +117,14 @@ describe('EventsService', () => {
 
     it('throws an error if request fails', () => {
       let httpErrorResponse: HttpErrorResponse | undefined;
-      const mockedEventItem = EVENT_MOCK as Partial<EventItem>;
+      const mockedEventItem = new FormData();
       eventsService.createEvent(mockedEventItem).subscribe({
         next: () => {
           fail('Failed to create a new event!');
         },
         error: (error) => (httpErrorResponse = error),
       });
-      const req = httpMock.expectOne('http://localhost:3000/events');
+      const req = httpMock.expectOne('http://localhost:3000/api/event');
       req.flush('Server error', CREATE_EVENT_ERROR_RESPONSE_MOCK);
 
       if (!httpErrorResponse) {

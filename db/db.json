@@ -5,36 +5,34 @@
       "title": "Game Developer",
       "type": "Presencial",
       "description": "Bem-vindo ao nosso evento de tecnologia, um encontro imperdível para entusiastas, profissionais e inovadores do setor! Este evento está repleto de atividades, apresentações e oportunidades que prometem enriquecer o conhecimento e expandir as redes de contato dos participantes.\n\nPalestras Inspiradoras\nRenomados especialistas e líderes do setor compartilharão suas visões sobre as últimas tendências e inovações tecnológicas. As palestras cobrirão uma ampla gama de tópicos, incluindo inteligência artificial, blockchain, computação em nuvem, cibersegurança, e muito mais. Prepare-se para insights valiosos e debates acalorados sobre o futuro da tecnologia.\n\nWorkshops Práticos\nParticipe de workshops interativos que oferecerão uma experiência prática com as tecnologias emergentes. Desde desenvolvimento de software até técnicas avançadas de análise de dados, os workshops são projetados para todos os níveis de habilidade, proporcionando uma oportunidade única de aprender e crescer.",
-      "date": "2025-12-09",
-      "hour": "09:20",
+      "date": "2028-08-18T12:25:21.000+00:00",
       "city": "Angra dos Reis",
       "state": "RJ",
-      "url": "https://angular.dev/",
-      "bannerUrl": "https://www.proway.com.br/foto/png/blog/750/workshop-gratuito-game-developer.jpg",
+      "eventUrl": "https://angular.dev/",
+      "imgUrl": "https://www.proway.com.br/foto/png/blog/750/workshop-gratuito-game-developer.jpg",
       "coupons": [
         {
           "code": "KIPPERDEV",
           "discount": 20,
-          "valid": "2024-08-18T12:25:21.000+00:00"
+          "valid": "2028-08-18T12:25:21.000+00:00"
         }
       ]
     },
     {
       "id": "7d35",
-      "title": "Conference Brazil 2024",
+      "title": "Conference Brazil 2028",
       "type": "Remoto",
       "description": "Painéis de Discussão\nOs painéis de discussão reúnem especialistas para debater temas críticos e explorar diferentes perspectivas sobre os desafios e oportunidades do setor tecnológico. Este é o espaço ideal para ouvir opiniões diversas e participar de conversas significativas.\n\nExposição de Startups e Inovações\nDescubra as startups mais promissoras e as inovações que estão moldando o futuro. A exposição contará com demonstrações de produtos, lançamentos de novas tecnologias e a chance de interagir diretamente com os criadores. É uma oportunidade única de ver em primeira mão as soluções que estão revolucionando o mercado.\n\nNetworking e Oportunidades de Carreira\nAproveite as sessões de networking para conhecer profissionais influentes, estabelecer novas conexões e explorar oportunidades de carreira. As áreas dedicadas ao networking proporcionarão um ambiente descontraído para interações valiosas e a troca de ideias.\n\nHackathons e Competições\nParticipe de hackathons e competições emocionantes que desafiarão suas habilidades e criatividade. Colabore com outros participantes para desenvolver soluções inovadoras e competir por prêmios incríveis. Estas atividades são uma excelente maneira de testar seus conhecimentos e se divertir.",
-      "date": "2024-11-01",
-      "hour": "12:51",
+      "date": "2028-08-18T12:25:21.000+00:00",
       "city": null,
       "state": null,
-      "url": "https://www.linkedin.com/in/lfsilvaferreira/",
-      "bannerUrl": "https://images.sympla.com.br/664ca6abd009b-xs.png",
+      "eventUrl": "https://www.linkedin.com/in/lfsilvaferreira/",
+      "imgUrl": "https://images.sympla.com.br/664ca6abd009b-xs.png",
       "coupons": [
         {
           "code": "KIPPERDEV",
           "discount": 20,
-          "valid": "2024-08-18T12:25:21.000+00:00"
+          "valid": "2028-08-18T12:25:21.000+00:00"
         }
       ]
     },
@@ -43,17 +41,16 @@
       "title": "Dev Leaders",
       "type": "Presencial",
       "description": "Demonstrações de Produtos e Tecnologias\nVeja demonstrações ao vivo das últimas inovações tecnológicas. As sessões de demonstração permitirão que você experimente novas ferramentas e tecnologias, compreendendo seu potencial e aplicabilidade no mundo real.\n\nSessões de Mentoria\nAproveite as sessões de mentoria para obter conselhos e orientações de profissionais experientes. Esta é uma oportunidade valiosa para receber feedback personalizado e aprender com a experiência de quem já percorreu o caminho.\n\nEncerramento e Premiações\nO evento culminará com uma cerimônia de encerramento, onde celebraremos as conquistas dos participantes e reconheceremos os destaques das competições e apresentações. Junte-se a nós para uma noite de celebração e inspiração.\n\nNão perca esta oportunidade de mergulhar no mundo da tecnologia, expandir seus conhecimentos e fazer conexões valiosas. Estamos ansiosos para recebê-lo em nosso evento de tecnologia e explorar juntos o futuro da inovação!",
-      "date": "2027-12-06",
-      "hour": "18:55",
+      "date": "2028-08-18T12:25:21.000+00:00",
       "city": "Araguaiana",
       "state": "MT",
-      "url": "https://github.com/",
-      "bannerUrl": "https://images.sympla.com.br/6406005d48367-lg.png",
+      "eventUrl": "https://github.com/",
+      "imgUrl": "https://images.sympla.com.br/6406005d48367-lg.png",
       "coupons": [
         {
           "code": "KIPPERDEV",
           "discount": 20,
-          "valid": "2024-08-18T12:25:21.000+00:00"
+          "valid": "2028-08-18T12:25:21.000+00:00"
         }
       ]
     }
