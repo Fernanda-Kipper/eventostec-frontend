@@ -18,13 +18,13 @@ describe('EventComponent', () => {
 
     // Set initial input`s
     component.title = EVENT_MOCK.title;
-    component.type = EVENT_MOCK.type;
+    component.type = EVENT_MOCK.remote ? 'Online' : 'Presencial';
     component.description = EVENT_MOCK.description;
     component.date = EVENT_MOCK.date;
-    component.city = EVENT_MOCK.city;
-    component.state = EVENT_MOCK.state;
-    component.bannerUrl = EVENT_MOCK.bannerUrl;
-    component.url = EVENT_MOCK.url;
+    component.city = EVENT_MOCK.city ?? '';
+    component.state = EVENT_MOCK.state ?? '';
+    component.bannerUrl = EVENT_MOCK.imgUrl;
+    component.url = EVENT_MOCK.eventUrl;
 
     fixture.detectChanges();
   });
