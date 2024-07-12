@@ -2,6 +2,7 @@
   <div class="overflow-hidden rounded-lg bg-white shadow w-96 h-96 relative">
     <div>
       <img
+        data-testid="bannerImg"
         class="object-cover rounded-md h-60 w-full border border-solid border-gray-200"
         src="{{ bannerUrl }}"
         alt="banner do evento"
@@ -17,6 +18,7 @@
         @if (state && city) {
           <ng-container>
             <dd
+              data-testid="stateAndCity"
               class="mt-2 flex items-center gap-x-3 text-sm font-normal text-gray-500"
             >
               {{ state }}, {{ city }}
@@ -26,6 +28,7 @@
         @if (type === 'Remoto') {
           <ng-container>
             <dd
+              data-testid="type"
               class="mt-2 flex items-center gap-x-3 text-sm font-semibold text-gray-500"
             >
               {{ type }}

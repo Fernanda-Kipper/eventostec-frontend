@@ -84,7 +84,7 @@
   <div>
     <div class="mt-3 text-center sm:mt-5">
       <h3
-        class="text-base font-semibold leading-6 text-kipperdev-purple-dark"
+        class="text-base mb-5 font-semibold leading-6 text-kipperdev-purple-dark"
         id="modal-title"
       >
         Selecione os filtros
@@ -93,22 +93,24 @@
   </div>
   <form [formGroup]="filterForm">
     <div class="mb-5">
-      <label
-        for="stateDropdown"
-        class="mb-3 block text-base font-medium text-[#07074D]"
-      >
-        Estado
-      </label>
-      <select
-        id="stateDropdown"
-        formControlName="locale"
-        class="w-full rounded-md border py-3 px-6 outline-none"
-        (change)="stateSelect2()"
-      >
-        @for (option of states; track option.label) {
-          <option [value]="option.value">{{ option.label }}</option>
-        }
-      </select>
+      <p-floatLabel>
+        <p-dropdown
+          formControlName="locale"
+          [options]="states"
+          filter
+          showClear
+          optionLabel="name"
+          optionValue="value"
+          placeholder="Tipo de evento"
+          [style]="{
+            width: '100%',
+            border: '1px solid #ccc',
+            boxShadow: 'none',
+          }"
+          inputId="float-label"
+        />
+        <label for="float-label">Estado</label>
+      </p-floatLabel>
     </div>
     <div class="mb-5">
       <label
