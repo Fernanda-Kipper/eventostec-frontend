@@ -11,19 +11,40 @@ export class EventsService {
   private readonly APIurl = `${environment.API}`;
 
   constructor(private http: HttpClient) {}
-  getEvents(): Observable<EventItem[]> {
-    return this.http.get<EventItem[]>(`${this.APIurl}events`).pipe(
-      catchError(() => {
-        return of([]);
-      }),
-    );
+
+  getEvents(page: number = 0): Observable<EventItem[]> {
+    return this.http
+      .get<EventItem[]>(`${this.APIurl}/api/event?page=${page}&size=20`)
+      .pipe(
+        catchError(() => {
+          return of([]);
+        }),
+      );
   }
 
-  createEvent(event: Partial<EventItem>): Observable<Partial<EventItem>> {
-    return this.http.post<Partial<EventItem>>(`${this.APIurl}events`, event);
+  getFilteredEvents(
+    city: string,
+    uf: string,
+    startDate: string,
+    endDate: string,
+    page: number = 0,
+  ): Observable<EventItem[]> {
+    return this.http
+      .get<
+        EventItem[]
+      >(`${this.APIurl}/api/event/filter?page=${page}&size=20&city=${city}&uf=${uf}&startDate=${startDate}&endDate=${endDate}`)
+      .pipe(
+        catchError(() => {
+          return of([]);
+        }),
+      );
+  }
+
+  createEvent(event: FormData) {
+    return this.http.post(`${this.APIurl}/api/event`, event);
   }
 
   getEventById(id: string): Observable<EventItem> {
-    return this.http.get<EventItem>(`${this.APIurl}events/${id}`);
+    return this.http.get<EventItem>(`${this.APIurl}/api/event/${id}`);
   }
 }

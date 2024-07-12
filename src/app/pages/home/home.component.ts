@@ -60,7 +60,6 @@ export class HomeComponent implements OnInit {
   isOnline: boolean = false;
   events$!: Observable<EventItem[]>;
   filteredEventList$!: Observable<EventItem[]>;
-  // searchTerm: string = '';
   searchTerm = new BehaviorSubject<string>('');
 
   constructor(
@@ -105,6 +104,26 @@ export class HomeComponent implements OnInit {
   submit() {
     this.isModalOpen.set(false);
     this.filterIsActive = true;
+
+    if (this.filterForm.invalid) {
+      return;
+    }
+
+    const startDate =
+      this.filterForm.value?.from instanceof Date
+        ? this.filterForm.value?.from.toISOString()
+        : this.filterForm.value?.from;
+    const endDate =
+      this.filterForm.value?.to instanceof Date
+        ? this.filterForm.value?.to.toISOString()
+        : this.filterForm.value?.to;
+
+    this.filteredEventList$ = this.eventsService.getFilteredEvents(
+      this.filterForm.value.city ?? '',
+      this.filterForm.value.locale ?? '',
+      startDate ?? '',
+      endDate ?? '',
+    );
   }
 
   isFilterActive() {
@@ -118,8 +137,11 @@ export class HomeComponent implements OnInit {
 
   stateSelect2() {
     const selectedStateValue = this.filterForm.get('locale')!.value;
+    const selectedState = this.states.filter(
+      (state) => state.value === selectedStateValue,
+    );
     if (selectedStateValue) {
-      this.loadCities(Number(selectedStateValue));
+      this.loadCities(Number(selectedState[0].id));
     }
   }
 

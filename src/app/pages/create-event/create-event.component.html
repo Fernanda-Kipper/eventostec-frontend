@@ -313,7 +313,7 @@
         </div>
       }
 
-      <div>
+      <div class="sm:col-span-2">
         <label
           for="date"
           class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
@@ -335,79 +335,86 @@
           />
         </div>
       </div>
-      <div>
-        <label
-          for="time"
-          class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
-        >
-          Horário
-        </label>
-        <div class="mt-2.5">
-          <input
-            formControlName="hour"
-            type="time"
-            name="hour"
-            id="hour"
-            class="block w-full rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
-          />
-        </div>
-      </div>
       <div class="sm:col-span-2">
-        <label
-          for="bannerUrl"
-          class="block text-sm font-semibold leading-6 text-kipperdev-purple-dark"
-        >
-          Link do banner
-          @if (
-            createEventForm.get('bannerUrl')?.invalid &&
-            createEventForm.get('bannerUrl')?.touched
-          ) {
-            <span class="text-xs text-red-500"
-              >verifique se a url termina com a extensão de uma imagem ou
-              GIF</span
-            >
-          }
-        </label>
-        <div class="mt-2.5">
-          <input
-            formControlName="bannerUrl"
-            type="banner"
-            name="bannerUrl"
-            id="bannerUrl"
-            placeholder="O caminho deve apontar diretamente para uma imagem"
-            class="block w-full rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
-          />
-        </div>
-      </div>
-      <!-- <div class="sm:col-span-2">
         <div class="flex justify-center items-center">
           <div class="w-full p-6 bg-white rounded-md shadow-lg">
-            <h2 class="text-3xl font-semibold text-center mb-6">
+            <h2 class="text-xl font-semibold text-center mb-6">
               Imagem do evento
             </h2>
-            <div class="relative border-2 border-dashed border-gray-300 rounded-md px-6 py-8 text-center">
-              <input type="file" class="hidden" id="fileInput" (change)="fileChange($event)" />
-              <svg class="mx-auto h-16 w-16 text-gray-400 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 17l-4 4m0 0l-4-4m4 4V3">
-                </path>
+            <div
+              class="relative border-2 border-dashed border-gray-300 rounded-md px-6 py-8 text-center"
+            >
+              <input
+                type="file"
+                class="hidden"
+                id="fileInput"
+                (change)="fileChange($event)"
+              />
+              <svg
+                class="mx-auto h-16 w-16 text-gray-400 mb-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M16 17l-4 4m0 0l-4-4m4 4V3"
+                ></path>
               </svg>
-              <p class="text-sm text-gray-600">
-                <label for="fileInput" class="cursor-pointer text-blue-500 hover:underline">Pegue e jogue a imagem
-                  aqui</label>
+              <p
+                class="text-sm text-gray-600"
+                *ngIf="!createEventForm.get('bannerFile')?.value"
+              >
+                <label
+                  for="fileInput"
+                  class="cursor-pointer text-blue-500 hover:underline"
+                  >Suba sua imagem aqui
+                </label>
               </p>
+              <span
+                *ngIf="createEventForm.get('bannerFile')?.value"
+                class="block text-sm text-gray-600 mt-2"
+              >
+                {{ createEventForm.get('bannerFile')?.value.name }}
+              </span>
             </div>
           </div>
         </div>
-      </div> -->
+      </div>
     </div>
     <div class="mt-10">
       <button
         (click)="createEvent()"
         type="submit"
-        [disabled]="!createEventForm.valid"
-        class="block w-full rounded-md bg-kipperdev-purple-primary px-3.5 py-2.5 text-center text-sm sm:text-base font-semibold text-white shadow-sm hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kipperdev-purple-primary"
+        [disabled]="!createEventForm.valid || isLoading()"
+        class="block w-full rounded-md disabled:opacity-95 bg-kipperdev-purple-primary px-3.5 py-2.5 text-center text-sm sm:text-base font-semibold text-white shadow-sm hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kipperdev-purple-primary"
       >
-        Cadastrar evento
+        @if (!isLoading()) {
+          Cadastrar evento
+        } @else {
+          <svg
+            class="animate-spin h-5 w-5 text-white mx-auto"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              class="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              stroke-width="4"
+            ></circle>
+            <path
+              class="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+            ></path>
+          </svg>
+        }
       </button>
     </div>
   </form>

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -12,10 +12,7 @@ import { FilterService } from '../../services/filter.service';
 import { City } from '../../types/City.type';
 import { EventType } from '../../types/Event.type';
 import { UF } from '../../types/UF.type';
-import {
-  ImageURLRegexValidator,
-  URLRegexValidator,
-} from '../../utils/url-regex-validator.util';
+import { URLRegexValidator } from '../../utils/url-regex-validator.util';
 import { Router } from '@angular/router';
 import { FooterComponent } from '../../components/footer/footer.component';
 
@@ -24,11 +21,9 @@ export interface CreateEventFormControl {
   type: FormControl<EventType | null>;
   description: FormControl<string | null>;
   date: FormControl<string | null>;
-  hour: FormControl<string | null>;
   city: FormControl<string | null>;
   state: FormControl<string | null>;
-  bannerUrl: FormControl<string | null>;
-  // bannerFile: FormControl<File | null>;
+  bannerFile: FormControl<File | null>;
   url: FormControl<string | null>;
 }
 
@@ -52,21 +47,18 @@ export class CreateEventComponent implements OnInit {
   validDate: boolean = true;
   maxDate: string = '2030-01-01';
 
+  isLoading = signal(false);
+
   ngOnInit() {
     this.createEventForm = new FormGroup<CreateEventFormControl>({
       title: new FormControl(null, [Validators.required]),
       type: new FormControl(EventType.PRESENTIAL, [Validators.required]),
       description: new FormControl(null, [Validators.required]),
       date: new FormControl(null, [Validators.required]),
-      hour: new FormControl(null, [Validators.required]),
       city: new FormControl(null, [Validators.required]),
       state: new FormControl(null, [Validators.required]),
       url: new FormControl(null, [Validators.pattern(URLRegexValidator)]),
-      bannerUrl: new FormControl(null, [
-        Validators.pattern(ImageURLRegexValidator),
-        Validators.required,
-      ]),
-      // bannerFile: new FormControl(null),
+      bannerFile: new FormControl(null),
     });
     this.getLocales();
   }
@@ -117,21 +109,47 @@ export class CreateEventComponent implements OnInit {
 
   createEvent() {
     this.dateValidator();
+    this.isLoading.set(true);
+
     if (!this.createEventForm?.valid) {
       return;
     }
+
     if (
       this.createEventForm.get('type')?.value === 'Presencial' &&
       this.validDate
     ) {
       this.setLocaleAsString();
     }
+
     if (this.validDate) {
-      this.eventsService.createEvent(this.createEventForm.value).subscribe({
+      const data = new FormData();
+      data.append('title', this.createEventForm.value.title);
+      data.append('description', this.createEventForm.value.description);
+      data.append('image', this.createEventForm.value.bannerFile);
+      data.append('state', this.createEventForm.value.state ?? '');
+      data.append('city', this.createEventForm.value.city ?? '');
+      data.append('eventUrl', this.createEventForm.value.url);
+      data.append(
+        'remote',
+        this.createEventForm.value.type == EventType.ONLINE ? 'true' : 'false',
+      );
+      data.append(
+        'date',
+        new Date(this.createEventForm.value?.date?.toString())
+          .getTime()
+          .toString(),
+      );
+
+      this.eventsService.createEvent(data).subscribe({
         next: () => {
+          this.isLoading.set(false);
           this.router.navigate(['/eventos']);
         },
-        error: (error) => console.error('Erro ao cadastrar evento:', error),
+        error: (error) => {
+          this.isLoading.set(false);
+          console.error('Erro ao cadastrar evento:', error);
+        },
       });
     } else {
       console.log('Data inválida, evento não criado');
@@ -175,13 +193,12 @@ export class CreateEventComponent implements OnInit {
     });
   }
 
-  // fileChange(event: Event): void {
-  //   const input = event.target as HTMLInputElement;
-  //   if (input.files && input.files.length > 0) {
-  //     console.log(input.files);
-  //     this.createEventForm.get('bannerFile')?.setValue(input.files[0]);
-  //   }
-  // }
+  fileChange(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      this.createEventForm.get('bannerFile')?.setValue(input.files[0]);
+    }
+  }
 
   handleEventType(type: EventType) {
     if (type === EventType.ONLINE) {
