@@ -115,6 +115,14 @@ Um agradecimento especial a todos que contribuíram ao projeto!
         </sub>
       </a>
     </td>
+    <td align="center">
+      <a href="https://github.com/lucasspeixoto">
+        <img src="https://avatars.githubusercontent.com/u/57375912?v=4" width="100px;" alt="Foto do Lucas Peixoto"/><br>
+        <sub>
+          <b>Lucas Peixoto Fernandes</b>
+        </sub>
+      </a>
+    </td>
   </tr>
 </table>
 

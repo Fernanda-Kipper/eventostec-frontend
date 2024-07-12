@@ -4,6 +4,7 @@
     aria-labelledby="modal-title"
     role="dialog"
     aria-modal="true"
+    data-testid="modalContainer"
   >
     <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity">
       <div
@@ -14,6 +15,7 @@
         >
           <div class="flex justify-end">
             <button
+              data-testid="closeModalButton"
               (click)="close()"
               class="font-medium text-base text-red-600"
             >
