@@ -1,4 +1,4 @@
-<app-header />
+<app-header [showSearchBar]="false" />
 @if (event$ | async; as event) {
   <div class="relative top-0 h-500">
     <div class="absolute inset-0 overflow-hidden">
@@ -15,7 +15,7 @@
     />
   </div>
   <div
-    class="mt-28 py-8 px-4 shadow-custom-shadow w-1100 max-w-full mx-auto bg-kipperdev-darkWhite rounded-md flex flex-col gap-3"
+    class="mt-28 mx-4 py-8 px-4 shadow-custom-shadow md:w-1100 max-w-full md:mx-auto bg-kipperdev-darkWhite rounded-md flex flex-col gap-3"
   >
     <span
       class="text-3xl font-bold text-kipperdev-purple-dark flex items-center gap-2"
