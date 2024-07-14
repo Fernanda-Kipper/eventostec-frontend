@@ -76,6 +76,7 @@ export class HomeComponent implements OnInit {
     });
 
     this.loadLocalesFilter();
+
     this.events$ = this.eventsService.getEvents();
     this.filteredEventList$ = combineLatest([
       this.searchTerm.pipe(startWith('')),
