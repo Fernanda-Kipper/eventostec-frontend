@@ -66,6 +66,8 @@ Um agradecimento especial a todos que contribuíram ao projeto!
         </sub>
       </a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/carlloseduardo07">
         <img src="https://avatars.githubusercontent.com/u/80606019?v=4" width="100px;" alt="Foto do Carlos Eduardo Albuquerque"/><br>
@@ -74,7 +76,6 @@ Um agradecimento especial a todos que contribuíram ao projeto!
         </sub>
       </a>
     </td>
-    <td align="center">
     <td align="center">
       <a href="https://github.com/Ferreira-Luiz">
         <img src="https://avatars.githubusercontent.com/u/113461203?v=4" width="100px;" alt="Foto de Luiz Fernando"/><br>
@@ -107,6 +108,8 @@ Um agradecimento especial a todos que contribuíram ao projeto!
         </sub>
       </a>
     </td>
+  </tr>
+  <tr>
     <td align="center">
       <a href="https://github.com/gabrielmnzs">
         <img src="https://avatars.githubusercontent.com/u/8618609?v=4" width="100px;" alt="Foto do Gabriel Menezes"/><br>
@@ -120,6 +123,14 @@ Um agradecimento especial a todos que contribuíram ao projeto!
         <img src="https://avatars.githubusercontent.com/u/57375912?v=4" width="100px;" alt="Foto do Lucas Peixoto"/><br>
         <sub>
           <b>Lucas Peixoto Fernandes</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/wanderhungerbuhler">
+        <img src="https://avatars.githubusercontent.com/u/22423436?v=4" width="100px;" alt="Foto do Wander Hungerbühler"/><br>
+        <sub>
+          <b>Wander Hungerbühler</b>
         </sub>
       </a>
     </td>
