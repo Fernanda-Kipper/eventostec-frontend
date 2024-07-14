@@ -144,7 +144,7 @@ export class CreateEventComponent implements OnInit {
       this.eventsService.createEvent(data).subscribe({
         next: () => {
           this.isLoading.set(false);
-          this.router.navigate(['/eventos']);
+          this.router.navigate(['/']);
         },
         error: (error) => {
           this.isLoading.set(false);
