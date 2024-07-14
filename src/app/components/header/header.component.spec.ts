@@ -27,9 +27,6 @@ describe('HeaderComponent', () => {
     fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
 
-    searchInput = fixture.debugElement.query(
-      By.css('[data-testid="inputSearch"]'),
-    ).nativeElement;
     searchTermChangeSpy = jest.spyOn(component.searchTermChange, 'emit');
 
     fixture.detectChanges();
@@ -68,6 +65,9 @@ describe('HeaderComponent', () => {
 
   describe('searchTermChange', () => {
     it('should not emit searchTermChange when input event is not a KeyboardEvent', () => {
+      component.showSearchBar = true;
+      fixture.detectChanges();
+
       const mockEvent = {
         target: { value: 'test' },
       } as unknown as KeyboardEvent;
@@ -77,6 +77,13 @@ describe('HeaderComponent', () => {
     });
 
     it('should emit searchTermChange event after 1000ms delay when input value changes', fakeAsync(() => {
+      component.showSearchBar = true;
+      fixture.detectChanges();
+
+      searchInput = fixture.debugElement.query(
+        By.css('[data-testid="inputSearch"]'),
+      ).nativeElement;
+
       let searchTerm!: string | null | undefined;
       const searchInputValue = 'game';
 
