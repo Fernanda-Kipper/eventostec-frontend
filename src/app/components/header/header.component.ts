@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
@@ -10,6 +10,8 @@ import { RouterModule } from '@angular/router';
 export class HeaderComponent {
   searchTerm: string = '';
   debounceTimeout: ReturnType<typeof setTimeout> | undefined;
+
+  @Input() showSearchBar = true;
 
   @Output() searchTermChange: EventEmitter<string> = new EventEmitter<string>();
 
