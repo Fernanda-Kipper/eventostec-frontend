@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -51,7 +51,7 @@ interface FilterForm {
   ],
   templateUrl: './home.component.html',
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit {
   isModalOpen = signal(false);
   filterIsActive = false;
   filterForm!: FormGroup<FilterForm>;
@@ -76,9 +76,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
 
     this.loadLocalesFilter();
-  }
 
-  ngAfterViewInit(): void {
     this.events$ = this.eventsService.getEvents();
     this.filteredEventList$ = combineLatest([
       this.searchTerm.pipe(startWith('')),
