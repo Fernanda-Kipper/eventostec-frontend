@@ -15,7 +15,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(
       withHttpTransferCacheOptions({
         filter(req) {
-          return !req.url.includes('/api/event?page');
+          return !req.url.includes('/api/event?page=0&size=10');
         },
       }),
     ),
