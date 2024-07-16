@@ -41,7 +41,7 @@ describe('EventsService', () => {
       });
 
       const req = httpMock.expectOne(
-        'http://localhost:3000/api/event?page=0&size=20',
+        'http://localhost:3000/api/event?page=0&size=10',
       );
       req.flush([EVENT_MOCK]);
 
@@ -54,7 +54,7 @@ describe('EventsService', () => {
         expect(response).toEqual([EVENT_MOCK]);
       });
       const req = httpMock.expectOne(
-        'http://localhost:3000/api/event?page=0&size=20',
+        'http://localhost:3000/api/event?page=0&size=10',
       );
 
       req.flush([EVENT_MOCK]);
