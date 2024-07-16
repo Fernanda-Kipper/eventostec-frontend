@@ -12,9 +12,9 @@ export class EventsService {
 
   constructor(private http: HttpClient) {}
 
-  getEvents(page: number = 0): Observable<EventItem[]> {
+  getEvents(page: number = 0, size: number = 10): Observable<EventItem[]> {
     return this.http
-      .get<EventItem[]>(`${this.APIurl}/api/event?page=${page}&size=20`)
+      .get<EventItem[]>(`${this.APIurl}/api/event?page=${page}&size=${size}`)
       .pipe(
         catchError(() => {
           return of([]);
