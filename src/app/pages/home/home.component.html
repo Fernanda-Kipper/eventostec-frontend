@@ -75,6 +75,12 @@
               {{ event }}
             </app-event>
           </a>
+        } @empty {
+          <div class="text-center w-full">
+            <p class="text-lg text-kipperdev-purple-dark">
+              Nenhum evento encontrado
+            </p>
+          </div>
         }
       </ul>
     </div>
