@@ -95,47 +95,49 @@
     <div class="mb-8">
       <p-floatLabel>
         <p-dropdown
-          formControlName="locale"
-          [options]="states"
-          (onChange)="stateSelect2()"
           filter
           showClear
-          optionLabel="name"
+          optionLabel="label"
           optionValue="value"
-          placeholder="São Paulo"
+          inputId="float-label"
+          [options]="states"
+          formControlName="locale"
+          (onChange)="handleSelectLocale()"
           [style]="{
             width: '100%',
             border: '1px solid #ccc',
             boxShadow: 'none'
           }"
-          inputId="float-label"
         />
-        <label for="float-label mb-3 block text-base font-medium text-[#07074D]"
-          >Estado</label
+        <label
+          for="float-label mb-3 block text-base font-medium text-[#07074D]"
         >
+          Estado
+        </label>
       </p-floatLabel>
     </div>
     <div class="mb-5">
       <p-floatLabel>
         <p-dropdown
-          formControlName="city"
-          [options]="cities"
-          (onChange)="stateSelect2()"
           filter
           showClear
           optionLabel="label"
           optionValue="value"
-          placeholder="Campinas"
+          [options]="cities"
+          formControlName="city"
+          (onChange)="handleSelectLocale()"
+          inputId="float-label"
           [style]="{
             width: '100%',
             border: '1px solid #ccc',
             boxShadow: 'none'
           }"
-          inputId="float-label"
         />
-        <label for="float-label mb-3 block text-base font-medium text-[#07074D]"
-          >Cidade</label
+        <label
+          for="float-label mb-3 block text-base font-medium text-[#07074D]"
         >
+          Cidade
+        </label>
       </p-floatLabel>
     </div>
     <div class="-mx-3 flex flex-wrap">

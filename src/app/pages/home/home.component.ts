@@ -6,14 +6,10 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { EventComponent } from '../../components/event/event.component';
-import { HeaderComponent } from '../../components/header/header.component';
-import { ModalComponent } from '../../components/modal/modal.component';
-import { FilterService } from '../../services/filter.service';
-import { City } from '../../types/City.type';
-import { UF } from '../../types/UF.type';
-import { EventsService } from '../../services/events.service';
+import { DropdownModule } from 'primeng/dropdown';
+import { FloatLabelModule } from 'primeng/floatlabel';
 import {
   BehaviorSubject,
   Observable,
@@ -21,11 +17,15 @@ import {
   map,
   startWith,
 } from 'rxjs';
-import { EventItem } from '../../types/Event.type';
+import { EventComponent } from '../../components/event/event.component';
 import { FooterComponent } from '../../components/footer/footer.component';
-import { RouterModule } from '@angular/router';
-import { DropdownModule } from 'primeng/dropdown';
-import { FloatLabelModule } from 'primeng/floatlabel';
+import { HeaderComponent } from '../../components/header/header.component';
+import { ModalComponent } from '../../components/modal/modal.component';
+import { EventsService } from '../../services/events.service';
+import { FilterService } from '../../services/filter.service';
+import { City } from '../../types/City.type';
+import { EventItem } from '../../types/Event.type';
+import { UF } from '../../types/UF.type';
 
 interface FilterForm {
   locale: FormControl<string | null>;
@@ -76,15 +76,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
     });
 
     this.loadLocalesFilter();
-
-    this.events$ = this.eventsService.getEvents();
-    this.filteredEventList$ = combineLatest([
-      this.searchTerm.pipe(startWith('')),
-      this.events$,
-    ]).pipe(map(([term, events]) => this.getFilteredEvents(term, events)));
+    this.getEvents();
   }
 
-  ngAfterViewInit(): void {
+  ngAfterViewInit() {
+    this.getEvents();
+  }
+
+  getEvents() {
     this.events$ = this.eventsService.getEvents(0, 20);
     this.filteredEventList$ = combineLatest([
       this.searchTerm.pipe(startWith('')),
@@ -142,14 +141,15 @@ export class HomeComponent implements OnInit, AfterViewInit {
   clearFilter() {
     this.filterIsActive = false;
     this.filterForm.reset();
+    this.getEvents();
   }
 
-  stateSelect2() {
+  handleSelectLocale() {
     const selectedStateValue = this.filterForm.get('locale')!.value;
     const selectedState = this.states.filter(
       (state) => state.value === selectedStateValue,
     );
-    if (selectedStateValue) {
+    if (selectedStateValue && selectedState.length) {
       this.loadCities(Number(selectedState[0].id));
     }
   }
