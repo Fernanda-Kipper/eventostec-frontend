@@ -276,18 +276,21 @@
             Estado
           </label>
           <div class="mt-2.5">
-            <select
-              id="state"
+            <p-dropdown
+              filter
               formControlName="state"
-              class="block w-full h-10 bg-transparent rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
-              (change)="getInfoState()"
-            >
-              @for (option of states; track option.id) {
-                <option [value]="option.id">
-                  {{ option.label }}
-                </option>
-              }
-            </select>
+              [options]="states"
+              optionLabel="label"
+              optionValue="id"
+              inputId="state"
+              placeholder="Selecione o estado"
+              (onChange)="getInfoState()"
+              [style]="{
+                width: '100%',
+                border: '1px solid #ccc',
+                boxShadow: 'none'
+              }"
+            />
           </div>
         </div>
         <div>
@@ -298,17 +301,20 @@
             Cidade
           </label>
           <div class="mt-2.5">
-            <select
-              id="city"
+            <p-dropdown
+              filter
               formControlName="city"
-              class="block w-full h-10 bg-transparent rounded-md border-0 px-3.5 py-2 text-kipperdev-purple-dark shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-kipperdev-purple-primary sm:text-sm sm:leading-6"
-            >
-              @for (option of cities; track option.id) {
-                <option [value]="option.id">
-                  {{ option.label }}
-                </option>
-              }
-            </select>
+              [options]="cities"
+              optionLabel="label"
+              optionValue="id"
+              inputId="city"
+              placeholder="Selecione a cidade"
+              [style]="{
+                width: '100%',
+                border: '1px solid #ccc',
+                boxShadow: 'none'
+              }"
+            />
           </div>
         </div>
       }

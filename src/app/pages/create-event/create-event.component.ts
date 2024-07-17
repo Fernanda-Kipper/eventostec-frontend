@@ -7,14 +7,15 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { Router } from '@angular/router';
+import { DropdownModule } from 'primeng/dropdown';
+import { FooterComponent } from '../../components/footer/footer.component';
 import { EventsService } from '../../services/events.service';
 import { FilterService } from '../../services/filter.service';
 import { City } from '../../types/City.type';
 import { EventType } from '../../types/Event.type';
 import { UF } from '../../types/UF.type';
 import { URLRegexValidator } from '../../utils/url-regex-validator.util';
-import { Router } from '@angular/router';
-import { FooterComponent } from '../../components/footer/footer.component';
 
 export interface CreateEventFormControl {
   title: FormControl<string | null>;
@@ -30,7 +31,7 @@ export interface CreateEventFormControl {
 @Component({
   selector: 'app-create-event',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, FooterComponent],
+  imports: [CommonModule, ReactiveFormsModule, FooterComponent, DropdownModule],
   templateUrl: './create-event.component.html',
 })
 export class CreateEventComponent implements OnInit {
