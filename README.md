@@ -134,6 +134,14 @@ Um agradecimento especial a todos que contribuíram ao projeto!
         </sub>
       </a>
     </td>
+    <td align="center">
+      <a href="https://github.com/JoPCardoso2203">
+        <img src="https://avatars.githubusercontent.com/u/65909583?v=4" width="100px;" alt="Foto do João Paulo Cardoso"/><br>
+        <sub>
+          <b>João Paulo Cardoso</b>
+        </sub>
+      </a>
+    </td>
   </tr>
 </table>
 
