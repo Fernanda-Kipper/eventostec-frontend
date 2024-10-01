@@ -134,6 +134,14 @@ Um agradecimento especial a todos que contribuíram ao projeto!
         </sub>
       </a>
     </td>
+    <td align="center">
+      <a href="https://github.com/AldairAvelino">
+        <img src="https://avatars.githubusercontent.com/u/71715517?v=4" width="100px;" alt="Foto do Aldair Avelino"/><br>
+        <sub>
+          <b>Aldair Avelino</b>
+        </sub>
+      </a>
+    </td>
   </tr>
 </table>
 
