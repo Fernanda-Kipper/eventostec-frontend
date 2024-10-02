@@ -6,8 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "backend": "json-server --watch db/db.json",
-    "test": "ng test",
-    "test:watch": "ng test --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "serve:ssr:community-events-front": "node dist/community-events-front/server/server.mjs",
     "lint": "ng lint",
     "format": "prettier src/**/*.{ts,html} --write",
@@ -53,7 +53,7 @@
     "@angular/cli": "^17.2.3",
     "@angular/compiler-cli": "^17.2.0",
     "@types/express": "^4.17.17",
-    "@types/jest": "^29.5.12",
+    "@types/jest": "^29.5.13",
     "@types/node": "^18.18.0",
     "@typescript-eslint/eslint-plugin": "7.10.0",
     "@typescript-eslint/parser": "7.10.0",
@@ -62,11 +62,12 @@
     "husky": "^9.0.11",
     "jasmine-core": "~5.1.0",
     "jest": "^29.7.0",
-    "jest-preset-angular": "^14.1.0",
+    "jest-preset-angular": "^14.2.4",
     "lint-staged": "^15.2.5",
     "postcss": "^8.4.38",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.3",
+    "ts-jest": "^29.2.5",
     "typescript": "~5.3.2"
   }
 }
