@@ -1,5 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, OnInit, signal } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  OnDestroy,
+  OnInit,
+  signal,
+} from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -13,6 +19,7 @@ import { FloatLabelModule } from 'primeng/floatlabel';
 import {
   BehaviorSubject,
   Observable,
+  Subscription,
   combineLatest,
   map,
   startWith,
@@ -51,7 +58,7 @@ interface FilterForm {
   ],
   templateUrl: './home.component.html',
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   isModalOpen = signal(false);
   filterIsActive = false;
   filterForm!: FormGroup<FilterForm>;
@@ -62,10 +69,14 @@ export class HomeComponent implements OnInit, AfterViewInit {
   filteredEventList$!: Observable<EventItem[]>;
   searchTerm = new BehaviorSubject<string>('');
 
+  private _subscriptions: Subscription;
+
   constructor(
     private filterService: FilterService,
     private eventsService: EventsService,
-  ) {}
+  ) {
+    this._subscriptions = new Subscription();
+  }
 
   ngOnInit() {
     this.filterForm = new FormGroup<FilterForm>({
@@ -92,17 +103,19 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   loadLocalesFilter() {
-    this.filterService.loadLocales().subscribe({
-      next: (body: UF[]) => {
-        this.states = body.map((value) => ({
-          id: value.id,
-          name: value.nome,
-          code: value.sigla,
-          label: value.nome,
-          value: value.sigla,
-        }));
-      },
-    });
+    this._subscriptions.add(
+      this.filterService.loadLocales().subscribe({
+        next: (body: UF[]) => {
+          this.states = body.map((value) => ({
+            id: value.id,
+            name: value.nome,
+            code: value.sigla,
+            label: value.nome,
+            value: value.sigla,
+          }));
+        },
+      }),
+    );
   }
 
   toggleModal() {
@@ -155,18 +168,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
   }
 
   loadCities(selectedState: number) {
-    this.filterService.loadCitiesByState(selectedState).subscribe({
-      next: (cities: City[]) => {
-        this.cities = cities.map((city) => ({
-          id: city.id,
-          label: city.nome,
-          value: city.nome,
-        }));
-      },
-      error: (error) => {
-        console.error('Error loading cities:', error);
-      },
-    });
+    this._subscriptions.add(
+      this.filterService.loadCitiesByState(selectedState).subscribe({
+        next: (cities: City[]) => {
+          this.cities = cities.map((city) => ({
+            id: city.id,
+            label: city.nome,
+            value: city.nome,
+          }));
+        },
+        error: (error) => {
+          console.error('Error loading cities:', error);
+        },
+      }),
+    );
   }
 
   getFilteredEvents(term: string, events: EventItem[]): EventItem[] {
@@ -177,5 +192,9 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   updateSearchTerm(newTerm: string) {
     this.searchTerm.next(newTerm);
+  }
+
+  ngOnDestroy(): void {
+    this._subscriptions.unsubscribe();
   }
 }
