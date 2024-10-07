@@ -142,6 +142,14 @@ Um agradecimento especial a todos que contribuíram ao projeto!
         </sub>
       </a>
     </td>
+    <td align="center">
+      <a href="https://github.com/joannegs">
+        <img src="https://avatars.githubusercontent.com/u/36765523" width="100px;" alt="Foto da Joanne Silva"/><br>
+        <sub>
+          <b>Joanne Silva</b>
+        </sub>
+      </a>
+    </td>
   </tr>
 </table>
 
