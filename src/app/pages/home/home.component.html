@@ -112,7 +112,7 @@
           [style]="{
             width: '100%',
             border: '1px solid #ccc',
-            boxShadow: 'none'
+            boxShadow: 'none',
           }"
         />
         <label
@@ -136,7 +136,7 @@
           [style]="{
             width: '100%',
             border: '1px solid #ccc',
-            boxShadow: 'none'
+            boxShadow: 'none',
           }"
         />
         <label
@@ -161,6 +161,7 @@
             name="date"
             id="date"
             class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            (input)="updateMinDate()"
           />
         </div>
       </div>
@@ -177,11 +178,20 @@
             type="date"
             name="date"
             id="date"
+            [min]="minDate"
             class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            (change)="checkDateValidity()"
           />
         </div>
       </div>
     </div>
+    @if (filterForm.hasError('dateRangeInvalid') && isDateValid) {
+      <div class="w-full">
+        <div class="text-red-500 text-sm">
+          A data final não pode ser menor que a data inicial.
+        </div>
+      </div>
+    }
     <div class="mt-5 flex flex-col gap-2 sm:mt-6">
       <button
         (click)="submit()"

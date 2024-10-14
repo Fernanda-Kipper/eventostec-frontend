@@ -142,6 +142,14 @@ Um agradecimento especial a todos que contribuíram ao projeto!
         </sub>
       </a>
     </td>
+    <td align="center">
+      <a href="https://github.com/cassioliveiradev">
+        <img src="https://avatars.githubusercontent.com/u/163086666" width="100px;" alt="Foto de Cássio Oliveira"/><br>
+        <sub>
+          <b>Cássio Oliveira</b>
+        </sub>
+      </a>
+    </td>
   </tr>
 </table>
 

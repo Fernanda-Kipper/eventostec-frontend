@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, OnInit, signal } from '@angular/core';
 import {
+  AbstractControl,
   FormControl,
   FormGroup,
   ReactiveFormsModule,
+  ValidationErrors,
   Validators,
 } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -61,6 +63,8 @@ export class HomeComponent implements OnInit, AfterViewInit {
   events$!: Observable<EventItem[]>;
   filteredEventList$!: Observable<EventItem[]>;
   searchTerm = new BehaviorSubject<string>('');
+  isDateValid = false;
+  minDate: string | null = null;
 
   constructor(
     private filterService: FilterService,
@@ -68,12 +72,17 @@ export class HomeComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit() {
-    this.filterForm = new FormGroup<FilterForm>({
-      locale: new FormControl<string | null>(null, [Validators.required]),
-      city: new FormControl<string | null>(null, [Validators.required]),
-      from: new FormControl<Date | null>(null, [Validators.required]),
-      to: new FormControl<Date | null>(null, [Validators.required]),
-    });
+    this.filterForm = new FormGroup<FilterForm>(
+      {
+        locale: new FormControl<string | null>(null, [Validators.required]),
+        city: new FormControl<string | null>(null, [Validators.required]),
+        from: new FormControl<Date | null>(null, [Validators.required]),
+        to: new FormControl<Date | null>(null, [Validators.required]),
+      },
+      {
+        validators: this.dateRangeValidator,
+      },
+    );
 
     this.loadLocalesFilter();
     this.getEvents();
@@ -177,5 +186,27 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   updateSearchTerm(newTerm: string) {
     this.searchTerm.next(newTerm);
+  }
+
+  dateRangeValidator(form: AbstractControl): ValidationErrors | null {
+    const { from, to } = form.value;
+    return from && to && from > to ? { dateRangeInvalid: true } : null;
+  }
+
+  checkDateValidity() {
+    const toDate = this.filterForm.get('to')?.value;
+    const formattedDate =
+      toDate instanceof Date ? toDate.toISOString().split('T')[0] : toDate;
+
+    this.isDateValid = !!formattedDate && formattedDate.length === 10;
+  }
+
+  updateMinDate() {
+    const fromDate = this.filterForm.get('from')?.value;
+
+    this.minDate =
+      fromDate instanceof Date
+        ? fromDate.toISOString().split('T')[0]
+        : (fromDate ?? null);
   }
 }
