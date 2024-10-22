@@ -12,6 +12,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FooterComponent } from '../../components/footer/footer.component';
 import { EventsService } from '../../services/events.service';
 import { FilterService } from '../../services/filter.service';
+import { GlobalMessageService } from '../../services/global-message.service';
 import { City } from '../../types/City.type';
 import { EventType } from '../../types/Event.type';
 import { UF } from '../../types/UF.type';
@@ -32,6 +33,7 @@ export interface CreateEventFormControl {
   selector: 'app-create-event',
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, FooterComponent, DropdownModule],
+  providers: [GlobalMessageService],
   templateUrl: './create-event.component.html',
 })
 export class CreateEventComponent implements OnInit {
@@ -62,7 +64,10 @@ export class CreateEventComponent implements OnInit {
       bannerFile: new FormControl(null),
     });
     this.getLocales();
+    this.updateTodayDate();
   }
+
+  constructor(private globalMessageService: GlobalMessageService) {}
 
   updateTodayDate() {
     this.todayDate = new Date().toISOString().split('T')[0];
@@ -145,15 +150,25 @@ export class CreateEventComponent implements OnInit {
       this.eventsService.createEvent(data).subscribe({
         next: () => {
           this.isLoading.set(false);
-          this.router.navigate(['/']);
+          this.globalMessageService.addSuccessMessage(
+            'Evento cadastrado com sucesso!',
+          );
+          this.navigateToHome();
         },
         error: (error) => {
           this.isLoading.set(false);
-          console.error('Erro ao cadastrar evento:', error);
+          console.log(error);
+          const errorTitle =
+            error.error?.title ||
+            'Erro desconhecido, entre em contato com o suporte.';
+          this.globalMessageService.addErrorMessage(
+            `Erro ao cadastrar evento: ${errorTitle}`,
+          );
         },
       });
     } else {
-      console.log('Data inválida, evento não criado');
+      this.isLoading.set(false);
+      this.globalMessageService.addErrorMessage('Data inválida!');
     }
   }
 
@@ -226,5 +241,11 @@ export class CreateEventComponent implements OnInit {
     }
     stateControl?.updateValueAndValidity();
     cityControl?.updateValueAndValidity();
+  }
+
+  private navigateToHome() {
+    setTimeout(() => {
+      this.router.navigate(['/']);
+    }, 2500);
   }
 }

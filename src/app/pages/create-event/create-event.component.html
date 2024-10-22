@@ -178,7 +178,7 @@
           class="flex whitespace-nowrap items-center h-8 px-5 font-medium rounded-lg outline-none focus:ring-2 hover:ring-gray-900 focus:ring-gray-900 focus:ring-inset hover:text-white hover:bg-gray-800 bg-gray-800"
           [ngClass]="{
             'bg-gray-800 text-white shadow':
-              createEventForm.value.type === EventType.PRESENTIAL
+              createEventForm.value.type === EventType.PRESENTIAL,
           }"
           (click)="handleEventType(EventType.PRESENTIAL)"
         >
@@ -191,7 +191,7 @@
           class="flex whitespace-nowrap items-center h-8 px-5 font-medium rounded-lg outline-none focus:ring-2 focus:ring-gray-800 hover:ring-gray-800 focus:ring-inset hover:text-white hover:bg-gray-800"
           [ngClass]="{
             'bg-gray-800 text-white shadow':
-              createEventForm.value.type === EventType.ONLINE
+              createEventForm.value.type === EventType.ONLINE,
           }"
           (click)="handleEventType(EventType.ONLINE)"
         >
@@ -288,7 +288,7 @@
               [style]="{
                 width: '100%',
                 border: '1px solid #ccc',
-                boxShadow: 'none'
+                boxShadow: 'none',
               }"
             />
           </div>
@@ -312,7 +312,7 @@
               [style]="{
                 width: '100%',
                 border: '1px solid #ccc',
-                boxShadow: 'none'
+                boxShadow: 'none',
               }"
             />
           </div>
@@ -395,7 +395,7 @@
         (click)="createEvent()"
         type="submit"
         [disabled]="!createEventForm.valid || isLoading()"
-        class="block w-full rounded-md disabled:opacity-95 bg-kipperdev-purple-primary px-3.5 py-2.5 text-center text-sm sm:text-base font-semibold text-white shadow-sm hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kipperdev-purple-primary"
+        class="block w-full rounded-md disabled:opacity-95 bg-kipperdev-purple-primary px-3.5 py-2.5 text-center text-sm sm:text-base font-semibold text-white shadow-sm hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-kipperdev-purple-primary disabled:bg-indigo-400 disabled:cursor-not-allowed"
       >
         @if (!isLoading()) {
           Cadastrar evento
