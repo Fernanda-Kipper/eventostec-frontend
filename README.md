@@ -1,5 +1,5 @@
 [PROJECT__BADGE]: https://img.shields.io/badge/📱Visite_nossa_plataforma-000?style=for-the-badge&logo=project
-[PROJECT__URL]: eventostec.com.br
+[PROJECT__URL]: https://www.eventostec.com.br
 
 <h1 align="center" style="font-weight: bold;">EventosTec.com.br</h1>
 
@@ -139,6 +139,14 @@ Um agradecimento especial a todos que contribuíram ao projeto!
         <img src="https://avatars.githubusercontent.com/u/71715517?v=4" width="100px;" alt="Foto do Aldair Avelino"/><br>
         <sub>
           <b>Aldair Avelino</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/reidn3r">
+        <img src="https://avatars.githubusercontent.com/u/121988116?v=4" width="100px;" alt="Foto do Reidner Adnan"/><br>
+        <sub>
+          <b>Reidner Adnan</b>
         </sub>
       </a>
     </td>
